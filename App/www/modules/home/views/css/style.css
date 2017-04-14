@@ -1,0 +1,124 @@
+/*
+Created by Quentin Geeraert
+ */
+
+header div{
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 60px; line-height: 60px;
+  color: #FFF;
+  text-transform: uppercase;
+  text-align: right;
+  right: 50px;
+  background-color: #3f4551;
+}
+
+.gravitee-logo{
+  vertical-align: middle;
+  height: 70%;
+}
+
+a{
+  text-decoration: none;
+  color: #006CAB;
+}
+
+body{
+  background: #3f4551;
+}
+
+.input-text{
+  outline: none;
+  border-left: none;
+  border-top: none;
+  border-right: none;
+  border-color: lightblue;
+  transition-duration: 0.2s;
+}
+
+.input-text:hover{ border-color: deepskyblue; }
+
+.input-text:focus{ border-color: deepskyblue; }
+
+.menu{
+  height: 40px;
+  width:40px;
+  vertical-align: middle;
+  margin-left: 0.7em;
+  margin-right: 0.7em;
+  margin-bottom: 1em;
+  opacity: 0.1;
+}
+
+.menu-active{
+  height: 40px;
+  width: 40px;
+  vertical-align: middle;
+  margin-left: 0.7em;
+  margin-right: 0.7em;
+  margin-bottom: 1em;
+  opacity: 1;
+}
+
+.view{
+  position: fixed;
+  background-color: #FFFFFF;
+  top:60px; right: 0; bottom: 0; left: 0;
+}
+
+nav{
+  bottom: 0;
+}
+
+.panel{
+  position: absolute;
+  right: 0; left: 0; top: 0; bottom: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+  transition-duration: .5s;
+}
+
+/* transition between panels */
+.left{
+  /* translate3D for best experience */
+  -webkit-transform: translate3D(-100%, 0, 0);
+  -moz-transform: translate3D(-100%, 0, 0);
+  -ms-transform: translate3D(-100%, 0, 0);
+  -o-transform: translate3D(-100%, 0, 0);
+  transform: translate3D(-100%, 0, 0);
+}
+
+.center{
+  -webkit-transform: translate3D(0,0,0);
+  -moz-transform: translate3D(0,0,0);
+  -ms-transform: translate3D(0,0,0);
+  -o-transform: translate3D(0,0,0);
+  transform: translate3D(0,0,0);
+}
+
+.right{
+  -webkit-transform: translate3D(70%, 0, 0);
+  -moz-transform: translate3D(70%, 0, 0);
+  -ms-transform: translate3D(70%, 0, 0);
+  -o-transform: translate3D(70%, 0, 0);
+  transform: translate3D(70%, 0, 0);
+}
+
+.panel-padding{
+  padding: 0 10px;
+}
+
+.divAPIsBottomButton{
+  margin-left: 40%;
+}
+
+.APIsBottomButton{
+  width:20px;
+}
+
+.docAPIs{
+  height: 28px;
+  vertical-align: middle;
+}
