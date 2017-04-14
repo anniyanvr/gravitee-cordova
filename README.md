@@ -4,9 +4,9 @@
 * [NodeJS](https://nodejs.org/en/)
 * Install cordova :
     * Open your terminal
-    * Write >> npm install -g cordova
-    * To verify >> cordova --version
-* Install [Java SE Development kit](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+    * ``` npm install -g cordova ```
+    * To verify ``` cordova --version ```
+* Install [Java SE Development kit](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 * Install [android SDK](http://www.clubic.com/telecharger-fiche280710-android-sdk.html)
 * Install [apache ant](http://ant.apache.org/)
 * Add bin folders to your PATH
@@ -23,11 +23,11 @@
 ### first solution
 * With your terminal, go to the work repository then App folder
 * Write :
-    * >> cordova platforms add android
-    * >> cordova build
-    * >> android
+    * ``` cordova platforms add android ```
+    * ``` cordova build ```
+    * ``` android ```
         * tools -> manage avds -> device definitions -> nexus S -> create avd -> ok -> start -> launch
-    * >> cordova emulate android
+    * ``` cordova emulate android ```
 
 ### second solution
 * Install google chrome
@@ -38,7 +38,7 @@
 ### third solution
 * With your terminal, go to the work repository then App folder
 * Write :
-    * >> cordova platforms add android
+    * ``` cordova platforms add android ```
 * Install [android studio](https://developer.android.com/studio/index.html)
 * Run android studio :
     * import project
