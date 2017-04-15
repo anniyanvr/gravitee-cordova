@@ -1,0 +1,40 @@
+<section ng-controller="instanceCtrl">
+    <section class="panel panel-padding">
+
+        <form style="text-align: center; margin-top: 25px; margin-bottom: 25px;">
+            <input class="input-text" type="text" ng-model="searchInstances" placeholder="Search Gateway instances ..."/>
+        </form>
+
+        <div>
+            {{listApplications}}
+        </div>
+
+        <!-- show applications -->
+        <div style="text-align: center">
+            <div id="showApplications"
+                 ng-repeat="r in rep | filter:searchInstances "
+                 style="display: inline;"> <!-- angular JS-->
+                <a href="">
+                    <button id={{r.id}}
+                            style="width: 100px;
+                                   background-color: #f7f7f7;
+                                   margin-left: 0px;
+                                   margin-right: 0px;
+                                    margin-bottom: 15px">
+                        <image style="width:50px; padding-top: 8px;"
+                               src='./img/instancesViewComputer.png'></image>
+                        <h3 style="font-size: 15px">{{r.hostname}}</h3>
+                        <h5>{{r.ip}}:{{r.port}}</h5>
+                        <small ng-if="r.state === 'started'" style="color:#429f46" class="ng-scope"> {{r.state}} </small>
+                        <small ng-if="r.state !== 'started'" style="color:red" class="ng-scope"> {{r.state}} </small>
+                        <div class="divAPIsBottomButton">
+                            <small style="color: #122b40">{{r.members_size}}</small>
+                            <image class="APIsBottomButton" src="img/people.png"></image>
+                        </div>
+                    </button>
+                </a>
+            </div>
+        </div>
+
+    </section>
+</section>
