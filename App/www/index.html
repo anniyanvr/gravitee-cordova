@@ -1,27 +1,143 @@
 <!DOCTYPE html>
-<html ng-app="BasicHttpAuthExample">
-<head>
-    <meta charset="utf-8" />
-    <title>Gravitee.io | login</title>
-    <link href="css/style.css" rel="stylesheet">
-</head>
-<body>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
 
-    <div class="jumbotron">
-        <div class="container">
-            <div class="col-xs-offset-2 col-xs-8">
-                <div ng-view></div>
-            </div>
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html ng-app="app">
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <title>Gravitee.io</title>
+    </head>
+    <body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div>
+            <image class="gravitee-logo" src="https://nightly.gravitee.io/4692fbacbef919061ecf328ca543e028.gif"></image>
+            Gravitee.io
+
+            <!-- link to the menu -->
+            <a id="menuhamburger" style="float: left; cursor: pointer">
+                <image src="img/menu.png" style="width: 60px"></image>
+            </a>
         </div>
-    </div>
+    </header>
 
-    <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
-    <script src="//code.angularjs.org/1.2.20/angular.js"></script>
-    <script src="//code.angularjs.org/1.2.20/angular-route.js"></script>
-    <script src="//code.angularjs.org/1.2.13/angular-cookies.js"></script>
-    <script src="scripts/app.js"></script>
-    <script src="modules/authentication/services.js"></script>
-    <script src="modules/authentication/controllers.js"></script>
-    <script src="modules/home/controllers.js"></script>
-</body>
+    <!-- MENU -->
+    <nav id="nav" class="nav left"
+         style="transition-duration: 2s;
+                position: absolute; z-index: 1;
+                background-color: #2d323e;
+                top: 60px; width: 70%; left: 0;
+                overflow-x: hidden;
+                overflow-y: scroll;
+                -webkit-overflow-scrolling: touch;
+                overflow-scrolling: touch;">
+
+            <!-- title -->
+            <h3 style= "text-align: center;
+                        background-color: Menu;
+                        padding: 5px;">
+                Application menu :
+            </h3>
+
+            <!-- links of the menu -->
+            <a href="#/apis">           <p class="paraMenu-active"> <image class="menu-active"  src="img/apis.png">          APIs           </image></p>  </a></br>
+            <a href="#/applications">   <p class="paraMenu">        <image class="menu"         src="img/applications.png">  Applications   </image></p>  </a></br>
+            <a href="#/instances">      <p class="paraMenu">        <image class="menu"         src="img/instances.png">     Instances      </image></p>  </a></br>
+            <a href="#/dashboard">      <p class="paraMenu">        <image class="menu"         src="img/dashboard.png">     Dashboard      </image></p>  </a></br>
+            <a href="#/configuration">  <p class="paraMenu">        <image class="menu"         src="img/configuration.png"> Configuration  </image></p>  </a></br>
+            <a href="../../../#login">  <p class="paraMenu">        <image class="menu"         src="img/login-signOut.png"> SignOut        </image></p>  </a></br>
+    </nav>
+
+        <section id="view" class="view" ng-view>
+            <section class="panel">
+                <!-- The different pages are displayed here -->
+            </section>
+        </section>
+
+        <!-- differents scripts -->
+        <script src="js/angular.js"></script>
+        <script src="js/app.js"></script>
+
+        <script src="js/controller/apisCtrl.js"></script>
+        <script src="js/controller/apis/apisCtrlDocumentation.js"></script>
+
+        <script src="js/controller/applicationCtrl.js"></script>
+        <script src="js/controller/instanceCtrl.js"></script>
+
+        <!-- script gestion menu (visual) -->
+        <script>
+            // Method to browse of menu (visual only)
+            var allNav = document.querySelectorAll('a'); // browse the 'a' tag
+            var btnMenu = document.getElementById('menuhamburger');
+            var nav = document.getElementById('nav');
+            var view = document.getElementById('view');
+
+            view.setAttribute('style','transition-duration: 2s');
+
+            allNav[1].addEventListener('click',function () {menu(allNav[1].firstElementChild.firstElementChild.getAttribute('class'),1);})
+            allNav[2].addEventListener('click',function () {menu(allNav[2].firstElementChild.firstElementChild.getAttribute('class'),2);})
+            allNav[3].addEventListener('click',function () {menu(allNav[3].firstElementChild.firstElementChild.getAttribute('class'),3);})
+            allNav[4].addEventListener('click',function () {menu(allNav[4].firstElementChild.firstElementChild.getAttribute('class'),4);})
+            allNav[5].addEventListener('click',function () {menu(allNav[5].firstElementChild.firstElementChild.getAttribute('class'),5);})
+            allNav[6].addEventListener('click',function () {menu(allNav[6].firstElementChild.firstElementChild.getAttribute('class'),6);})
+
+            function menu(classIs, id) {
+                if (classIs == 'menu') {
+                    for (var i = 1; i < allNav.length; i++) {
+                        allNav[i].firstElementChild.setAttribute('style','transition-duration: 0.3s');
+                        if (allNav[i].firstElementChild.firstElementChild.getAttribute('class') == 'menu-active') {
+                            allNav[i].firstElementChild.firstElementChild.setAttribute('class', 'menu');
+                            allNav[i].firstElementChild.setAttribute('class','paraMenu')
+                        }
+                    }
+                    allNav[id].firstElementChild.firstElementChild.setAttribute('class', 'menu-active');
+                    allNav[id].firstElementChild.setAttribute('class','paraMenu-active')
+                    nav.setAttribute('class','left');
+                }
+            }
+
+            view.addEventListener('click', function () {
+                if(nav.getAttribute('class') == 'center'){
+                    nav.setAttribute('class','left');
+                }
+            })
+
+            btnMenu.addEventListener('click', function () {
+                if(nav.getAttribute('class') == 'center'){
+                    nav.setAttribute('class','left');
+                }else{
+                    nav.setAttribute('class','center');
+                }
+            })
+
+        </script> <!-- Menu script-->
+
+   </body>
 </html>
