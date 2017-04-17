@@ -46,6 +46,7 @@ function apisCtrl($scope, $http) {
 
         // Second solution -- with angular JS
         console.log(response);
+        $scope.showcaseShow = 'false';
         $scope.rep = response;
     }
     httpSuccessVersion = function (response) {$scope.versionApis = response;}
@@ -60,7 +61,7 @@ function apisCtrl($scope, $http) {
 
         // test
         $http.get(apisAll,{
-            headers: {'Authorization': 'Basic ' + encode('username:password')}
+            headers: {'Authorization': 'Basic ' + encode('admin:admin')}
         }).success(httpSuccessAllAPIS).error(function () {
             alert('Can not retrieve information');
         });
@@ -69,15 +70,17 @@ function apisCtrl($scope, $http) {
 
     $scope.allAPIs = function () {
         $http.get(baseURLAPI,{
-            headers: {'Authorization': 'Basic ' + encode('username:password')}
+            headers: {'Authorization': 'Basic ' + encode('admin:admin')}
         }).success(httpSuccessAllAPIS).error(function () {
             alert('Can not retrieve information');
         });
     } /* show all APIs */
+
     $scope.showcaseAPIS = function () {
         $scope.rep = "";
+        $scope.showcaseShow ='true';
         $http.get(baseURLAPI,{
-            headers: {'Authorization': 'Basic ' + encode('username:password')}
+            headers: {'Authorization': 'Basic ' + encode('admin:admin')}
         }).success(function (response) {
             for (var i = 0; i<response.length;i++){
                 if (response[i].name == 'Gravitee.io features'){
