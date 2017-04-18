@@ -9,6 +9,11 @@ document.addEventListener('deviceready', function () {
 
 var app = angular.module('app', []);
 
+app.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common["X-Requested-With"];
+}]);
+
 app.config(function ($routeProvider) {
   $routeProvider
       .when('/apis', {templateUrl: 'partials/apis.html'})

@@ -61,7 +61,9 @@ function apisCtrl($scope, $http) {
 
         // test
         $http.get(apisAll,{
-            headers: {'Authorization': 'Basic ' + encode('admin:admin')}
+            headers: {
+                'Authorization': 'Basic ' + encode('username:password')
+            }
         }).success(httpSuccessAllAPIS).error(function () {
             alert('Can not retrieve information');
         });
@@ -70,7 +72,7 @@ function apisCtrl($scope, $http) {
 
     $scope.allAPIs = function () {
         $http.get(baseURLAPI,{
-            headers: {'Authorization': 'Basic ' + encode('admin:admin')}
+            headers: {'Authorization': 'Basic ' + encode('username:password')}
         }).success(httpSuccessAllAPIS).error(function () {
             alert('Can not retrieve information');
         });
@@ -80,7 +82,7 @@ function apisCtrl($scope, $http) {
         $scope.rep = "";
         $scope.showcaseShow ='true';
         $http.get(baseURLAPI,{
-            headers: {'Authorization': 'Basic ' + encode('admin:admin')}
+            headers: {'Authorization': 'Basic ' + encode('username:password')}
         }).success(function (response) {
             for (var i = 0; i<response.length;i++){
                 if (response[i].name == 'Gravitee.io features'){

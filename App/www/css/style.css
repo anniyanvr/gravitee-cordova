@@ -71,6 +71,7 @@ image{
 }
 
 .paraMenu-active{
+  font-weight: 800;
   height: 44px;
   padding-top: 4px;
   background-color: #383e4a;
