@@ -1,142 +1,96 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
+<html lang="en" ng-app="app">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Parallax Template - Materialize</title>
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 
-    http://www.apache.org/licenses/LICENSE-2.0
 
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<html ng-app="app">
-    <head>
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <meta charset="utf-8" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <title>Gravitee.io</title>
-    </head>
-    <body>
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/styleM.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo">
+        Gravitee.io
+      </a>
+      <ul class="right hide-on-med-and-down">
+        <li>
+      </ul>
+      
+      <!-- menu -->
+      <ul id="nav-mobile" class="side-nav">
 
-    <!-- HEADER -->
-    <header class="header">
-        <div>
-            <image class="gravitee-logo" src="https://nightly.gravitee.io/4692fbacbef919061ecf328ca543e028.gif"></image>
-            Gravitee.io
+        <li><div class="userView">
+          <div class="background">
+            <img src="img/office.jpg">
+          </div>
+          <a href="#!user"><img class="circle" src="img/profil.png"></a>
+          <a href="#!name"><span class="white-text name">/* --username-- */</span></a>
+          <span class="white-text"></span>
+        </div></li>
+        
+        <li>
+          <a href="loginAccept.html#/apis">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M3 13h8V3H3v10z"></path><path d="M3 21h8v-6H3v6z"></path><path d="M13 21h8V11h-8v10z"></path><path d="M13 3v6h8V3h-8z"></path></svg>
+          APIs</a>
+        </li>
+        <li>
+          <a href="loginAccept.html#/applications">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M3 9h2V7H3v2zm0 8h2v-2H3v2zm0-4h2v-2H3v2z"></path><path d="M7 13h14v-2H7v2z"></path><path d="M7 17h14v-2H7v2z"></path><path d="M7 7v2h14V7H7z"></path></svg>
+          Applications</a>
+        </li>
+        <li>
+          <a href="loginAccept.html#/instances">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M18 19H4V5h14v14zm4-10V7h-2V5c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2h2v-2h-2v-2h2v-2h-2V9h2z"></path><path d="M6 13h5v4H6z"></path><path d="M12 7h4v3h-4z"></path><path d="M6 7h5v5H6z"></path><path d="M12 11h4v6h-4z"></path></svg>
+          Instances</a>
+        </li>
+        <li>
+          <a href="loginAccept.html#/dashboard">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"></path></svg>
+          Dashboard</a>
+        </li>
+        <li>
+          <a href="loginAccept.html#/configuration">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"></path></svg>
+          Configuration</a>
+        </li>
+        <li>
+          <a href="index.html">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M17 17.25V14h-7v-4h7V6.75L22.25 12 17 17.25"></path><path d="M13 2a2 2 0 0 1 2 2v4h-2V4H4v16h9v-4h2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9z"></path></svg>
+          SignOut</a>
+        </li>
+      </ul>
 
-            <!-- link to the menu -->
-            <a id="menuhamburger" style="float: left; cursor: pointer">
-                <image src="img/menu.png" style="width: 60px"></image>
-            </a>
+      <a href="#" data-activates="nav-mobile" class="button-collapse">
+        <i class="material-icons">menu</i>
+      </a>
 
-        </div>
-    </header>
+    </div>
+  </nav>
 
-    <!-- MENU -->
-    <nav id="nav" class="nav left"
-         style="transition-duration: 2s;
-                position: absolute; z-index: 1;
-                background-color: #2d323e;
-                top: 60px; width: 70%; left: 0;
-                overflow-x: hidden;
-                overflow-y: scroll;
-                -webkit-overflow-scrolling: touch;
-                overflow-scrolling: touch;">
+  <section id="view" class="view" ng-view>
+    <section class="panel">
+      <!-- The different pages are displayed here -->
+    </section>
+  </section>
 
-            <!-- title -->
-            <h3 style= "text-align: center;
-                        background-color: Menu;
-                        padding: 5px;">
-                Application menu :
-            </h3>
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
 
-            <!-- links of the menu -->
-            <a href="#/apis">           <p class="paraMenu-active"> <image class="menu-active"  src="img/apis.png">          APIs           </image></p>  </a></br>
-            <a href="#/applications">   <p class="paraMenu">        <image class="menu"         src="img/applications.png">  Applications   </image></p>  </a></br>
-            <a href="#/instances">      <p class="paraMenu">        <image class="menu"         src="img/instances.png">     Instances      </image></p>  </a></br>
-            <a href="#/dashboard">      <p class="paraMenu">        <image class="menu"         src="img/dashboard.png">     Dashboard      </image></p>  </a></br>
-            <a href="#/configuration">  <p class="paraMenu">        <image class="menu"         src="img/configuration.png"> Configuration  </image></p>  </a></br>
-            <a href="index.html">                <p class="paraMenu">        <image class="menu"         src="img/login-signOut.png"> SignOut        </image></p>  </a></br>
-    </nav>
+  <script src="js/angular.js"></script>
+  <script src="js/app.js"></script>
 
-        <section id="view" class="view" ng-view>
-            <section class="panel">
-                <!-- The different pages are displayed here -->
-            </section>
-        </section>
+  <script src="js/controller/apisCtrl.js"></script>
+  <script src="js/controller/apis/apisCtrlDocumentation.js"></script>
 
-        <!-- differents scripts -->
-        <script src="js/angular.js"></script>
-        <script src="js/app.js"></script>
+  <script src="js/controller/applicationCtrl.js"></script>
+  <script src="js/controller/instanceCtrl.js"></script>
 
-        <script src="js/controller/apisCtrl.js"></script>
-        <script src="js/controller/apis/apisCtrlDocumentation.js"></script>
-
-        <script src="js/controller/applicationCtrl.js"></script>
-        <script src="js/controller/instanceCtrl.js"></script>
-
-        <!-- script gestion menu (visual) -->
-        <script>
-            // Method to browse of menu (visual only)
-            var allNav = document.querySelectorAll('a'); // browse the 'a' tag
-            var btnMenu = document.getElementById('menuhamburger');
-            var nav = document.getElementById('nav');
-            var view = document.getElementById('view');
-
-            view.setAttribute('style','transition-duration: 2s');
-
-            allNav[1].addEventListener('click',function () {menu(allNav[1].firstElementChild.firstElementChild.getAttribute('class'),1);})
-            allNav[2].addEventListener('click',function () {menu(allNav[2].firstElementChild.firstElementChild.getAttribute('class'),2);})
-            allNav[3].addEventListener('click',function () {menu(allNav[3].firstElementChild.firstElementChild.getAttribute('class'),3);})
-            allNav[4].addEventListener('click',function () {menu(allNav[4].firstElementChild.firstElementChild.getAttribute('class'),4);})
-            allNav[5].addEventListener('click',function () {menu(allNav[5].firstElementChild.firstElementChild.getAttribute('class'),5);})
-            allNav[6].addEventListener('click',function () {menu(allNav[6].firstElementChild.firstElementChild.getAttribute('class'),6);})
-
-            function menu(classIs, id) {
-                    for (var i = 1; i < allNav.length; i++) {
-                        allNav[i].firstElementChild.setAttribute('style','transition-duration: 0.3s');
-                        if (allNav[i].firstElementChild.firstElementChild.getAttribute('class') == 'menu-active') {
-                            allNav[i].firstElementChild.firstElementChild.setAttribute('class', 'menu');
-                            allNav[i].firstElementChild.setAttribute('class','paraMenu')
-                        }
-                    allNav[id].firstElementChild.firstElementChild.setAttribute('class', 'menu-active');
-                    allNav[id].firstElementChild.setAttribute('class','paraMenu-active')
-                    nav.setAttribute('class','left');
-                }
-            }
-
-            view.addEventListener('click', function () {
-                if(nav.getAttribute('class') == 'center'){
-                    nav.setAttribute('class','left');
-                }
-            })
-
-            btnMenu.addEventListener('click', function () {
-                if(nav.getAttribute('class') == 'center'){
-                    nav.setAttribute('class','left');
-                }else{
-                    nav.setAttribute('class','center');
-                }
-            })
-
-        </script> <!-- Menu script-->
-
-   </body>
+  </body>
 </html>

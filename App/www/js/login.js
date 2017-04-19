@@ -13,16 +13,22 @@ login.config(['$httpProvider', function($httpProvider) {
 login.controller('loginCtrl', ['$scope','$http',
             function($scope,$http)
 {
+    var loader = document.getElementById('loader');
+
     $scope.submitFormLogin = function () {
+        loader.setAttribute('style','display: inline-block');
         var url = "https://demo.gravitee.io/management/user/login";
         var username = $scope.username;
         var password = $scope.password;
+
         $http.defaults.headers.post.Authorization = 'Basic ' + encode(username+':'+password);
         $http.post(url, {
             headers: {'Authorization': 'Basic ' + encode(username+':'+password)}
         }).success(function () {
+            loader.setAttribute('style','display: none');
            document.location.href="loginAccept.html";
         }).error(function () {
+            loader.setAttribute('style','display: none');
             $scope.errorShow = 'Username or password is incorrect';
         })
     }
