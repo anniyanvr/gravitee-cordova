@@ -13,14 +13,14 @@ function instanceCtrl($scope, $http) {
 
     $http.get(constant).success(function (response) {
 
-        // var instancesAll = response["baseURL"]+"instances/"; // with login
-        var instancesAll = 'https://demo.gravitee.io/management/instances/';
+        var instancesAll = response["baseURL"]+"instances/"; // with login
+        // var instancesAll = 'https://demo.gravitee.io/management/instances/';
 
         // test with admin
         $http.get(instancesAll,{
-            headers: {'Authorization': 'Basic ' + encode('username:password')}
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
         }).success(httpSuccessAllInstances).error(function () {
-            alert('Can not retrieve information');
+            document.location.href="index.html";
         });
     });
 

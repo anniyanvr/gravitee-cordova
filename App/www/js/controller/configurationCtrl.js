@@ -1,25 +1,22 @@
 /**
- * Created by Quentin on 06/04/2017.
+ * Created by Quentin on 20/04/2017.
  */
 
-function applicationCtrl($scope, $http) {
-
+function configurationCtrl($scope, $http) {
     var constant = "https://nightly.gravitee.io/constants.json";
 
-    httpSuccessAllApplications = function (response) {
+    httpSuccessConfiguration = function (response) {
         console.log(response);
         $scope.rep = response;
     }
 
     $http.get(constant).success(function (response) {
 
-        var applicationsAll = response["baseURL"]+"applications/"; // with login
-        // var applicationsAll = 'https://demo.gravitee.io/management/applications/';
+        var configurationAll = response["baseURL"]+"configuration/views/"; // with login
 
-        // test
-        $http.get(applicationsAll,{
+        $http.get(configurationAll,{
             headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessAllApplications).error(function () {
+        }).success(httpSuccessConfiguration).error(function () {
             document.location.href="index.html";
         });
     });

@@ -1,6 +1,15 @@
 <section ng-controller="apisCtrl">
     <section class="panel panel-padding">
 
+        <!-- loader bar -->
+        <div id="divLoader"
+             style="position: fixed;
+                    margin-top: -8px;
+                    width: 30%; text-align: center">
+            <div class="indeterminate"></div>
+        </div>
+
+        <!-- content -->
         <h1 style="margin-top: 16px; color: #006CAB; font-size: 32px; font-family: inherit;">
             {{portalTitle}}
             <small style="color: black; font-size: 40%">
@@ -29,8 +38,9 @@
         <!-- Separator -->
         <hr>
 
+        <!-- add button -->
         <a style="position: fixed; bottom: 15px; right: 15px"
-           class="btn-floating btn-small waves-effect waves-light red">
+           class="btn-floating btn-small waves-effect waves-light blue">
             <i class="material-icons">add</i>
         </a>
 

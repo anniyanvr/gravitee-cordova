@@ -19,9 +19,9 @@ function apisCtrlDocumentation($scope, $routeParams, $http) {
 
         // test
         $http.get(api,{
-            headers: {'Authorization': 'Basic ' + encode('username:password')}
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
         }).success(httpSuccessAPI).error(function () {
-            alert('Can not retrieve information');
+            document.location.href="index.html";
         });
     });
 

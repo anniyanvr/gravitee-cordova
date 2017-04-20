@@ -8,6 +8,9 @@ function apisCtrl($scope, $http) {
     var version = "https://nightly.gravitee.io/build.json";
     var baseURLAPI;
 
+    var loaderBar = document.getElementById('divLoader');
+    loaderBar.setAttribute('class','progress');
+
     /*var showAPIs = document.getElementById('showAPIs');
     showAPIs.style.textAlign = 'center';
     showAPIs.style.marginBottom = '12px';*/
@@ -48,6 +51,9 @@ function apisCtrl($scope, $http) {
         console.log(response);
         $scope.showcaseShow = 'false';
         $scope.rep = response;
+
+        /* loaderBar */
+        loaderBar.removeAttribute('class');
     }
     httpSuccessVersion = function (response) {$scope.versionApis = response;}
 
@@ -62,35 +68,38 @@ function apisCtrl($scope, $http) {
         // test
         $http.get(apisAll,{
             headers: {
-                'Authorization': 'Basic ' + encode('admin:admin')
+                'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)
             }
         }).success(httpSuccessAllAPIS).error(function () {
-            alert('Can not retrieve information');
+            document.location.href="index.html";
         });
     });
     $http.get(version).success(httpSuccessVersion);
 
     $scope.allAPIs = function () {
+        loaderBar.setAttribute('class','progress');
         $http.get(baseURLAPI,{
-            headers: {'Authorization': 'Basic ' + encode('admin:admin')}
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
         }).success(httpSuccessAllAPIS).error(function () {
-            alert('Can not retrieve information');
+            document.location.href="index.html";
         });
     } /* show all APIs */
 
     $scope.showcaseAPIS = function () {
+        loaderBar.setAttribute('class','progress');
         $scope.rep = "";
         $scope.showcaseShow ='true';
         $http.get(baseURLAPI,{
-            headers: {'Authorization': 'Basic ' + encode('admin:admin')}
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
         }).success(function (response) {
             for (var i = 0; i<response.length;i++){
                 if (response[i].name == 'Gravitee.io features'){
                     $scope.showcase = response[i];
                 }
             }
+            loaderBar.removeAttribute('class');
         }).error(function () {
-            alert('Can not retrieve information');
+            document.location.href="index.html";
         });
     } /* show only showcase APIs */
 

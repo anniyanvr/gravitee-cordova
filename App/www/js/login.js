@@ -9,7 +9,6 @@ login.config(['$httpProvider', function($httpProvider) {
     delete $httpProvider.defaults.headers.common["X-Requested-With"];
 }]);
 
-
 login.controller('loginCtrl', ['$scope','$http',
             function($scope,$http)
 {
@@ -17,7 +16,7 @@ login.controller('loginCtrl', ['$scope','$http',
 
     $scope.submitFormLogin = function () {
         loader.setAttribute('style','display: inline-block');
-        var url = "https://demo.gravitee.io/management/user/login";
+        var url = "https://nightly.gravitee.io/management/user/login";
         var username = $scope.username;
         var password = $scope.password;
 
@@ -25,6 +24,10 @@ login.controller('loginCtrl', ['$scope','$http',
         $http.post(url, {
             headers: {'Authorization': 'Basic ' + encode(username+':'+password)}
         }).success(function () {
+
+            localStorage.setItem("username",username);
+            localStorage.setItem("password",password);
+
             loader.setAttribute('style','display: none');
            document.location.href="loginAccept.html";
         }).error(function () {
