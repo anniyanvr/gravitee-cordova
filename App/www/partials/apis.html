@@ -45,78 +45,63 @@
         </a>
 
         <!-- show apis -->
-        <div style="text-align: center">
-            <div id="showAPIs"
-                 ng-repeat="r in rep | filter:searchAPIs "
-                 style="display: inline;"> <!-- angular JS-->
-                <a href="#/documentationAPIs/{{r.id}}">
-                    <button id={{r.id}}
-                            style="width: 90px;
-                                   background-color: #f7f7f7;
-                                   margin-left: 0px;
-                                   margin-right: 0px;
-                                    margin-bottom: 15px">
-                        <image style="width:50px; padding-top: 8px;"
-                               src='https://nightly.gravitee.io/0466e9e25e08e26f669bbb7fe0b5e784.png'></image>
-                        <h3 style="font-size: 15px">
-                            {{r.name}}<small>({{r.version}})</small>
-                        </h3>
-                        <small ng-if="r.state === 'started'" style="color:#429f46" class="ng-scope"> {{r.state}} </small>
-                        <small ng-if="r.state !== 'started'" style="color:red" class="ng-scope"> {{r.state}} </small>
-                        <div class="divAPIsBottomButton" style="margin-top: 12px;">
+        <div style="text-align: center;">
+            <div style="display: inline" ng-repeat="r in rep | filter:searchAPIs">
+                <a href="#/generalAPIs/{{r.id}}">
+                    <div id="showAPIs" style="width: 130px; display: inline-block">
+                        <div class="card blue-grey darken-1">
+                            <div class="card-content white-text" style="height: 200px">
+                                <img style="width: 50px" src='https://nightly.gravitee.io/0466e9e25e08e26f669bbb7fe0b5e784.png'>
+                                <span class="card-title">
+                                    {{r.name}}
+                                    <small>({{r.version}})</small>
+                                </span>
+                                <small ng-if="r.state === 'started'" style="color:#429f46" class="ng-scope"> {{r.state}} </small>
+                                <small ng-if="r.state !== 'started'" style="color:red" class="ng-scope"> {{r.state}} </small>
 
-                            <image
-                                    class="APIsBottomButton"
-                                    ng-if="r.visibility === 'public'"
-                                    src="img/visibility.png"></image>
+                            </div>
+                            <div class="card-action">
+                                <img class="APIsBottomButton" ng-if="r.visibility === 'public'"
+                                     src="img/visibility.png">
 
-                            <image
-                                    class="APIsBottomButton"
-                                    ng-if="r.visibility === 'private'"
-                                    src="img/private.png"></image>
+                                <img class="APIsBottomButton" ng-if="r.visibility === 'private'"
+                                     src="img/private.png">
 
-                            <image class="APIsBottomButton" src="img/people.png"></image>
+                                <img class="APIsBottomButton" src="img/people.png">
+                            </div>
                         </div>
-                    </button>
+                    </div>
                 </a>
             </div>
         </div>
 
         <!-- show showcase -->
         <div ng-if="showcaseShow === 'true'" style="text-align: center">
-            <div id="showcase"
-                 style="display: inline;">
-                <a href="#/documentationAPIs/{{showcase.id}}">
-                    <button id={{showcase.id}}
-                            style="width: 90px;
-                                   background-color: #f7f7f7;
-                                   margin-left: 0px;
-                                   margin-right: 0px;
-                                    margin-bottom: 15px">
-                        <image style="width:50px; padding-top: 8px;"
-                               src='https://nightly.gravitee.io/0466e9e25e08e26f669bbb7fe0b5e784.png'></image>
-                        <h3 style="font-size: 15px">
-                            {{showcase.name}}<small>({{showcase.version}})</small>
-                        </h3>
-                        <small ng-if="showcase.state === 'started'" style="color:#429f46" class="ng-scope"> {{showcase.state}} </small>
-                        <small ng-if="showcase.state !== 'started'" style="color:red" class="ng-scope"> {{showcase.state}} </small>
-                        <div class="divAPIsBottomButton" style="margin-top: 12px;">
+            <a href="#/generalAPIs/{{showcase.id}}">
+                <div id="showcase" style="width: 125px; display: inline-block">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text" style="height: 200px">
+                            <img style="width: 50px" src='https://nightly.gravitee.io/0466e9e25e08e26f669bbb7fe0b5e784.png'>
+                            <span class="card-title">
+                                {{showcase.name}}
+                                <small>({{showcase.version}})</small>
+                            </span>
+                            <small ng-if="showcase.state === 'started'" style="color:#429f46" class="ng-scope"> {{showcase.state}} </small>
+                            <small ng-if="showcase.state !== 'started'" style="color:red" class="ng-scope"> {{showcase.state}} </small>
 
-                            <image
-                                    class="APIsBottomButton"
-                                    ng-if="showcase.visibility === 'public'"
-                                    src="img/visibility.png"></image>
-
-                            <image
-                                    class="APIsBottomButton"
-                                    ng-if="showcase.visibility === 'private'"
-                                    src="img/private.png"></image>
-
-                            <image class="APIsBottomButton" src="img/people.png"></image>
                         </div>
-                    </button>
-                </a>
-            </div>
+                        <div class="card-action">
+                            <img class="APIsBottomButton" ng-if="showcase.visibility === 'public'"
+                                 src="img/visibility.png">
+
+                            <img class="APIsBottomButton" ng-if="showcase.visibility === 'private'"
+                                 src="img/private.png">
+
+                            <img class="APIsBottomButton" src="img/people.png">
+                        </div>
+                    </div>
+                </div>
+            </a>
         </div>
 
     </section>

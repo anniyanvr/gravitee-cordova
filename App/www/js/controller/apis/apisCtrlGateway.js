@@ -1,30 +1,26 @@
 /**
- * Created by Quentin on 11/04/2017.
+ * Created by Quentin on 24/04/2017.
  */
 
-function apisCtrlDocumentation($scope, $routeParams, $http) {
-
+function apisCtrlGateway($scope, $routeParams, $http) {
     var id = $routeParams.id;
-    // console.log("id : "+$routeParams.id);
-
     var constant = "https://nightly.gravitee.io/constants.json";
 
-    httpSuccessAPI = function (response) {
+    httpSuccessAPIGateway = function (response) {
         $scope.rep = response;
+        $scope.endpoints = response.proxy['endpoints'];
     }
 
     $http.get(constant).success(function (response) {
 
         var api = response["baseURL"]+"apis/"+id+"/"; // with login
 
-        // test
         $http.get(api,{
             headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessAPI).error(function () {
+        }).success(httpSuccessAPIGateway).error(function () {
             document.location.href="index.html";
         });
     });
-
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {

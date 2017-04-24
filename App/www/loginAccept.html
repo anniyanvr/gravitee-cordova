@@ -2,7 +2,7 @@
 <html lang="en" ng-app="app">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Parallax Template - Materialize</title>
+  <title>Gravitee.io</title>
   <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 
 
@@ -11,7 +11,7 @@
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/styleM.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
-<body>
+<body id="body">
   <nav class="white" role="navigation">
     <div class="nav-wrapper container">
       <a id="logo-container" href="#" class="brand-logo">
@@ -38,22 +38,28 @@
           <a class="subheader">API Management</a>
         </li> <!-- title -->
         <li id="apis">
-          <a href="loginAccept.html#/apis"><i class="material-icons">dashboard</i>APIs</a>
+          <a href="loginAccept.html#/apis" class="waves-effect">
+            <i class="material-icons">dashboard</i>APIs</a>
         </li> <!-- APIs -->
         <li id="applications">
-          <a href="loginAccept.html#/applications"><i class="material-icons">list</i>Applications</a>
+          <a href="loginAccept.html#/applications" class="waves-effect">
+            <i class="material-icons">list</i>Applications</a>
         </li> <!-- Applications -->
         <li id="instances">
-          <a href="loginAccept.html#/instances"><i class="material-icons">developer_board</i>Instances</a>
+          <a href="loginAccept.html#/instances" class="waves-effect">
+            <i class="material-icons">developer_board</i>Instances</a>
         </li> <!-- Instances -->
         <li id="dashboard">
-          <a href="loginAccept.html#/dashboard"><i class="material-icons">show_chart</i>Dashboard</a>
+          <a href="loginAccept.html#/dashboard" class="waves-effect">
+            <i class="material-icons">show_chart</i>Dashboard</a>
         </li> <!-- Dashboard -->
         <li id="configuration">
-          <a href="loginAccept.html#/configuration"><i class="material-icons">settings</i>Configuration</a>
+          <a href="loginAccept.html#/configuration" class="waves-effect">
+            <i class="material-icons">settings</i>Configuration</a>
         </li> <!-- Configuration -->
         <li>
-          <a href="index.html"><i class="material-icons">exit_to_app</i>SignOut</a>
+          <a href="index.html" class="waves-effect">
+            <i class="material-icons">exit_to_app</i>SignOut</a>
         </li> <!-- SignOut -->
         <li>
           <div class="divider"></div>
@@ -62,25 +68,105 @@
         <!-- Configuration menu -->
         <div id="menuConfiguration" style="display: none">
           <li>
-            <a class="subheader">Configuration</a>
+            <a class="subheader ">Configuration</a>
           </li> <!-- title -->
           <li>
-            <a href="#/configuration"><i class="material-icons">view_module</i>Views</a>
+            <a href="#/configuration" class="waves-effect">
+              <i class="material-icons">view_module</i>Views</a>
           </li> <!-- Views -->
           <li>
-            <a href="#"><i class="material-icons">label</i>Sharding tags</a>
+            <a href="#" class="waves-effect">
+              <i class="material-icons">label</i>Sharding tags</a>
           </li> <!-- Sharding tags -->
           <li>
-            <a href="#"><i class="material-icons">shuffle</i>Tenants</a>
+            <a href="#" class="waves-effect">
+              <i class="material-icons">shuffle</i>Tenants</a>
           </li> <!-- Tenants -->
           <li>
-            <a href="#"><i class="material-icons">group_work</i>Groups</a>
+            <a href="#" class="waves-effect">
+              <i class="material-icons">group_work</i>Groups</a>
           </li> <!-- Groups -->
           <li>
-            <a href="#"><i class="material-icons">insert_drive_file</i>Portal pages</a>
+            <a href="#" class="waves-effect">
+              <i class="material-icons">insert_drive_file</i>Portal pages</a>
           </li> <!-- Portal pages -->
+          <li>
+            <div class="divider"></div>
+          </li> <!-- divider -->
         </div>
 
+        <!-- APIs menu -->
+        <div id="menuAPIs" style="display: none">
+          <li>
+            <a class="subheader ">APIs</a>
+          </li> <!-- title -->
+          <li>
+            <a id="menuAPIsGeneral" class="waves-effect">
+              <i class="material-icons">blur_on</i>General</a>
+          </li> <!-- General -->
+          <li>
+            <a id="menuAPIsGateway" class="waves-effect">
+              <i class="material-icons">device_hub</i>Gateway</a>
+          </li> <!-- Gateway -->
+          <li>
+            <a id="menuAPIsPlans" class="waves-effect">
+              <i class="material-icons">view_week</i>Plans</a>
+          </li> <!-- Plans -->
+          <li>
+            <a id="menuAPIsSubscription" class="waves-effect">
+              <i class="material-icons">vpn_key</i>Subscriptions</a>
+          </li> <!-- Subscriptions -->
+          <li>
+            <a id="menuAPIsResources" class="waves-effect">
+              <i class="material-icons">style</i>Resources</a>
+          </li> <!-- Resources -->
+          <li>
+            <a id="menuAPIsPolicies" class="waves-effect">
+              <i class="material-icons">share</i>Policies</a>
+          </li> <!-- Policies -->
+          <li>
+            <a id="menuAPIsMembers" class="waves-effect">
+              <i class="material-icons">people</i>Members</a>
+          </li> <!-- Members -->
+          <li>
+            <a id="menuAPIsProperties" class="waves-effect">
+              <i class="material-icons">assignment</i>Properties</a>
+          </li> <!-- Properties -->
+          <li>
+            <a id="menuAPIsAnalytics" class="waves-effect">
+              <i class="material-icons">assessment</i>Analytics</a>
+          </li> <!-- Analytics -->
+          <li>
+            <a id="menuAPIsDocumentation" class="waves-effect">
+              <i class="material-icons">insert_drive_file</i>Documentation</a>
+          </li> <!-- Documentation -->
+          <li>
+            <a id="menuAPIsHealthCheck" class="waves-effect">
+              <i class="material-icons">favorite</i>Health-check</a>
+          </li> <!-- Health-check -->
+          <li>
+            <a id="menuAPIsHistory" class="waves-effect">
+              <i class="material-icons">history</i>History</a>
+          </li> <!-- History -->
+          <li>
+            <a id="menuAPIsEvents" class="waves-effect">
+              <i class="material-icons">event_note</i>Events</a>
+          </li> <!-- Events -->
+          <li>
+            <div class="divider"></div>
+          </li> <!-- divider -->
+        </div>
+
+        <!-- Example of switch -->
+        <div class="switch" style="padding: 0 32px;">
+          <label>
+            <small id='notif' style="font-size: 14px; font-weight: 400">
+              Notifications
+            </small>
+            <input id="mode" type="checkbox">
+            <span class="lever"></span>
+            </label>
+        </div>
       </ul>
 
       <a href="#" data-activates="nav-mobile" class="button-collapse">
@@ -106,7 +192,8 @@
   <script src="js/app.js"></script>
 
   <script src="js/controller/apisCtrl.js"></script>
-  <script src="js/controller/apis/apisCtrlDocumentation.js"></script>
+  <script src="js/controller/apis/apisCtrlGeneral.js"></script>
+  <script src="js/controller/apis/apisCtrlGateway.js"></script>
 
   <script src="js/controller/applicationCtrl.js"></script>
   <script src="js/controller/instanceCtrl.js"></script>

@@ -17,7 +17,8 @@ app.config(['$httpProvider', function($httpProvider) {
 app.config(function ($routeProvider) {
   $routeProvider
       .when('/apis', {templateUrl: 'partials/apis.html'})
-      .when('/documentationAPIs/:id', {templateUrl: 'partials/apis/documentationAPIs.html'})
+      .when('/generalAPIs/:id', {templateUrl: 'partials/apis/generalAPIs.html'})
+      .when('/gatewayAPIs/:id', {templateUrl: 'partials/apis/gatewayAPIs.html'})
       .when('/applications', {templateUrl: 'partials/applications.html'})
       .when('/configuration', {templateUrl: 'partials/configuration.html'})
       .when('/dashboard', {templateUrl: 'partials/dashboard.html'})
@@ -26,12 +27,31 @@ app.config(function ($routeProvider) {
 })
 
 app.controller('navCtrl', ['$scope', function ($scope) {
+
+    /* Username */
     $scope.username = localStorage.username;
 
+    /* Checkbox -- mode */
+    var body = document.getElementById('body');
+
+    $('input').on('change', function(event){
+        var $myCheckbox = $(this);
+        if($myCheckbox.prop('checked')){
+            var notification = document.getElementById('notif');
+            notification.setAttribute('style','font-size: 14px; font-weight: 400; text-decoration: line-through;')
+        } else {
+            var notification = document.getElementById('notif');
+            notification.setAttribute('style','font-size: 14px; font-weight: 400;')
+        }
+    });
+
+    /* Menu */
     var menuConfig = document.getElementById('menuConfiguration');
+    var menuAPIs = document.getElementById('menuAPIs');
 
     function resetMenu() {
         menuConfig.setAttribute('style','display: none');
+        menuAPIs.setAttribute('style','display: none');
     }
     function showConfigurationMenu() {
         menuConfig.setAttribute('style','display: inline-block; width: 100%');
@@ -45,7 +65,7 @@ app.controller('navCtrl', ['$scope', function ($scope) {
         var buttonConfiguration = document.getElementById('configuration');
 
         initEventHandlers(buttonAPIs, 'click', function(){
-            resetMenu()
+            resetMenu();
         }); /* APIs */
         initEventHandlers(buttonApplications, 'click', function () {
             resetMenu()
