@@ -1,22 +1,22 @@
 /**
- * Created by Quentin on 20/04/2017.
+ * Created by root on 25/04/17.
  */
 
-function configurationCtrl($scope, $http) {
+function configurationCtrlTags($scope, $http) {
     var constant = "https://nightly.gravitee.io/constants.json";
 
-    httpSuccessConfiguration = function (response) {
+    httpSuccessConfigurationTags = function (response) {
         console.log(response);
         $scope.rep = response;
     }
 
     $http.get(constant).success(function (response) {
 
-        var configurationAll = response["baseURL"]+"configuration/views/"; // with login
+        var configurationTenants = response["baseURL"]+"configuration/tags/"; // with login
 
-        $http.get(configurationAll,{
+        $http.get(configurationTenants,{
             headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessConfiguration).error(function () {
+        }).success(httpSuccessConfigurationTags).error(function () {
             document.location.href="index.html";
         });
     });

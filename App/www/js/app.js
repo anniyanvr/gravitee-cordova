@@ -21,6 +21,8 @@ app.config(function ($routeProvider) {
       .when('/gatewayAPIs/:id', {templateUrl: 'partials/apis/gatewayAPIs.html'})
       .when('/applications', {templateUrl: 'partials/applications.html'})
       .when('/configuration', {templateUrl: 'partials/configuration.html'})
+      .when('/configurationTags', {templateUrl: 'partials/configuration/shardingTags.html'})
+      .when('/configurationTenants', {templateUrl: 'partials/configuration/tenants.html'})
       .when('/dashboard', {templateUrl: 'partials/dashboard.html'})
       .when('/instances', {templateUrl: 'partials/instances.html'})
       .otherwise({redirectTo: 'apis'})

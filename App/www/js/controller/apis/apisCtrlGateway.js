@@ -9,6 +9,7 @@ function apisCtrlGateway($scope, $routeParams, $http) {
     httpSuccessAPIGateway = function (response) {
         $scope.rep = response;
         $scope.endpoints = response.proxy['endpoints'];
+        $scope.loadB = response.proxy['endpoints'];
     }
 
     $http.get(constant).success(function (response) {

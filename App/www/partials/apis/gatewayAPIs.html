@@ -37,11 +37,14 @@
                             <form>
                                 <input style="width: 100%" class="input-text" type="text" placeholder="Gateway context path" value="{{rep.proxy['context_path']}}">
 
+                                <hr>
+                                <p style="font-size: medium; font-weight: bold; color: rgb(96,125,139); background-color: rgba(216,216,216,0.4); margin-bottom: 5px">Endpoints</p>
+
                                 <table class="striped">
                                     <tr>
                                         <th></th>
                                         <th>Name</th>
-                                        <th>Target</th>
+                                        <th>Tarhget</th>
                                         <th><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg></th>
                                         <th><i class="material-icons">delete</i></th>
                                     </tr>
@@ -59,14 +62,72 @@
                                     </tr>
                                 </table>
 
-                                <input>{{rep.load_balancing['type']}}</input>
+                                <hr>
+                                <p style="font-size: medium; font-weight: bold; color: rgb(96,125,139); background-color: rgba(216,216,216,0.4);">Load balancing</p>
+
+                                <label>Load balancing</label>
+                                <select class="browser-default">
+                                    <option value="current">{{rep.proxy['load_balancing'].type}}</option>
+                                </select>
+
+                                <hr>
+                                <p style="background-color: rgba(216,216,216,0.4);">
+                                    <input type="checkbox" class="filled-in" id="loadBalancingCheck"/>
+                                    <label style="color: rgb(96,125,139); font-weight: bold; font-size: medium" for="loadBalancingCheck">
+                                      Fail-over <br>
+                                        <small style="font-weight: normal">When gateway receives a connect timeout from backend servers, it redirects traffic to the next server until "max attempts" or "timeout" have been reached.
+                                        </small>
+                                    </label>
+                                </p>
+
+                                <hr>
+
+                                <p style="font-size: small; margin-top: 5px; font-weight: bold; border-bottom: dashed 1px black">Max attempts</p>
+                                <small>Limits the number of possible tries for passing a request to the next server.
+                                    <br>The 0 value turns off this limitation.</small>
+
+                                <p style="font-size: small; margin-top: 5px; font-weight: bold; border-bottom: dashed 1px black">Timeout (ms)</p>
+                                <small>Limits the time allowed to pass a request to the next server.
+                                    <br>The 0 value turns off this limitation.</small>
+
+                                <hr>
+                                <p style="font-size: medium; font-weight: bold; color: rgb(96,125,139); background-color: rgba(216,216,216,0.4);">
+                                    Multi-tenant <br>
+                                    <small style="font-weight: normal">Use multi-tenant to route incoming HTTP requests to relative endpoints.</small>
+                                </p>
+                                <p style="margin-top: 5px">
+                                    <input type="checkbox" class="filled-in" id="multiTenant" />
+                                    <label for="multiTenant">Enable multi-tenant</label>
+                                </p>
+
+                                <hr>
+                                <p style="font-size: medium; font-weight: bold; color: rgb(96,125,139); background-color: rgba(216,216,216,0.4);">
+                                    Profiling <br>
+                                    <small style="font-weight: normal">Use profiling with caution and only for development purpose since it can have impact on API performance.</small>
+                                </p>
+                                <p style="margin-top: 5px">
+                                    <input type="checkbox" class="filled-in" id="profiling" />
+                                    <label for="profiling">Dump HTTP requests. |
+                                        Print HTTP client requests in gateway logs.</label>
+                                </p>
+
+                                <hr>
+
+                                <!-- buttons -->
+                                <div style="margin-top: 30px; text-align: center;">
+                                    <a class="waves-effect waves-light btn" style="margin-bottom: 5px">Save</a> <!-- save -->
+
+                                    <a class="waves-effect waves-light btn" style="margin-bottom: 5px">Reset</a> <!-- reset -->
+
+                                    <a class="waves-effect waves-light btn" style="margin-bottom: 5px; background-color: #b81111">Delete</a>
+                                </div>
+                            </form><!-- /form -->
 
                             </form><!-- /form -->
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 </section>
