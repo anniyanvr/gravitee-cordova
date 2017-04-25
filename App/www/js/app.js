@@ -17,6 +17,7 @@ app.config(['$httpProvider', function($httpProvider) {
 app.config(function ($routeProvider) {
   $routeProvider
       .when('/apis', {templateUrl: 'partials/apis.html'})
+      .when('/createAPI', {templateUrl: 'partials/apis/createAPI.html'})
       .when('/generalAPIs/:id', {templateUrl: 'partials/apis/generalAPIs.html'})
       .when('/gatewayAPIs/:id', {templateUrl: 'partials/apis/gatewayAPIs.html'})
       .when('/applications', {templateUrl: 'partials/applications.html'})
