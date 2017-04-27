@@ -1,0 +1,90 @@
+<section ng-controller="instanceCtrlEnvironment">
+    <section class="panel panel-padding">
+
+        <!-- presentation -->
+        <div style="text-align: left; width: 100%;
+                        background-color: #f7f7f7;">
+            <h5>{{rep.hostname}}<small> ({{rep.ip}}:{{rep.port}})</small></h5>
+            <p style="font-size: xx-small">{{rep.version}}</p>
+        </div>
+
+        <!-- informations -->
+        <table class="striped" style="margin-top: 50px; table-layout: fixed; word-wrap: break-word">
+            <caption style="text-align: left; background-color: #2d323e; color: rgba(255, 255, 255, 0.7); fill: rgba(255, 255, 255, 0.7); height: 35px; padding: 0 5px 5px 5px">
+                <i style="margin-top: 3px" class="material-icons">info_outline</i>
+                Informations
+            </caption>
+            <tr>
+                <td style="width: 50px"><i class="material-icons">computer</i></td>
+                <td>Hostname</td><td>{{rep.hostname}}</td></tr>
+            <tr>
+                <td>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill-opacity=".3" d="M12.01 21.49L23.64 7c-.45-.34-4.93-4-11.64-4C5.28 3 .81 6.66.36 7l11.63 14.49.01.01.01-.01z"></path><path d="M3.53 10.95l8.46 10.54.01.01.01-.01 8.46-10.54C20.04 10.62 16.81 8 12 8c-4.81 0-8.04 2.62-8.47 2.95z"></path></svg>
+                </td>
+                <td>IP</td><td>{{rep.ip}}</td></tr>
+            <tr>
+                <td>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill-opacity=".3" d="M12.01 21.49L23.64 7c-.45-.34-4.93-4-11.64-4C5.28 3 .81 6.66.36 7l11.63 14.49.01.01.01-.01z"></path><path d="M3.53 10.95l8.46 10.54.01.01.01-.01 8.46-10.54C20.04 10.62 16.81 8 12 8c-4.81 0-8.04 2.62-8.47 2.95z"></path></svg>
+                </td>
+                <td>Port</td><td>{{rep.port}}</td></tr>
+            <tr>
+                <td style="width: 50px"><i class="material-icons">traffic</i></td>
+                <td>State</td><td>{{rep.state}}</td></tr>
+            <tr>
+                <td style="width: 50px"><i class="material-icons">flag</i></td>
+                <td>Version</td><td>{{rep.version}}</td></tr>
+            <tr>
+                <td>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M15 1H9v2h6V1z"></path><path d="M11 14h2V8h-2v6z"></path><path d="M12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7zm7.03-12.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.07 4.74 14.12 4 12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61z"></path></svg>
+                </td>
+                <td>Started at</td><td>{{rep.started_at}}</td></tr>
+            <tr>
+                <td style="width: 50px"><i class="material-icons">favorite</i></td>
+                <td>Last heartbeat at</td><td>{{rep.last_heartbeat_at}}</td></tr>
+        </table>
+
+
+        <!-- plugins -->
+        <table class="striped" style="margin-top: 50px; table-layout: fixed; word-wrap: break-word">
+            <caption style="text-align: left; background-color: #2d323e; color: rgba(255, 255, 255, 0.7); fill: rgba(255, 255, 255, 0.7); height: 35px; padding: 0 5px 5px 5px">
+                <i style="margin-top: 3px" class="material-icons">extension</i>
+                Plugins
+            </caption>
+            <tr>
+                <th style="width: 50px"></th>
+                <th>ID</th>
+                <th>Name</th>
+                <th style="width: 70px">Version</th>
+            </tr>
+            <tr ng-repeat="p in plugins">
+                <td style="width: 50px">
+                    <i ng-if="p.type === 'policy'" class="material-icons">shuffle</i>
+                    <i ng-if="p.type === 'reporter'" class="material-icons">dashboard</i>
+                    <i ng-if="p.type === 'resource'" class="material-icons">style</i>
+                    <i ng-if="p.type === 'service'" class="material-icons">layers</i>
+                    <i ng-if="p.type === 'repository'" class="material-icons">folder_open</i>
+                </td>
+                <td>{{p.id}}</td>
+                <td>{{p.name}}</td>
+                <td style="width: 70px; text-align: right">{{p.version}}</td>
+            </tr>
+        </table>
+
+            <!-- system properties -->
+        <table class="striped" style="margin-top: 50px; table-layout: fixed; word-wrap: break-word">
+            <caption style="text-align: left; background-color: #2d323e; color: rgba(255, 255, 255, 0.7); fill: rgba(255, 255, 255, 0.7); height: 35px; padding: 0 5px 5px 5px">
+                <i style="margin-top: 3px" class="material-icons">extension</i>
+                System properties
+            </caption>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
+    </section>
+</section>

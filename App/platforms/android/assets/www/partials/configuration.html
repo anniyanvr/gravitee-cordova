@@ -1,0 +1,23 @@
+<section  ng-controller="configurationCtrl">
+    <section class="panel panel-padding">
+
+        <h1
+                style="margin-top: 16px; font-size: 32px; font-family: inherit;">
+            Portal views
+        </h1> <!-- title -->
+
+        <table class="striped">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+            <tr ng-repeat="r in rep">
+                <td>{{r.name}}</td>
+                <td>{{r.description}}</td>
+                <td><i class="material-icons">delete</i></td>
+            </tr>
+        </table>
+
+    </section>
+</section>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="login">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/materialize.css">
+    <title>Gravitee.io</title>
+</head>
+<body style="text-align: center;
+             padding: 25px;
+             background-color: white"
+      ng-controller="loginCtrl" >
+
+    <h4>Gravitee.io API Management</h4>
+
+    <p style="background-color: red">{{errorShow}}</p>
+
+    <form style="margin-top: 2em"
+          name="login"
+          ng-submit="submitFormLogin()">
+        <div class="group">
+            <input type="text" required ng-model="username">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Username</label>
+        </div>
+
+        <div class="group">
+            <input type="password" required ng-model="password">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Password</label>
+        </div>
+
+        <button class="btn waves-effect waves-light"
+                type="submit"
+                name="action">
+            Login
+            <div id="loader" style="display: none">
+                <div class="preloader-wrapper big active"
+                     style="width: 20px; height: 20px; vertical-align: middle; left: 2px">
+                    <div class="spinner-layer spinner-blue-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </button>
+    </form>
+
+    <script src="js/angular.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<section ng-controller="apisCtrlNew">
+    <section class="panel panel-padding">
+        <h1 style="margin-top: 16px; font-size: 18px; font-family: inherit;">
+            Create an API
+        </h1> <!-- title -->
+
+        <div style="text-align: center">
+            <i class="large material-icons">dashboard</i>
+
+            <h5>Create an API from scratch ...</h5>
+
+            <a class="btn-floating waves-effect blue" style="margin-top: 5px">
+                <svg style="padding: 5px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="38" height="38">
+                    <path style="fill: #fff" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
+                </svg>
+            </a>
+
+            <p style="margin-top: 15px">... or import your Gravitee.io API definition or your Swagger descriptor file</p>
+
+            <!-- import file -->
+            <nav style="background-color: #7a7a7a" class="nav-extended">
+                <div class="nav-content">
+                    <ul class="tabs tabs-transparent">
+                        <li id="importFile" class="tab"><a style="text-transform: uppercase; font-weight: bold; cursor: default" class="active">Import file</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <form action="#" style="margin-bottom: 30px">
+                <div id="importFileShow" class="file-field input-field">
+                    <div class="btn waves-effect" style="background-color: #989898">
+                        <span>File</span>
+                        <input type="file">
+                    </div>
+                    <div style="width: 50%; float: left" class="file-path-wrapper">
+                        <input class="file-path" type="text" disabled>
+                    </div>
+                    <a class="btn-floating waves-effect blue" style="margin-top: 5px">
+                        <svg style="text-align: right; padding: 5px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="38" height="38">
+                            <path style="fill: #fff" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </form>
+
+            <!-- import from link -->
+            <nav style="background-color: #7a7a7a" class="nav-extended">
+                <div class="nav-content">
+                    <ul class="tabs tabs-transparent">
+                        <li id="importFromLink" class="tab"><a style="text-transform: uppercase; font-weight: bold; cursor: default" class="active">Import from link</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <form action="#">
+                <div id="importFromLinkShow" class="row">
+                    <div class="input-field col s10">
+                        <input id="url" type="text">
+                        <label for="url">Enter Swagger descriptor URL</label>
+                    </div>
+                    <a class="btn-floating waves-effect blue" style="margin-top: 18px">
+                        <svg style="padding: 5px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="38" height="38">
+                            <path style="fill: #fff" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </form>
+
+        </div>
+
+    </section>
+</section>

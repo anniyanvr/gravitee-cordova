@@ -1,0 +1,35 @@
+<section ng-controller="applicationCtrl">
+    <section class="panel panel-padding">
+
+        <form style="text-align: center; margin-top: 25px; margin-bottom: 25px;">
+            <input class="input-text" type="text" ng-model="searchApplications" placeholder="Search applications ..."/>
+        </form>
+
+        <div>
+            {{listApplications}}
+        </div>
+
+        <!-- show applications -->
+        <div style="text-align: center;">
+            <div style="display: inline" ng-repeat="r in rep | filter:searchApplications ">
+                <a href="">
+                    <div id="showApplications" style="width: 130px; display: inline-block">
+                        <div class="card blue-grey darken-1">
+                            <div class="card-content white-text" style="height: 200px">
+                                <img style="width: 50px" src='https://nightly.gravitee.io/0466e9e25e08e26f669bbb7fe0b5e784.png'>
+                                <span class="card-title">{{r.name}}</span>
+                            </div>
+                            <div class="card-action">
+                                <div class="divAPIsBottomButton">
+                                    <small style="color: #122b40">{{r.members_size}}</small>
+                                    <image class="APIsBottomButton" src="img/people.png"></image>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </section>
+</section>
