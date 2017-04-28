@@ -53,10 +53,10 @@
           <a href="loginAccept.html#/dashboard" class="waves-effect">
             <i class="material-icons">show_chart</i>Dashboard</a>
         </li> <!-- Dashboard -->
-        <li id="configuration">
+        <!-- <li id="configuration">
           <a href="loginAccept.html#/configuration" class="waves-effect">
             <i class="material-icons">settings</i>Configuration</a>
-        </li> <!-- Configuration -->
+        </li> --> <!-- Configuration -- Read-only-->
         <li>
           <a href="index.html" class="waves-effect">
             <i class="material-icons">exit_to_app</i>SignOut</a>
@@ -176,7 +176,7 @@
         </div>
 
         <!-- Example of switch -->
-        <div class="switch" style="padding: 0 32px;">
+        <!-- <div class="switch" style="padding: 0 32px;">
           <label>
             <small id='notif' style="font-size: 14px; font-weight: 400">
               Notifications
@@ -184,7 +184,7 @@
             <input id="mode" type="checkbox">
             <span class="lever"></span>
             </label>
-        </div>
+        </div> -->
       </ul>
 
       <a href="#" data-activates="nav-mobile" class="button-collapse">
@@ -201,6 +201,8 @@
   </section>
 
   <!--  Scripts-->
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
@@ -213,6 +215,7 @@
   <script src="js/controller/apis/create/apisCtrlNew.js"></script>
   <script src="js/controller/apis/apisCtrlGeneral.js"></script>
   <script src="js/controller/apis/apisCtrlGateway.js"></script>
+  <script src="js/controller/apis/apisCtrlAnalytics.js"></script>
 
   <script src="js/controller/applicationCtrl.js"></script>
 

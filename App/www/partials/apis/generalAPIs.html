@@ -36,39 +36,41 @@
                         <div class="card-content">
                             <p style="color: darkgrey">Informations</p>
                             <form>
-                                <input style="width: 100%" class="input-text" type="text" placeholder="Name" value="{{rep.name}}">
-                                <input style="width: 100%" class="input-text" type="text" placeholder="Version" value="{{rep.version}}">
-                                <input style="width: 100%" class="input-text" type="text" placeholder="Description" value="{{rep.description}}"><br/>
-                                <select style="width: 100%" class="input-text">
+                                <input disabled style="width: 100%; color: black" class="input-text" type="text" placeholder="Name" value="{{rep.name}}">
+                                <input disabled style="width: 100%; color: black" class="input-text" type="text" placeholder="Version" value="{{rep.version}}">
+                                <input disabled style="width: 100%; color: black" class="input-text" type="text" placeholder="Description" value="{{rep.description}}"><br/>
+                                <select disabled style="width: 100%" class="input-text">
                                     <option>{{rep.views}}</option>
                                 </select>
 
                                 <!-- buttons -->
-                                <div style="text-align: center;">
-                                    <a class="waves-effect waves-light btn" style="margin-bottom: 5px">Save</a> <!-- save -->
 
-                                    <a class="waves-effect waves-light btn" style="margin-bottom: 5px">Reset</a> <!-- reset -->
+                                <!-- <div style="text-align: center;"> -->
+                                    <!-- <a class="waves-effect waves-light btn" style="margin-bottom: 5px">Save</a>  save -->
 
-                                    <a class="waves-effect waves-light btn" style="margin-bottom: 5px">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                            <path d="M9 16h6v-6h4l-7-7-7 7h4z"></path>
-                                            <path d="M5 18h14v2H5z"></path>
-                                        </svg>
-                                        Export
-                                    </a> <!-- export -->
+                                    <!-- <a class="waves-effect waves-light btn" style="margin-bottom: 5px">Reset</a> reset -->
 
-                                    <a class="waves-effect waves-light btn" style="margin-bottom: 5px;">
+                                    <!-- <a class="waves-effect waves-light btn" style="margin-bottom: 5px">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                                <path d="M9 16h6v-6h4l-7-7-7 7h4z"></path>
+                                                <path d="M5 18h14v2H5z"></path>
+                                            </svg>
+                                            Export
+                                        </a>  export -->
+
+                                    <!-- <a class="waves-effect waves-light btn" style="margin-bottom: 5px;">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                                             <path d="M19 9h-4V3H9v6H5l7 7 7-7z"></path>
                                             <path d="M5 18v2h14v-2H5z"></path>
                                         </svg>
                                         Import
-                                    </a> <!-- import -->
-                                </div>
+                                    </a>  import -->
+                                <!-- </div> -->
+
                             </form><!-- /form -->
-                            <div style="text-align: center" >
+                            <!-- <div style="text-align: center" >
                                 <a class="waves-effect waves-light btn" style="background-color: #b81111">Delete</a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

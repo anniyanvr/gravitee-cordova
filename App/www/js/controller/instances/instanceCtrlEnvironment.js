@@ -23,7 +23,8 @@ function instanceCtrlEnvironment($scope, $routeParams, $http) {
 
     $http.get(constant).success(function (response) {
 
-        //var instances = response["baseURL"]+"instances/"+id; // with login
+        /* Change for 'https://nightly.gravitee.io/management/instances/'+event  -- 'https://demo.gravitee.io/management/instances/'+event is for testing */
+        //var instances = response["baseURL"]+"instances/"+event; // with login
         var instances = 'https://demo.gravitee.io/management/instances/'+event;
 
         $http.get(instances,{

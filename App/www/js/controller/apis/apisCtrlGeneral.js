@@ -18,6 +18,7 @@ function apisCtrlGeneral($scope, $routeParams, $http) {
     menuAPIs.setAttribute('style', 'display: inline-block width: 100%');
     document.getElementById('menuAPIsGeneral').setAttribute('href','#/generalAPIs/'+id);
     document.getElementById('menuAPIsGateway').setAttribute('href','#/gatewayAPIs/'+id);
+    document.getElementById('menuAPIsAnalytics').setAttribute('href','#/analyticsAPIs/'+id);
 
 
     $http.get(constant).success(function (response) {

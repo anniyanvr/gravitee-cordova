@@ -17,11 +17,14 @@ function instanceCtrlEnvironment($scope, $routeParams, $http) {
     httpSuccessInstances = function (response) {
         $scope.rep = response;
         $scope.plugins = response.plugins;
+//        $scope.systemProperties = response.systemProperties;
+        console.log(response.systemProperties);
     }
 
     $http.get(constant).success(function (response) {
 
-        //var instances = response["baseURL"]+"instances/"+id; // with login
+        /* Change for 'https://nightly.gravitee.io/management/instances/'+event  -- 'https://demo.gravitee.io/management/instances/'+event is for testing */
+        //var instances = response["baseURL"]+"instances/"+event; // with login
         var instances = 'https://demo.gravitee.io/management/instances/'+event;
 
         $http.get(instances,{
@@ -30,7 +33,6 @@ function instanceCtrlEnvironment($scope, $routeParams, $http) {
             document.location.href="index.html";
         });
     });
-
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {
