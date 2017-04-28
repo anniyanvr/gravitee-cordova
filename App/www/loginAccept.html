@@ -157,6 +157,32 @@
           </li> <!-- divider -->
         </div>
 
+        <!-- Applications menu -->
+        <div id="menuApplications" style="display: none">
+          <li>
+            <a class="subheader ">Applications</a>
+          </li> <!-- title -->
+          <li>
+            <a id="applicationGlobalSettings" class="waves-effect">
+              <i class="material-icons">blur_on</i>Global settings</a>
+          </li> <!-- Global settings -->
+          <li>
+            <a class="waves-effect">
+              <i class="material-icons">vpn_key</i>Subscriptions</a>
+          </li> <!-- Subscriptions -->
+          <li>
+            <a class="waves-effect">
+              <i class="material-icons">people</i>Members</a>
+          </li> <!-- Members -->
+          <li>
+            <a id="applicationAnalytics" class="waves-effect">
+              <i class="material-icons">assessment</i>Analytics</a>
+          </li> <!-- Analytics -->
+          <li>
+            <div class="divider"></div>
+          </li> <!-- divider -->
+        </div>
+
         <!-- Instances menu -->
         <div id="menuInstances" style="display: none">
           <li>
@@ -218,6 +244,8 @@
   <script src="js/controller/apis/apisCtrlAnalytics.js"></script>
 
   <script src="js/controller/applicationCtrl.js"></script>
+  <script src="js/controller/applications/applicationCtrlGlobalSettings.js"></script>
+  <script src="js/controller/applications/applicationCtrlAnalytics.js"></script>
 
   <script src="js/controller/instanceCtrl.js"></script>
   <script src="js/controller/instances/instanceCtrlEnvironment.js"></script>

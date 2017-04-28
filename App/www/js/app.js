@@ -22,6 +22,8 @@ app.config(function ($routeProvider) {
       .when('/gatewayAPIs/:id', {templateUrl: 'partials/apis/gatewayAPIs.html'})
       .when('/analyticsAPIs/:id', {templateUrl: 'partials/apis/analyticsAPI.html'})
       .when('/applications', {templateUrl: 'partials/applications.html'})
+      .when('/applicationGlobalSettings/:id', {templateUrl: 'partials/applications/globalSettingsApp.html'})
+      .when('/applicationAnalytics/:id', {templateUrl: 'partials/applications/analyticsApp.html'})
       .when('/configuration', {templateUrl: 'partials/configuration.html'})
       .when('/configurationTags', {templateUrl: 'partials/configuration/shardingTags.html'})
       .when('/configurationTenants', {templateUrl: 'partials/configuration/tenants.html'})
@@ -54,11 +56,13 @@ app.controller('navCtrl', ['$scope', function ($scope) {
     /* Menu */
     var menuConfig = document.getElementById('menuConfiguration');
     var menuAPIs = document.getElementById('menuAPIs');
+    var menuApplications = document.getElementById('menuApplications');
     var menuGateway = document.getElementById('menuInstances');
 
     function resetMenu() {
         menuConfig.setAttribute('style','display: none');
         menuAPIs.setAttribute('style','display: none');
+        menuApplications.setAttribute('style','display: none');
         menuGateway.setAttribute('style','display: none');
     }
 
