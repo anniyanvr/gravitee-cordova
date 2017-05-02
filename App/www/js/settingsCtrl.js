@@ -9,13 +9,15 @@ settings.controller('settingsCtrl', ['$scope',
     {
         var tabEnvironment = [localStorage.tabEnvironment];
 
-        console.log(localStorage.tabEnvironment.length);
-
         $scope.submitFormSettings = function(){
             tabEnvironment.push($scope.environment);
             $scope.environment = "";
-            localStorage.setItem("tabEnvironment",tabEnvironment);
-            console.log(localStorage.tabEnvironment);
+
+            localStorage.setItem("tabEnvironment",(JSON.stringify(tabEnvironment)));
+            var obj = JSON.parse(localStorage.tabEnvironment);
+            console.log(typeof obj);
+
+            console.log(obj[2]);
         }
     }
 ]);
