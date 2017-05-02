@@ -2,7 +2,7 @@
  * Created by Quentin on 18/04/2017.
  */
 
-var login = angular.module('login', [])
+var login = angular.module('login', []);
 
 login.config(['$httpProvider', function($httpProvider) {
     $httpProvider.defaults.useXDomain = true;
