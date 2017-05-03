@@ -15,6 +15,29 @@ function apisCtrl($scope, $http) {
     showAPIs.style.textAlign = 'center';
     showAPIs.style.marginBottom = '12px';*/
 
+    /* get all views */
+    var allViews = localStorage.baseURL + "management/configuration/views/";
+    $http.get(allViews).success(function (response) {
+        $scope.views = response;
+    });
+
+    /* change View */
+    $scope.changeView = function () {
+        var selectElmt = document.getElementById('selectView');
+        var value = selectElmt.options[selectElmt.selectedIndex].text;
+        if (value === "All APIs"){
+            loaderBar.setAttribute('class','progress');
+            $http.get(baseURLAPI,{
+                headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+            }).success(httpSuccessAllAPIS).error(function () {
+                document.location.href="index.html";
+            });
+        }
+        else {
+
+        }
+    }
+
     httpSuccessAllAPIS = function (response) {
 
         // First solution -- only javaScript
@@ -56,7 +79,6 @@ function apisCtrl($scope, $http) {
         /* loaderBar */
         loaderBar.removeAttribute('class');
     }
-
     httpSuccessVersion = function (response) {$scope.versionApis = response;}
 
     $http.get(constant).success(function (response) {
@@ -86,40 +108,6 @@ function apisCtrl($scope, $http) {
             document.location.href="index.html";
         });
     } /* show all APIs */
-
-    $scope.show100APIs = function(){
-        loaderBar.setAttribute('class','progress');
-        $scope.rep = "";
-        $scope.showcaseShow = "false";
-        $http.get(baseURLAPI,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(function (response) {
-            $scope.rep100 = response;
-            loaderBar.removeAttribute('class');
-        }).error(function () {
-            document.location.href="index.html";
-        });
-    }
-
-    $scope.showcaseAPIS = function () {
-        loaderBar.setAttribute('class','progress');
-        $scope.rep = "";
-        $scope.rep100 = "";
-        $scope.showcaseShow ='true';
-        $http.get(baseURLAPI,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(function (response) {
-            for (var i = 0; i<response.length;i++){
-                if (response[i].name == 'Gravitee.io features'){
-                    $scope.showcase = response[i];
-                }
-            }
-            loaderBar.removeAttribute('class');
-        }).error(function () {
-            document.location.href="index.html";
-        });
-    } /* show only showcase APIs */
-
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {

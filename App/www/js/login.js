@@ -50,7 +50,7 @@ login.controller('loginCtrl', ['$scope','$http',
            document.location.href="loginAccept.html";
         }).error(function () {
             loader.setAttribute('style','display: none');
-            $scope.errorShow = 'Username or password is incorrect';
+            $scope.errorShow = 'Please verify your informations';
         })
     }
 
