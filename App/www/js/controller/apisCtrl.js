@@ -24,8 +24,9 @@ function apisCtrl($scope, $http) {
     /* change View */
     $scope.changeView = function () {
         var selectElmt = document.getElementById('selectView');
-        var value = selectElmt.options[selectElmt.selectedIndex].text;
-        if (value === "All APIs"){
+        var text = selectElmt.options[selectElmt.selectedIndex].text;
+        var value = selectElmt.options[selectElmt.selectedIndex].value;
+        if (text === "All APIs"){
             loaderBar.setAttribute('class','progress');
             $http.get(baseURLAPI,{
                 headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
@@ -34,7 +35,15 @@ function apisCtrl($scope, $http) {
             });
         }
         else {
-
+            loaderBar.setAttribute('class','progress');
+            var url = localStorage.baseURL + "management/apis/?view=" + value;
+            $http.get(url,{
+                headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+            }).success(function (response) {
+                $scope.rep = response;
+                /* loaderBar */
+                loaderBar.removeAttribute('class');
+            });
         }
     }
 
@@ -71,9 +80,6 @@ function apisCtrl($scope, $http) {
         console.log(showAPIs);*/
 
         // Second solution -- with angular JS
-        console.log(response);
-        $scope.showcaseShow = 'false';
-        $scope.rep100 = '';
         $scope.rep = response;
 
         /* loaderBar */
@@ -87,9 +93,8 @@ function apisCtrl($scope, $http) {
         var apisAll = response["baseURL"]+"apis/"; // with login
 
         // var apisAll = "https://demo.gravitee.io/management/apis/"; // demo
-        baseURLAPI = apisAll;
 
-        // test
+        baseURLAPI = apisAll;
         $http.get(apisAll,{
             headers: {
                 'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)
