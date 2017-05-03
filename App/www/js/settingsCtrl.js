@@ -18,7 +18,16 @@ settings.controller('settingsCtrl', ['$scope',
             console.log(obj);
             for (var i=0;i<obj.length;i++){
                 var span = document.createElement('span');
-                span.innerHTML = obj[i] + "<br/>";
+
+                span.innerHTML =
+                    "<table class='striped'>" +
+                    "   <tr>" +
+                    "       <td style='padding-left: 15px; font-size: small; width: 100%'>" + obj[i] + "<td>" +
+                    "       <!-- <td style='cursor: pointer; padding-right: 15px; text-align: right; width: 20%'>" +
+                    "           <i class='material-icons'>delete</i>" +
+                    "       </td> -->" +
+                    "   </tr>" +
+                    "</table>";
                 showEnv.appendChild(span);
             }
         }
@@ -26,16 +35,15 @@ settings.controller('settingsCtrl', ['$scope',
             tabEnvironment = [];
         }
 
-
         $scope.submitFormSettings = function(){
             tabEnvironment.push($scope.environment);
             $scope.environment = "";
 
             localStorage.setItem("tabEnvironment",(JSON.stringify(tabEnvironment)));
-//            var obj = JSON.parse(localStorage.tabEnvironment);
-//            console.log(typeof obj);
-
-//            console.log(obj[2]);
+            location.reload();
+            //            var obj = JSON.parse(localStorage.tabEnvironment);
+            //            console.log(typeof obj);
+            //            console.log(obj[2]);
         }
     }
 ]);

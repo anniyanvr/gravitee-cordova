@@ -13,10 +13,27 @@ login.controller('loginCtrl', ['$scope','$http',
             function($scope,$http)
 {
     var loader = document.getElementById('loader');
+    var selectEnvironment = document.getElementById('selectEnvironment');
+
+    if ((typeof (localStorage.tabEnvironment)) !== "undefined"){
+        var obj = JSON.parse(localStorage.tabEnvironment);
+        for (var i=0;i<obj.length;i++){
+            var option = document.createElement('option');
+
+            option.innerHTML =
+                "<option>" + obj[i] + "</option>";
+            selectEnvironment.appendChild(option);
+        }
+    }
 
     $scope.submitFormLogin = function () {
         loader.setAttribute('style','display: inline-block');
-        var url = "https://nightly.gravitee.io/management/user/login";
+
+        var selectElmt = document.getElementById('selectEnvironment');
+        var baseURL = selectElmt.options[selectElmt.selectedIndex].text;
+
+        var url = baseURL + "user/login";
+
         var username = $scope.username;
         var password = $scope.password;
 
