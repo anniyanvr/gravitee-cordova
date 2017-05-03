@@ -4,7 +4,7 @@
 
 function applicationCtrl($scope, $http) {
 
-    var constant = "https://nightly.gravitee.io/constants.json";
+    var constant = localStorage.baseURL+"constants.json";
 
     httpSuccessAllApplications = function (response) {
         console.log(response);

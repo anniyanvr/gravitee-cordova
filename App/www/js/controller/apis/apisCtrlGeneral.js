@@ -8,7 +8,7 @@ function apisCtrlGeneral($scope, $routeParams, $http) {
     var id = $routeParams.id;
     // console.log("id : "+$routeParams.id);
 
-    var constant = "https://nightly.gravitee.io/constants.json";
+    var constant = localStorage.baseURL+"constants.json";
 
     httpSuccessAPI = function (response) {
         $scope.rep = response;

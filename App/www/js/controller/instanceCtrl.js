@@ -4,7 +4,7 @@
 
 function instanceCtrl($scope, $http) {
 
-    var constant = "https://nightly.gravitee.io/constants.json";
+    var constant = localStorage.baseURL+"constants.json";
 
     $scope.instancesShow = 'false';
 

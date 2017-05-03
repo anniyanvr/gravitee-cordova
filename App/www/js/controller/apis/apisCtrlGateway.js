@@ -4,7 +4,7 @@
 
 function apisCtrlGateway($scope, $routeParams, $http) {
     var id = $routeParams.id;
-    var constant = "https://nightly.gravitee.io/constants.json";
+    var constant = localStorage.baseURL+"constants.json";
 
     httpSuccessAPIGateway = function (response) {
         $scope.rep = response;

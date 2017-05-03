@@ -4,7 +4,10 @@
 
 function apisCtrlAnalytics($scope, $routeParams, $http) {
     var id = $routeParams.id;
-    var constant = "https://nightly.gravitee.io/constants.json";
+    var constant = localStorage.baseURL+"constants.json";
+
+    // this is a test
+    // console.log('test');
 
     /* Application - default */
     $scope.showTopApplication = 'true';

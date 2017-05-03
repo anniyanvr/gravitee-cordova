@@ -32,7 +32,7 @@ login.controller('loginCtrl', ['$scope','$http',
         var selectElmt = document.getElementById('selectEnvironment');
         var baseURL = selectElmt.options[selectElmt.selectedIndex].text;
 
-        var url = baseURL + "user/login";
+        var url = baseURL + "management/user/login";
 
         var username = $scope.username;
         var password = $scope.password;
@@ -44,6 +44,7 @@ login.controller('loginCtrl', ['$scope','$http',
 
             localStorage.setItem("username",username);
             localStorage.setItem("password",password);
+            localStorage.setItem("baseURL",baseURL);
 
             loader.setAttribute('style','display: none');
            document.location.href="loginAccept.html";

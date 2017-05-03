@@ -4,7 +4,10 @@
 
 function applicationCtrlAnalytics($scope, $routeParams, $http) {
     var id = $routeParams.id;
-    var constant = "https://nightly.gravitee.io/constants.json";
+    var constant = localStorage.baseURL+"constants.json";
+
+    // this is a test for cache
+    // console.log("test for cache");
 
     httpSuccessApplicationAnalytics = function (response) { $scope.rep = response; }
     httpSuccessApplicationTopAPI = function (response) {

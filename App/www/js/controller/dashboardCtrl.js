@@ -4,7 +4,7 @@
 
 function dashboardCtrl($scope, $http) {
 
-    var constant = "https://nightly.gravitee.io/constants.json";
+    var constant = localStorage.baseURL+"constants.json";
 
     httpSuccessAPIDashboard = function (response) {
         if(typeof (response.value) === 'undefined')

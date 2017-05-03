@@ -4,8 +4,8 @@
 
 function apisCtrl($scope, $http) {
 
-    var constant = "https://nightly.gravitee.io/constants.json";
-    var version = "https://nightly.gravitee.io/build.json";
+    var constant = localStorage.baseURL+"constants.json";
+    var version = localStorage.baseURL+"build.json";
     var baseURLAPI;
 
     var loaderBar = document.getElementById('divLoader');
