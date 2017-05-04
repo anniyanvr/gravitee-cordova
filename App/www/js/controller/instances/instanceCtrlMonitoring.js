@@ -1,22 +1,37 @@
 /**
- * Created by root on 25/04/17.
+ * Created by root on 04/05/17.
  */
 
-function configurationCtrlTenants($scope, $http) {
-    var constant = localStorage.baseURL+"constants.json";
+function instanceCtrlMonitoring($scope, $routeParams, $http) {
 
-    httpSuccessConfigurationTenants = function (response) {
-        console.log(response);
-        $scope.rep = response;
+    var event = $routeParams.event;
+    var constant = localStorage.baseURL + "constants.json";
+
+    httpSuccessInstancesMonitoringResponse = function(response){
+        $scope.monitoring = response;
+        console.log(response.cpu["percent_use"]);
+    }
+
+    httpSuccessInstancesMonitoring = function (response) {
+        var id = response.id;
+
+        var monitoringUrl = localStorage.baseURL + "management/instances/" + event + "/monitoring/" + id;
+
+        $http.get(monitoringUrl,{
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        }).success(httpSuccessInstancesMonitoringResponse).error(function () {
+            document.location.href="index.html";
+        });
     }
 
     $http.get(constant).success(function (response) {
 
-        var configurationTenants = response["baseURL"]+"configuration/tenants/"; // with login
+        var instances = response["baseURL"]+"instances/"+event; // with login
+        //var instances = 'https://demo.gravitee.io/management/instances/'+event;
 
-        $http.get(configurationTenants,{
+        $http.get(instances,{
             headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessConfigurationTenants).error(function () {
+        }).success(httpSuccessInstancesMonitoring).error(function () {
             document.location.href="index.html";
         });
     });

@@ -1,25 +1,32 @@
 /**
- * Created by root on 25/04/17.
+ * Created by root on 28/04/17.
  */
 
-function configurationCtrlTenants($scope, $http) {
+function applicationCtrlGlobalSettings($scope, $routeParams, $http) {
+    var id = $routeParams.id;
+
     var constant = localStorage.baseURL+"constants.json";
 
-    httpSuccessConfigurationTenants = function (response) {
-        console.log(response);
+    httpSuccessApplication = function (response) {
         $scope.rep = response;
     }
 
+    var menuApplications = document.getElementById('menuApplications');
+    menuApplications.setAttribute('style', 'display: inline-block width: 100%');
+    document.getElementById('applicationGlobalSettings').setAttribute('href','#/applicationGlobalSettings/'+id);
+    document.getElementById('applicationAnalytics').setAttribute('href','#/applicationAnalytics/'+id);
+
     $http.get(constant).success(function (response) {
 
-        var configurationTenants = response["baseURL"]+"configuration/tenants/"; // with login
+        var api = response["baseURL"]+"applications/"+id+"/"; // with login
 
-        $http.get(configurationTenants,{
+        $http.get(api,{
             headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessConfigurationTenants).error(function () {
+        }).success(httpSuccessApplication).error(function () {
             document.location.href="index.html";
         });
     });
+
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {

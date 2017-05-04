@@ -4,8 +4,8 @@
 
 function apisCtrl($scope, $http) {
 
-    var constant = "https://nightly.gravitee.io/constants.json";
-    var version = "https://nightly.gravitee.io/build.json";
+    var constant = localStorage.baseURL+"constants.json";
+    var version = localStorage.baseURL+"build.json";
     var baseURLAPI;
 
     var loaderBar = document.getElementById('divLoader');
@@ -14,6 +14,38 @@ function apisCtrl($scope, $http) {
     /*var showAPIs = document.getElementById('showAPIs');
     showAPIs.style.textAlign = 'center';
     showAPIs.style.marginBottom = '12px';*/
+
+    /* get all views */
+    var allViews = localStorage.baseURL + "management/configuration/views/";
+    $http.get(allViews).success(function (response) {
+        $scope.views = response;
+    });
+
+    /* change View */
+    $scope.changeView = function () {
+        var selectElmt = document.getElementById('selectView');
+        var text = selectElmt.options[selectElmt.selectedIndex].text;
+        var value = selectElmt.options[selectElmt.selectedIndex].value;
+        if (text === "All APIs"){
+            loaderBar.setAttribute('class','progress');
+            $http.get(baseURLAPI,{
+                headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+            }).success(httpSuccessAllAPIS).error(function () {
+                document.location.href="index.html";
+            });
+        }
+        else {
+            loaderBar.setAttribute('class','progress');
+            var url = localStorage.baseURL + "management/apis/?view=" + value;
+            $http.get(url,{
+                headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+            }).success(function (response) {
+                $scope.rep = response;
+                /* loaderBar */
+                loaderBar.removeAttribute('class');
+            });
+        }
+    }
 
     httpSuccessAllAPIS = function (response) {
 
@@ -48,15 +80,11 @@ function apisCtrl($scope, $http) {
         console.log(showAPIs);*/
 
         // Second solution -- with angular JS
-        console.log(response);
-        $scope.showcaseShow = 'false';
-        $scope.rep100 = '';
         $scope.rep = response;
 
         /* loaderBar */
         loaderBar.removeAttribute('class');
     }
-
     httpSuccessVersion = function (response) {$scope.versionApis = response;}
 
     $http.get(constant).success(function (response) {
@@ -65,9 +93,8 @@ function apisCtrl($scope, $http) {
         var apisAll = response["baseURL"]+"apis/"; // with login
 
         // var apisAll = "https://demo.gravitee.io/management/apis/"; // demo
-        baseURLAPI = apisAll;
 
-        // test
+        baseURLAPI = apisAll;
         $http.get(apisAll,{
             headers: {
                 'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)
@@ -86,40 +113,6 @@ function apisCtrl($scope, $http) {
             document.location.href="index.html";
         });
     } /* show all APIs */
-
-    $scope.show100APIs = function(){
-        loaderBar.setAttribute('class','progress');
-        $scope.rep = "";
-        $scope.showcaseShow = "false";
-        $http.get(baseURLAPI,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(function (response) {
-            $scope.rep100 = response;
-            loaderBar.removeAttribute('class');
-        }).error(function () {
-            document.location.href="index.html";
-        });
-    }
-
-    $scope.showcaseAPIS = function () {
-        loaderBar.setAttribute('class','progress');
-        $scope.rep = "";
-        $scope.rep100 = "";
-        $scope.showcaseShow ='true';
-        $http.get(baseURLAPI,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(function (response) {
-            for (var i = 0; i<response.length;i++){
-                if (response[i].name == 'Gravitee.io features'){
-                    $scope.showcase = response[i];
-                }
-            }
-            loaderBar.removeAttribute('class');
-        }).error(function () {
-            document.location.href="index.html";
-        });
-    } /* show only showcase APIs */
-
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {

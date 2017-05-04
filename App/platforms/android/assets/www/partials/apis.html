@@ -17,32 +17,33 @@
             </small>
         </h1>
 
-        <form style="text-align: center; margin-bottom: 25px;">
+        <form style="text-align: center">
             <input class="input-text" type="text" ng-model="searchAPIs" placeholder="Search APIs ..."/>
         </form>
 
-        <div style="text-align: center;">
-            <form style="display: inline;" ng-submit="allAPIs()">
-                <input type="submit" style="margin: 2.5px" class="waves-effect waves-light btn" value="all apis">
-            </form>
-
-            <form style="display: inline;" ng-submit="show100APIs()">
-                <input type="submit" style="margin: 2.5px" class="waves-effect waves-light btn" value="100+ apis">
-            </form>
-
-            <form style="display: inline;" ng-submit="showcaseAPIS()">
-                <input type="submit" style="margin: 2.5px" class="waves-effect waves-light btn" value="showcase apis">
+        <!-- Select view -->
+        <div class="group" style="text-align: center">
+            <form ng-submit="changeView()">
+                <select style="display: inline-block; width: 60%" id="selectView" class="browser-default">
+                    <option>All APIs</option>
+                    <option ng-repeat="view in views" value="{{view.id}}">{{view.name}}</option>
+                </select>
+                <button style="display: inline-block" class="btn waves-effect waves-light"
+                        type="submit"
+                        name="action">
+                    Submit
+                </button>
             </form>
         </div>
 
         <!-- Separator -->
         <hr>
 
-        <!-- button create an API -->
-        <a href="#/createAPI" style="position: fixed; bottom: 15px; right: 15px"
+        <!-- button create an API -- Read-only-->
+        <!-- <a href="#/createAPI" style="position: fixed; bottom: 15px; right: 15px"
            class="btn-floating btn-small waves-effect waves-light blue">
             <i class="material-icons">add</i>
-        </a>
+        </a> -->
 
         <!-- show apis -->
         <div style="text-align: center;">
@@ -73,66 +74,6 @@
                     </div>
                 </a>
             </div>
-        </div>
-
-        <!-- show 100+ apis -->
-        <div style="text-align: center;">
-            <div style="display: inline" ng-repeat="r in rep100 | limitTo:100 | filter:searchAPIs">
-                <a href="#/generalAPIs/{{r.id}}">
-                    <div id="show100APIs" style="width: 130px; display: inline-block">
-                        <div class="card blue-grey darken-1">
-                            <div class="card-content white-text" style="height: 200px">
-                                <img style="width: 50px" src='https://nightly.gravitee.io/0466e9e25e08e26f669bbb7fe0b5e784.png'>
-                                <span class="card-title">
-                                    {{r.name}}
-                                    <small>({{r.version}})</small>
-                                </span>
-                                <small ng-if="r.state === 'started'" style="color:#429f46" class="ng-scope"> {{r.state}} </small>
-                                <small ng-if="r.state !== 'started'" style="color:red" class="ng-scope"> {{r.state}} </small>
-
-                            </div>
-                            <div class="card-action">
-                                <img class="APIsBottomButton" ng-if="r.visibility === 'public'"
-                                     src="img/visibility.png">
-
-                                <img class="APIsBottomButton" ng-if="r.visibility === 'private'"
-                                     src="img/private.png">
-
-                                <img class="APIsBottomButton" src="img/people.png">
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <!-- show showcase -->
-        <div ng-if="showcaseShow === 'true'" style="text-align: center">
-            <a href="#/generalAPIs/{{showcase.id}}">
-                <div id="showcase" style="width: 125px; display: inline-block">
-                    <div class="card blue-grey darken-1">
-                        <div class="card-content white-text" style="height: 200px">
-                            <img style="width: 50px" src='https://nightly.gravitee.io/0466e9e25e08e26f669bbb7fe0b5e784.png'>
-                            <span class="card-title">
-                                {{showcase.name}}
-                                <small>({{showcase.version}})</small>
-                            </span>
-                            <small ng-if="showcase.state === 'started'" style="color:#429f46" class="ng-scope"> {{showcase.state}} </small>
-                            <small ng-if="showcase.state !== 'started'" style="color:red" class="ng-scope"> {{showcase.state}} </small>
-
-                        </div>
-                        <div class="card-action">
-                            <img class="APIsBottomButton" ng-if="showcase.visibility === 'public'"
-                                 src="img/visibility.png">
-
-                            <img class="APIsBottomButton" ng-if="showcase.visibility === 'private'"
-                                 src="img/private.png">
-
-                            <img class="APIsBottomButton" src="img/people.png">
-                        </div>
-                    </div>
-                </div>
-            </a>
         </div>
 
     </section>

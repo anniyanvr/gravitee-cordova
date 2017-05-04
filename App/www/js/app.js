@@ -30,6 +30,7 @@ app.config(function ($routeProvider) {
       .when('/dashboard', {templateUrl: 'partials/dashboard.html'})
       .when('/instances', {templateUrl: 'partials/instances.html'})
       .when('/instancesEnvironment/:event', {templateUrl: 'partials/instances/environmentInstance.html'})
+      .when('/instancesMonitoring/:event', {templateUrl: 'partials/instances/monitoringInstance.html'})
       .otherwise({redirectTo: 'apis'})
 })
 

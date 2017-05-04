@@ -1,0 +1,130 @@
+<section ng-controller="instanceCtrlMonitoring">
+    <section class="panel panel-padding">
+
+        <!-- CPU - Heap - GC collections - File Descriptors -->
+        <div style="margin-top: 20px; text-align: center">
+            <md-card style="display: inline-block; margin-right: 1px" class="card _md flex-25">
+                <md-card-content>
+                    <div class="gravitee-pie-chart-container">
+                        <div height="120" width="120"
+                             options="$ctrl.monitoringCpuChartData" type="solidgauge" class="ng-isolate-scope" data-highcharts-chart="222">
+                            <div class="highcharts-container" style="position: relative; overflow: hidden; width: 120px; height: 120px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                                <svg version="1.1" class="highcharts-root" style="font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 160 160">
+                                    <desc>Created with Highcharts 5.0.10</desc>
+                                    <defs><clipPath id="highcharts-4z94jvu-652"><rect x="0" y="0" width="140" height="135" fill="none"></rect></clipPath></defs>
+                                    <rect fill="#ffffff" class="highcharts-background" x="0" y="0" width="160" height="160" rx="0" ry="0"></rect>
+                                    <rect fill="none" class="highcharts-plot-background" x="10" y="10" width="140" height="135"></rect>
+                                    <g class="highcharts-pane-group"><path fill="none" d="M 80 20.125 A 57.375 57.375 0 1 1 79.94262500956248 20.12502868749761 M 79.95410000764997 31.600022949998092 A 45.9 45.9 0 1 0 80 31.6 " class="highcharts-pane "></path></g>
+                                    <g class="highcharts-grid highcharts-yaxis-grid "><path fill="none" class="highcharts-grid-line" d="M 80 77.5 L 80 20.125" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 80 77.5 L 80.00000000000004 20.125" opacity="1"></path></g><rect fill="none" class="highcharts-plot-border" x="10" y="10" width="140" height="135"></rect><g class="highcharts-axis highcharts-yaxis "><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="2" d="M 80 20.125 L 80 30.125" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="2" d="M 80.00000000000004 20.125 L 80.00000000000003 30.125" opacity="1"></path><path fill="none" class="highcharts-axis-line" stroke="#ccd6eb" stroke-width="1" d="M 80 20.125 A 57.375 57.375 0 1 1 79.94262500956248 20.12502868749761 M 80 77.5 A 0 0 0 1 0 80 77.5 "></path></g><g class="highcharts-data-labels highcharts-series-0 highcharts-solidgauge-series highcharts-color-undefined highcharts-tracker" visibility="visible" transform="translate(10,10) scale(1 1)"><g class="highcharts-label highcharts-data-label highcharts-data-label-color-0 highcharts-tracker" transform="translate(47,45)"></g></g><g class="highcharts-series-group"><g class="highcharts-series highcharts-series-0 highcharts-solidgauge-series highcharts-color-undefined highcharts-tracker" transform="translate(10,10) scale(1 1)" clip-path="url(#highcharts-4z94jvu-652)"><path fill="rgb(85,191,59)" d="M 70 10.125 A 57.375 57.375 0 0 1 73.54534248269155 10.234642481859751 L 72.83627398615324 21.687713985487797 A 45.9 45.9 0 0 0 70 21.6 Z" class="highcharts-point" sweep-flag="0"></path></g><g class="highcharts-markers highcharts-series-0 highcharts-solidgauge-series highcharts-color-undefined " transform="translate(10,10) scale(1 1)" clip-path="none"></g></g><g class="highcharts-legend"><rect fill="none" class="highcharts-legend-box" rx="0" ry="0" x="0" y="0" width="8" height="8" visibility="hidden"></rect><g><g></g></g></g><g class="highcharts-axis-labels highcharts-yaxis-labels "><text x="0" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="-9999"><tspan>0</tspan></text><text x="0" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="-9999"><tspan>100</tspan></text></g></svg><div class="highcharts-data-labels highcharts-series-0 highcharts-solidgauge-series highcharts-color-undefined " style="position: absolute; left: 10px; top: 10px; opacity: 1;"><div class="highcharts-label highcharts-data-label highcharts-data-label-color-0 highcharts-tracker" style="position: absolute; left: 47px; top: 45px; opacity: 1;"><span style="font-family: &quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif; font-size: 11px; position: absolute; white-space: nowrap; font-weight: bold; color: rgb(0, 0, 0); margin-left: 0px; margin-top: 0px; left: 5px; top: 5px;">
+                                <div style="text-align:center"><span style="font-size:25px;color:black">
+                                    {{monitoring.cpu["percent_use"]}}%
+                                </span><br><span style="font-size:12px;color:silver;">CPU</span></div></span></div></div></div></div>
+                    </div>
+                </md-card-content>
+            </md-card>
+            <md-card style="display: inline-block; margin-left: 1px" class="card _md flex-25">
+                <md-card-content>
+                    <div class="gravitee-pie-chart-container">
+                        <div height="120" width="120"
+                             options="$ctrl.monitoringCpuChartData" type="solidgauge" class="ng-isolate-scope" data-highcharts-chart="222">
+                            <div class="highcharts-container" style="position: relative; overflow: hidden; width: 120px; height: 120px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                                <svg version="1.1" class="highcharts-root" style="font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 160 160">
+                                    <desc>Created with Highcharts 5.0.10</desc>
+                                    <defs><clipPath id="highcharts-4z94jvu-652"><rect x="0" y="0" width="140" height="135" fill="none"></rect></clipPath></defs>
+                                    <rect fill="#ffffff" class="highcharts-background" x="0" y="0" width="160" height="160" rx="0" ry="0"></rect>
+                                    <rect fill="none" class="highcharts-plot-background" x="10" y="10" width="140" height="135"></rect>
+                                    <g class="highcharts-pane-group"><path fill="none" d="M 80 20.125 A 57.375 57.375 0 1 1 79.94262500956248 20.12502868749761 M 79.95410000764997 31.600022949998092 A 45.9 45.9 0 1 0 80 31.6 " class="highcharts-pane "></path></g>
+                                    <g class="highcharts-grid highcharts-yaxis-grid "><path fill="none" class="highcharts-grid-line" d="M 80 77.5 L 80 20.125" opacity="1"></path><path fill="none" class="highcharts-grid-line" d="M 80 77.5 L 80.00000000000004 20.125" opacity="1"></path></g><rect fill="none" class="highcharts-plot-border" x="10" y="10" width="140" height="135"></rect><g class="highcharts-axis highcharts-yaxis "><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="2" d="M 80 20.125 L 80 30.125" opacity="1"></path><path fill="none" class="highcharts-tick" stroke="#ccd6eb" stroke-width="2" d="M 80.00000000000004 20.125 L 80.00000000000003 30.125" opacity="1"></path><path fill="none" class="highcharts-axis-line" stroke="#ccd6eb" stroke-width="1" d="M 80 20.125 A 57.375 57.375 0 1 1 79.94262500956248 20.12502868749761 M 80 77.5 A 0 0 0 1 0 80 77.5 "></path></g><g class="highcharts-data-labels highcharts-series-0 highcharts-solidgauge-series highcharts-color-undefined highcharts-tracker" visibility="visible" transform="translate(10,10) scale(1 1)"><g class="highcharts-label highcharts-data-label highcharts-data-label-color-0 highcharts-tracker" transform="translate(47,45)"></g></g><g class="highcharts-series-group"><g class="highcharts-series highcharts-series-0 highcharts-solidgauge-series highcharts-color-undefined highcharts-tracker" transform="translate(10,10) scale(1 1)" clip-path="url(#highcharts-4z94jvu-652)"><path fill="rgb(85,191,59)" d="M 70 10.125 A 57.375 57.375 0 0 1 73.54534248269155 10.234642481859751 L 72.83627398615324 21.687713985487797 A 45.9 45.9 0 0 0 70 21.6 Z" class="highcharts-point" sweep-flag="0"></path></g><g class="highcharts-markers highcharts-series-0 highcharts-solidgauge-series highcharts-color-undefined " transform="translate(10,10) scale(1 1)" clip-path="none"></g></g><g class="highcharts-legend"><rect fill="none" class="highcharts-legend-box" rx="0" ry="0" x="0" y="0" width="8" height="8" visibility="hidden"></rect><g><g></g></g></g><g class="highcharts-axis-labels highcharts-yaxis-labels "><text x="0" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="-9999"><tspan>0</tspan></text><text x="0" style="color:#666666;cursor:default;font-size:11px;fill:#666666;" text-anchor="middle" transform="translate(0,0)" y="-9999"><tspan>100</tspan></text></g></svg><div class="highcharts-data-labels highcharts-series-0 highcharts-solidgauge-series highcharts-color-undefined " style="position: absolute; left: 10px; top: 10px; opacity: 1;"><div class="highcharts-label highcharts-data-label highcharts-data-label-color-0 highcharts-tracker" style="position: absolute; left: 47px; top: 45px; opacity: 1;"><span style="font-family: &quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif; font-size: 11px; position: absolute; white-space: nowrap; font-weight: bold; color: rgb(0, 0, 0); margin-left: 0px; margin-top: 0px; left: 5px; top: 5px;">
+                                <div style="text-align:center"><span style="font-size:25px;color:black">
+                                    {{monitoring.jvm["heap_used_percent"]}}%
+                                </span><br><span style="font-size:12px;color:silver;">Heap</span></div>
+                            </span></div></div></div></div>
+                    </div>
+                </md-card-content>
+            </md-card>
+            <md-card style="display: inline-block; margin-left: 1px" class="card _md flex-25">
+                <md-card-content>
+                    <div class="gravitee-pie-chart-container">
+                        <div height="120" width="120"
+                             options="$ctrl.monitoringCpuChartData" type="solidgauge" class="ng-isolate-scope" data-highcharts-chart="222">
+                            <div class="highcharts-container" style="position: relative; overflow: hidden; width: 120px; height: 120px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                                <div style="text-align:center; margin-top: 20%">
+                                    <p style="font-size:12px;color:silver">GC collections</p>
+                                    <span style="font-size:25px;color:black">
+                                        {{monitoring.gc["old_collection_count"]}}
+                                    </span>
+                                </div>
+                            </span></div></div>
+                    </div>
+                </md-card-content>
+            </md-card>
+            <md-card style="display: inline-block; margin-left: 1px" class="card _md flex-25">
+                <md-card-content>
+                    <div class="gravitee-pie-chart-container">
+                        <div height="120" width="120"
+                             options="$ctrl.monitoringCpuChartData" type="solidgauge" class="ng-isolate-scope" data-highcharts-chart="222">
+                            <div class="highcharts-container" style="position: relative; overflow: hidden; width: 120px; height: 120px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                                <div style="text-align:center; margin-top: 20%">
+                                    <p style="font-size:12px;color:silver">File Descriptors</p>
+                                    <span style="font-size:25px;color:black">
+                                        {{monitoring.process["open_file_descriptors"]}}
+                                    </span>
+                                </div>
+                                </span></div></div>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
+
+        <!-- JVM -->
+        <md-card style="display: inline-block; margin-left: 1px; width: 100%" class="card _md flex-25">
+            <md-card-content>
+                <div layout="row" class="layout-row">
+                    <ng-md-icon style="margin-left: 15px; display: inline-block" class="gravitee-monitoring-icon-title" icon="memory"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M13 13h-2v-2h2v2zm2-4H9v6h6V9z"></path><path d="M17 17H7V7h10v10zm4-6V9h-2V7c0-1.1-.9-2-2-2h-2V3h-2v2h-2V3H9v2H7c-1.1 0-2 .9-2 2v2H3v2h2v2H3v2h2v2c0 1.1.9 2 2 2h2v2h2v-2h2v2h2v-2h2c1.1 0 2-.9 2-2v-2h2v-2h-2v-2h2z"></path></svg></ng-md-icon>
+                    <h3 style="display: inline-block">JVM</h3>
+                </div>
+                <div layout="row" class="layout-row">
+                    <div flex="75" class="flex-75">
+                        <div layout="row" class="layout-row">
+                            <table style="margin-right: 15px; margin-left: 15px; table-layout: fixed; word-wrap: break-word">
+                                <tr>
+                                    <td style="width: 200px; font-weight: bold">Date</td>
+                                    <td style="text-align: left">{{monitoring.jvm["timestamp"]}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px; font-weight: bold">Uptime</td>
+                                    <td style="text-align: left">{{monitoring.jvm["uptime_in_millis"]}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px; font-weight: bold">Heap used</td>
+                                    <td style="text-align: left">{{monitoring.jvm["heap_used_in_bytes"]}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px; font-weight: bold">Percent of heap used</td>
+                                    <td style="text-align: left">{{monitoring.jvm["heap_used_percent"]}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px; font-weight: bold">Heap committed</td>
+                                    <td style="text-align: left">{{monitoring.jvm["heap_committed_in_bytes"]}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px; font-weight: bold">Heap max</td>
+                                    <td style="text-align: left">{{monitoring.jvm["heap_max_in_bytes"]}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px; font-weight: bold">Non heap used</td>
+                                    <td style="text-align: left">{{monitoring.jvm["non_heap_used_in_bytes"]}}</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 200px; font-weight: bold">Non heap committed</td>
+                                    <td style="text-align: left">{{monitoring.jvm["non_heap_committed_in_bytes"]}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </md-card-content>
+        </md-card>
+
+    </section>
+</section>

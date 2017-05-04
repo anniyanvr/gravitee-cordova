@@ -2,7 +2,7 @@
  * Created by Quentin on 18/04/2017.
  */
 
-var login = angular.module('login', [])
+var login = angular.module('login', []);
 
 login.config(['$httpProvider', function($httpProvider) {
     $httpProvider.defaults.useXDomain = true;
@@ -13,10 +13,27 @@ login.controller('loginCtrl', ['$scope','$http',
             function($scope,$http)
 {
     var loader = document.getElementById('loader');
+    var selectEnvironment = document.getElementById('selectEnvironment');
+
+    if ((typeof (localStorage.tabEnvironment)) !== "undefined"){
+        var obj = JSON.parse(localStorage.tabEnvironment);
+        for (var i=0;i<obj.length;i++){
+            var option = document.createElement('option');
+
+            option.innerHTML =
+                "<option>" + obj[i] + "</option>";
+            selectEnvironment.appendChild(option);
+        }
+    }
 
     $scope.submitFormLogin = function () {
         loader.setAttribute('style','display: inline-block');
-        var url = "https://nightly.gravitee.io/management/user/login";
+
+        var selectElmt = document.getElementById('selectEnvironment');
+        var baseURL = selectElmt.options[selectElmt.selectedIndex].text;
+
+        var url = baseURL + "management/user/login";
+
         var username = $scope.username;
         var password = $scope.password;
 
@@ -27,12 +44,13 @@ login.controller('loginCtrl', ['$scope','$http',
 
             localStorage.setItem("username",username);
             localStorage.setItem("password",password);
+            localStorage.setItem("baseURL",baseURL);
 
             loader.setAttribute('style','display: none');
            document.location.href="loginAccept.html";
         }).error(function () {
             loader.setAttribute('style','display: none');
-            $scope.errorShow = 'Username or password is incorrect';
+            $scope.errorShow = 'Please verify your informations';
         })
     }
 

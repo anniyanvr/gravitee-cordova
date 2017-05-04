@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="settings">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/styleM.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <title>Gravitee.io</title>
+</head>
+<body ng-controller="settingsCtrl" >
+
+    <a href="index.html">
+        <button style="position: fixed; top: 15px" class="btn waves-effect waves-light" name="action">Back to login menu
+            <i class="material-icons left">send</i>
+        </button>
+    </a>
+
+    <nav class="nav-extended" style="background-color: transparent; color: black">
+        <h4 style="text-align: center; padding: 25px">Gravitee.io API Management |setting|</h4>
+
+        <div class="nav-content">
+            <span class="nav-title" id="showEnv"></span>
+            <!-- Trigger/Open The Modal -->
+            <a href="#modal1" class="btn-floating btn-large halfway-fab waves-effect waves-light teal">
+                <i class="material-icons">add</i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+
+        <form ng-submit="submitFormSettings()">
+            <div class="modal-content">
+                <h4 style="text-align: center">Add new environment</h4>
+                <hr style="margin-bottom: 50px">
+                <div class="group">
+                    <input type="text" required ng-model="environment">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Enter new environment</label>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Confirmation</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Script -->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal').modal();
+        });
+        $('#modal1').modal('open');
+        $('#modal1').modal('close');
+    </script>
+
+    <script src="js/angular.js"></script>
+    <script src="js/settingsCtrl.js"></script>
+
+</body>
+</html>

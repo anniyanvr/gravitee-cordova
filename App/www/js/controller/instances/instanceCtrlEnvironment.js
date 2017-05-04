@@ -9,23 +9,22 @@ function instanceCtrlEnvironment($scope, $routeParams, $http) {
     var menuInstances = document.getElementById('menuInstances');
     menuInstances.setAttribute('style', 'display: inline-block width: 100%');
     document.getElementById('menuInstancesEnvironment').setAttribute('href','#/instancesEnvironment/'+event);
-    document.getElementById('menuInstancesMonitoring').setAttribute('href','');
+    document.getElementById('menuInstancesMonitoring').setAttribute('href','#/instancesMonitoring/'+event);
 
     /* for scope */
-    var constant = "https://nightly.gravitee.io/constants.json";
+    var constant = localStorage.baseURL + "constants.json";
 
     httpSuccessInstances = function (response) {
         $scope.rep = response;
         $scope.plugins = response.plugins;
-//        $scope.systemProperties = response.systemProperties;
+        $scope.systemProperties = response.systemProperties;
         console.log(response.systemProperties);
     }
 
     $http.get(constant).success(function (response) {
 
-        /* Change for 'https://nightly.gravitee.io/management/instances/'+event  -- 'https://demo.gravitee.io/management/instances/'+event is for testing */
-        //var instances = response["baseURL"]+"instances/"+event; // with login
-        var instances = 'https://demo.gravitee.io/management/instances/'+event;
+        var instances = response["baseURL"]+"instances/"+event; // with login
+        //var instances = 'https://demo.gravitee.io/management/instances/'+event;
 
         $http.get(instances,{
             headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}

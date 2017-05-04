@@ -3,7 +3,7 @@
  */
 
 function configurationCtrl($scope, $http) {
-    var constant = "https://nightly.gravitee.io/constants.json";
+    var constant = localStorage.baseURL+"constants.json";
 
     httpSuccessConfiguration = function (response) {
         console.log(response);

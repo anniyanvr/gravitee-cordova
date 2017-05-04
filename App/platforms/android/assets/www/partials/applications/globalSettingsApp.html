@@ -1,0 +1,81 @@
+<section ng-controller="applicationCtrlGlobalSettings">
+    <section class="panel panel-padding">
+
+        <!-- show my api -->
+        <div class="panel-padding">
+
+            <!-- presentation -->
+            <div style="text-align: left; width: 100%;
+                        background-color: #f7f7f7;">
+
+                <h4>
+                    {{rep.name}}
+                    <small>
+                        ({{rep.version}})
+                        <image
+                                class="APIsBottomButton"
+                                ng-if="rep.visibility === 'public'"
+                                src="img/visibility.png"></image>
+
+                        <image
+                                class="APIsBottomButton"
+                                ng-if="rep.visibility === 'private'"
+                                src="img/private.png"></image>
+                    </small>
+                </h4>
+                <p>{{rep.description}}</p>
+
+            </div>
+
+            <hr width="80%">
+
+            <!-- form -->
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card">
+                        <div class="card-content">
+                            <p style="color: darkgrey">Informations</p>
+                            <form>
+                                <input disabled style="width: 100%; color: black" class="input-text" type="text" placeholder="Name" value="{{rep.name}}">
+                                <input disabled style="width: 100%; color: black" class="input-text" type="text" placeholder="Type" value="{{rep.type}}">
+                                <input disabled style="width: 100%; color: black" class="input-text" type="text" placeholder="Description" value="{{rep.description}}"><br/>
+                                <select disabled style="width: 100%" class="input-text">
+                                    <option>{{rep.views}}</option>
+                                </select>
+
+                                <!-- buttons -->
+
+                                <!-- <div style="text-align: center;"> -->
+                                <!-- <a class="waves-effect waves-light btn" style="margin-bottom: 5px">Save</a>  save -->
+
+                                <!-- <a class="waves-effect waves-light btn" style="margin-bottom: 5px">Reset</a> reset -->
+
+                                <!-- <a class="waves-effect waves-light btn" style="margin-bottom: 5px">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                            <path d="M9 16h6v-6h4l-7-7-7 7h4z"></path>
+                                            <path d="M5 18h14v2H5z"></path>
+                                        </svg>
+                                        Export
+                                    </a>  export -->
+
+                                <!-- <a class="waves-effect waves-light btn" style="margin-bottom: 5px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                        <path d="M19 9h-4V3H9v6H5l7 7 7-7z"></path>
+                                        <path d="M5 18v2h14v-2H5z"></path>
+                                    </svg>
+                                    Import
+                                </a>  import -->
+                                <!-- </div> -->
+
+                            </form><!-- /form -->
+                            <!-- <div style="text-align: center" >
+                                <a class="waves-effect waves-light btn" style="background-color: #b81111">Delete</a>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</section>

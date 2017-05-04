@@ -53,10 +53,10 @@
           <a href="loginAccept.html#/dashboard" class="waves-effect">
             <i class="material-icons">show_chart</i>Dashboard</a>
         </li> <!-- Dashboard -->
-        <li id="configuration">
+        <!-- <li id="configuration">
           <a href="loginAccept.html#/configuration" class="waves-effect">
             <i class="material-icons">settings</i>Configuration</a>
-        </li> <!-- Configuration -->
+        </li> --> <!-- Configuration -- Read-only-->
         <li>
           <a href="index.html" class="waves-effect">
             <i class="material-icons">exit_to_app</i>SignOut</a>
@@ -157,6 +157,32 @@
           </li> <!-- divider -->
         </div>
 
+        <!-- Applications menu -->
+        <div id="menuApplications" style="display: none">
+          <li>
+            <a class="subheader ">Applications</a>
+          </li> <!-- title -->
+          <li>
+            <a id="applicationGlobalSettings" class="waves-effect">
+              <i class="material-icons">blur_on</i>Global settings</a>
+          </li> <!-- Global settings -->
+          <li>
+            <a class="waves-effect">
+              <i class="material-icons">vpn_key</i>Subscriptions</a>
+          </li> <!-- Subscriptions -->
+          <li>
+            <a class="waves-effect">
+              <i class="material-icons">people</i>Members</a>
+          </li> <!-- Members -->
+          <li>
+            <a id="applicationAnalytics" class="waves-effect">
+              <i class="material-icons">assessment</i>Analytics</a>
+          </li> <!-- Analytics -->
+          <li>
+            <div class="divider"></div>
+          </li> <!-- divider -->
+        </div>
+
         <!-- Instances menu -->
         <div id="menuInstances" style="display: none">
           <li>
@@ -213,11 +239,17 @@
   <script src="js/controller/apis/create/apisCtrlNew.js"></script>
   <script src="js/controller/apis/apisCtrlGeneral.js"></script>
   <script src="js/controller/apis/apisCtrlGateway.js"></script>
+  <script src="js/controller/apis/apisCtrlAnalytics.js"></script>
 
   <script src="js/controller/applicationCtrl.js"></script>
+  <script src="js/controller/applications/applicationCtrlGlobalSettings.js"></script>
+  <script src="js/controller/applications/applicationCtrlAnalytics.js"></script>
 
   <script src="js/controller/instanceCtrl.js"></script>
   <script src="js/controller/instances/instanceCtrlEnvironment.js"></script>
+  <script src="js/controller/instances/instanceCtrlMonitoring.js"></script>
+
+  <script src="js/controller/dashboardCtrl.js"></script>
 
   <script src="js/controller/configurationCtrl.js"></script>
   <script src="js/controller/configuration/configurationCtrlTags.js"></script>

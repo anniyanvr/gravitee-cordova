@@ -4,7 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/materialize.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/styleM.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <title>Gravitee.io</title>
 </head>
 <body style="text-align: center;
@@ -12,7 +14,14 @@
              background-color: white"
       ng-controller="loginCtrl" >
 
-    <h4>Gravitee.io API Management</h4>
+    <h4>
+        Gravitee.io API Management
+        <div class="fixed-action-btn">
+        <a href="settings.html" class="btn-floating btn-large red pulse">
+            <i class="material-icons">mode_edit</i>
+        </a>
+        </div>
+    </h4>
 
     <p style="background-color: red">{{errorShow}}</p>
 
@@ -31,6 +40,13 @@
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>Password</label>
+        </div>
+
+        <div class="group">
+            <select id="selectEnvironment" class="browser-default">
+                <option value="" disabled selected>Choose your environment</option>
+
+            </select>
         </div>
 
         <button class="btn waves-effect waves-light"
@@ -53,6 +69,11 @@
             </div>
         </button>
     </form>
+
+    <!-- Script -->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
 
     <script src="js/angular.js"></script>
     <script src="js/login.js"></script>

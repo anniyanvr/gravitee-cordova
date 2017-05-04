@@ -7,7 +7,6 @@ function applicationCtrl($scope, $http) {
     var constant = localStorage.baseURL+"constants.json";
 
     httpSuccessAllApplications = function (response) {
-        console.log(response);
         $scope.rep = response;
     }
 
