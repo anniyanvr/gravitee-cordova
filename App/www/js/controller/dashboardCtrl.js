@@ -50,6 +50,12 @@ function dashboardCtrl($scope, $http) {
             $scope.showSlowAPIs = 'true';
         }
     }
+    httpSuccessEventDashboard = function (response) {
+        var totalElements = response.totalElements;
+        console.log(totalElements);
+        $scope.event = response.content;
+
+    }
 
     $http.get(constant).success(function (response) {
 
@@ -58,6 +64,8 @@ function dashboardCtrl($scope, $http) {
         var failedAPIs = response["baseURL"] + "platform/analytics?type=group_by&field=api&query=status:[500%20TO%20599]&size=10000&interval=600000&from=1493294862269&to=1493381262269&";
         var topSlowAPIs = response["baseURL"] + "platform/analytics?type=group_by&field=api&order=-avg:response-time&size=10000&interval=600000&from=1493294862269&to=1493381262269&";
         var topOverheadAPIs = response["baseURL"] + "platform/analytics?type=group_by&field=api&order=-avg:proxy-latency&size=10000&interval=600000&from=1493294862269&to=1493381262269&";
+
+        var event = response["baseURL"] + "platform/events?type=START_API,STOP_API,PUBLISH_API,UNPUBLISH_API&api_ids=&from=1493802116487&to=1493888516487&page=0&size=10";
 
         /* apis */
         $http.get(apis,{
@@ -94,6 +102,12 @@ function dashboardCtrl($scope, $http) {
             document.location.href="index.html";
         });
 
+        /* event */
+        $http.get(event,{
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        }).success(httpSuccessEventDashboard).error(function () {
+            document.location.href="index.html";
+        });
     });
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';

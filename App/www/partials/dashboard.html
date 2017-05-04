@@ -52,7 +52,7 @@
 
         <!-- topAPI -->
         <div id="boxTopApi" style="display: inline" class="row">
-            <div class="col s12 m6">
+            <div class="col s12 m12">
                 <div class="card">
                     <div class="card-content black-text">
                         <span class="card-title">Top APIs</span>
@@ -88,7 +88,7 @@
 
         <!-- topApplications -->
         <div id="boxTopApplications" style="display: none" class="row">
-            <div class="col s12 m6">
+            <div class="col s12 m12">
                 <div class="card">
                     <div class="card-content black-text">
                         <span class="card-title">Top applications</span>
@@ -125,7 +125,7 @@
 
         <!-- topFailedAPIs -->
         <div id="boxTopFailedAPIs" style="display: none" class="row">
-            <div class="col s12 m6">
+            <div class="col s12 m12">
                 <div class="card">
                     <div class="card-content black-text">
                         <span class="card-title">Top failed APIs</span>
@@ -161,7 +161,7 @@
 
         <!-- topSlowAPIs -->
         <div id="boxTopSlowAPIs" style="display: none" class="row">
-            <div class="col s12 m6">
+            <div class="col s12 m12">
                 <div class="card">
                     <div class="card-content black-text">
                         <span class="card-title">Top slow APIs</span>
@@ -197,7 +197,7 @@
 
         <!-- topOverheadAPIs -->
         <div id="boxTopOverheadAPIs" style="display: none" class="row">
-            <div class="col s12 m6">
+            <div class="col s12 m12">
                 <div class="card">
                     <div class="card-content black-text">
                         <span class="card-title">Top overhead APIs</span>
@@ -233,11 +233,28 @@
 
         <!-- APIEvents --> <!-- not finish -->
         <div id="boxAPIEvents" style="display: none" class="row">
-            <div class="col s12 m6">
+            <div class="col s12 m12">
                 <div class="card">
                     <div class="card-content black-text">
-                        <span class="card-title">API Events</span>
+                        <span style="display: inline-block" class="card-title">API Events</span>
 
+                        <select style="margin-left: 50px; width: 40%; display: inline-block" id="selectEnvironment" class="browser-default">
+                            <option value="" disabled selected>Choose your environment</option>
+                        </select>
+
+                        <table class="striped">
+                            <tr>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>API</th>
+                            </tr>
+                            <tr ng-repeat="e in event">
+                                <td>{{e.updated_at}}</td>
+                                <td ng-if="e.type === 'start_api'">Start</td>
+                                <td ng-if="e.type === 'publish_api'">Deploy</td>
+                                <td>{{e.properties["api_name"]}} ({{e.properties["api_version"]}})</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>

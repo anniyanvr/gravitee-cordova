@@ -20,9 +20,9 @@ function instanceCtrl($scope, $http) {
 
     $http.get(constant).success(function (response) {
 
-        //var instancesAll = response["baseURL"]+"instances/"; // with login
+        var instancesAll = response["baseURL"]+"instances/"; // with login
 
-        var instancesAll = 'https://demo.gravitee.io/management/instances/'; // demo
+        //var instancesAll = 'https://demo.gravitee.io/management/instances/'; // demo
 
         $http.get(instancesAll,{
             headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
