@@ -41,24 +41,40 @@
                                 <p style="font-size: medium; font-weight: bold; color: rgb(96,125,139); background-color: rgba(216,216,216,0.4); margin-bottom: 5px">Endpoints</p>
 
                                 <table class="striped">
-                                    <tr>
-                                        <th></th>
+                                    <tr style="font-size: small">
+                                        <!-- <th></th>  -->
                                         <th>Name</th>
                                         <th>Target</th>
-                                        <th><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg></th>
-                                        <th><i class="material-icons">delete</i></th>
+                                        <th>Weight</th>
+                                        <th>Backup</th>
+                                        <th>Health-check</th>
+                                        <!-- <th><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg></th> -->
+                                        <!-- <th><i class="material-icons">delete</i></th> -->
                                     </tr>
                                     <tr ng-repeat="r in endpoints">
-                                        <td>
+                                        <!-- <td>
                                             <p style="width: 15px">
                                                 <input type="checkbox" class="filled-in" id="filled-in-box" />
                                                 <label for="filled-in-box"></label>
                                             </p>
+                                        </td> -->
+                                        <td style="max-width: 60px; word-wrap: break-word"><input style="color: black" value="{{r.name}}" disabled></td>
+                                        <td style="max-width: 60px; word-wrap: break-word"><input style="color: black" value="{{r.target}}" disabled></td>
+                                        <td style="max-width: 60px; word-wrap: break-word"><input style="color: black" value="{{r.weight}}" disabled></td>
+                                        <td>
+                                            <i ng-if="r.backup === false" style="color: red;" class="material-icons">close</i>
+                                            <i ng-if="r.backup === true" style="color: #00A000" class="material-icons">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg>
+                                            </i>
                                         </td>
-                                        <td style="max-width: 60px; word-wrap: break-word">{{r.name}}</td>
-                                        <td style="max-width: 60px; word-wrap: break-word">{{r.target}}</td>
-                                        <td><i class="material-icons">settings</i></td>
-                                        <td></td>
+                                        <td>
+                                            <i ng-if="r.healthcheck === false" style="color: red;" class="material-icons">close</i>
+                                            <i ng-if="r.healthcheck === true" style="color: #00A000" class="material-icons">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg>
+                                            </i>
+                                        </td>
+                                        <!-- <td><i class="material-icons">settings</i></td> -->
+                                        <!-- <td></td> -->
                                     </tr>
                                 </table>
 
@@ -66,18 +82,27 @@
                                 <p style="font-size: medium; font-weight: bold; color: rgb(96,125,139); background-color: rgba(216,216,216,0.4);">Load balancing</p>
 
                                 <label>Load balancing</label>
-                                <select class="browser-default">
+                                <!-- <select class="browser-default">
                                     <option value="current">{{rep.proxy['load_balancing'].type}}</option>
-                                </select>
+                                </select> -->
 
+                                <input style="color: black" value="{{rep.proxy['load_balancing'].type}}" disabled>
+
+<!-- Fail-over -->
                                 <hr>
                                 <p style="background-color: rgba(216,216,216,0.4);">
-                                    <input type="checkbox" class="filled-in" id="loadBalancingCheck"/>
+                                    <!-- <input type="checkbox" class="filled-in" id="loadBalancingCheck"/>
                                     <label style="color: rgb(96,125,139); font-weight: bold; font-size: medium" for="loadBalancingCheck">
                                       Fail-over <br>
                                         <small style="font-weight: normal">When gateway receives a connect timeout from backend servers, it redirects traffic to the next server until "max attempts" or "timeout" have been reached.
                                         </small>
+                                    </label> -->
+                                    <label style="color: rgb(96,125,139); font-weight: bold; font-size: medium">
+                                        Fail-over <br>
+                                        <small style="font-weight: normal">When gateway receives a connect timeout from backend servers, it redirects traffic to the next server until "max attempts" or "timeout" have been reached.
+                                        </small>
                                     </label>
+
                                 </p>
 
                                 <hr>
@@ -96,8 +121,10 @@
                                     <small style="font-weight: normal">Use multi-tenant to route incoming HTTP requests to relative endpoints.</small>
                                 </p>
                                 <p style="margin-top: 5px">
-                                    <input type="checkbox" class="filled-in" id="multiTenant" />
-                                    <label for="multiTenant">Enable multi-tenant</label>
+                                    <input ng-if="rep.proxy['multiTenant'] === false" type="checkbox" class="filled-in" id="multiTenant" disabled />
+                                    <label style="color: black" ng-if="rep.proxy['multiTenant'] === false" for="multiTenant">Enable multi-tenant</label>
+                                    <input ng-if="rep.proxy['multiTenant'] === true" type="checkbox" class="filled-in" id="multiTenantcheck" disabled checked />
+                                    <label style="color: black" ng-if="rep.proxy['multiTenant'] === true" for="multiTenantcheck">Enable multi-tenant</label>
                                 </p>
 
                                 <hr>
@@ -106,9 +133,10 @@
                                     <small style="font-weight: normal">Use profiling with caution and only for development purpose since it can have impact on API performance.</small>
                                 </p>
                                 <p style="margin-top: 5px">
-                                    <input type="checkbox" class="filled-in" id="profiling" />
-                                    <label for="profiling">Dump HTTP requests. |
-                                        Print HTTP client requests in gateway logs.</label>
+                                    <input ng-if="rep.proxy['dumpRequest'] === false" type="checkbox" class="filled-in" id="profiling1" disabled />
+                                    <label style="color: black" ng-if="rep.proxy['dumpRequest'] === false" for="profiling1">Dump HTTP requests. | Print HTTP client requests in gateway logs.</label>
+                                    <input ng-if="rep.proxy['dumpRequest'] === true" type="checkbox" class="filled-in" id="profiling2" disabled checked />
+                                    <label style="color: black" ng-if="rep.proxy['dumpRequest'] === true" for="profiling2">Dump HTTP requests. | Print HTTP client requests in gateway logs.</label>
                                 </p>
 
                                 <hr>
