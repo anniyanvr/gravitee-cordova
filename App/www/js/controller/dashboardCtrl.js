@@ -5,6 +5,7 @@
 function dashboardCtrl($scope, $http) {
 
     var constant = localStorage.baseURL+"constants.json";
+    var selectPage = document.getElementById('selectPage');
 
     httpSuccessAPIDashboard = function (response) {
         if(typeof (response.value) === 'undefined')
@@ -55,9 +56,29 @@ function dashboardCtrl($scope, $http) {
         console.log(totalElements);
         $scope.event = response.content;
 
+        // add page number -- select
+        for (var i=0;i<totalElements/10;i++){
+            var number = document.createElement('option');
+            number.innerHTML =
+                "<option>" + (i+1) + "</option>";
+            selectPage.appendChild(number);
+        }
     }
 
-    $http.get(constant).success(function (response) {
+    $scope.selectPage = function () {
+        var selectElmt = document.getElementById('selectPage');
+        var num = selectElmt.options[selectElmt.selectedIndex].text;
+        var event = localStorage.baseURL + "management/platform/events?type=START_API,STOP_API,PUBLISH_API,UNPUBLISH_API&api_ids=&from=1493802116487&to=1493888516487&page=" + (num-1) + "&size=10";
+        $http.get(event,{
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        }).success(function (response) {
+            $scope.event = response.content;
+        }).error(function () {
+            document.location.href="index.html";
+        });
+    }
+
+        $http.get(constant).success(function (response) {
 
         var apis = response["baseURL"] + "platform/analytics?type=group_by&field=api&size=10000&interval=600000&from=1493294862269&to=1493381262269&";
         var applications = response["baseURL"] + "platform/analytics?type=group_by&field=application&size=10000&interval=600000&from=1493294862269&to=1493381262269&";

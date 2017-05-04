@@ -236,12 +236,18 @@
             <div class="col s12 m12">
                 <div class="card">
                     <div class="card-content black-text">
-                        <span style="display: inline-block" class="card-title">API Events</span>
+                        <span class="card-title">API Events</span>
 
-                        <select style="margin-left: 50px; width: 40%; display: inline-block" id="selectEnvironment" class="browser-default">
-                            <option value="" disabled selected>Choose your environment</option>
-                        </select>
-
+                        <form style="text-align: center" ng-submit="selectPage()">
+                            <select style="width: 50px; display: inline-block" id="selectPage" class="browser-default">
+                                <!-- page number here -->
+                            </select>
+                            <button style="display: inline-block" class="btn waves-effect waves-light"
+                                    type="submit"
+                                    name="action">
+                                Submit
+                            </button>
+                        </form>
                         <table class="striped">
                             <tr>
                                 <th>Date</th>
