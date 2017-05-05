@@ -29,6 +29,30 @@
         </div>
     </nav>
 
+    <!-- Modal Edit -->
+    <div id="modalEdit" class="modal">
+
+        <form ng-submit="submitFormEdit()">
+            <div class="modal-content">
+                <h4 style="text-align: center">Edit environment</h4>
+                <hr style="margin-bottom: 50px">
+                <div class="group">
+                    <input type="text" required ng-model="environmentEdit">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{environmentEditInput}}</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button onclick="document.getElementById('modalEdit').setAttribute('style','display: none')"
+                        href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</button>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Confirmation</button>
+            </div>
+        </form>
+    </div>
+
     <!-- Modal Structure -->
     <div id="modal1" class="modal">
 
@@ -51,6 +75,8 @@
     </div>
 
     <!-- Script -->
+
+    <script src="js/angular.js"></script>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/materialize.js"></script>
     <script src="js/init.js"></script>
@@ -64,7 +90,6 @@
         $('#modal1').modal('close');
     </script>
 
-    <script src="js/angular.js"></script>
     <script src="js/settingsCtrl.js"></script>
 
 </body>
