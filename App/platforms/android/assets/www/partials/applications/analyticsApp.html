@@ -12,31 +12,20 @@
 
         <!-- Choose tab -->
         <div id="showSelectTab" style="margin-bottom: 15px">
-            <label>Choose table</label>
-            <select id="select_tab" onclick="
-                if(document.getElementById('select_tab')){
-                    console.log(document.getElementById('select_tab').selectedIndex);
-
-                    document.getElementById('boxTopApi').setAttribute('style','display: none');
-                    document.getElementById('boxStatus').setAttribute('style','display: none');
-                    document.getElementById('boxResponseStatus').setAttribute('style','display: none');
-                    document.getElementById('boxResponseTimes').setAttribute('style','display: none');
-                    document.getElementById('boxhitsByAPI').setAttribute('style','display: none');
-
-                    switch (document.getElementById('select_tab').selectedIndex) {
-                        case 0: document.getElementById('boxTopApi').setAttribute('style','display: inline'); break;
-                        case 1: document.getElementById('boxStatus').setAttribute('style','display: inline'); break;
-                        case 2: document.getElementById('boxResponseStatus').setAttribute('style','display: inline'); break;
-                        case 3: document.getElementById('boxResponseTimes').setAttribute('style','display: inline'); break;
-                        case 4: document.getElementById('boxhitsByAPI').setAttribute('style','display: inline'); break;
-                    }
-                }" class="browser-default">
-                <option>Top API</option>
-                <option>Status</option>
-                <option>Response status</option>
-                <option>Response times</option>
-                <option>Hits by API</option>
-            </select>
+            <form ng-submit="changeAPPAnalytics()" style="text-align: center">
+                <select style="width: 50%; display: inline-block" id="select_tabApp" class="browser-default">
+                    <option value="topAPIs">Top API</option>
+                    <option value="status">Status</option>
+                    <option value="responseStatus">Response status</option>
+                    <option value="responseTimes">Response times</option>
+                    <option value="hitsByAPI">Hits by API</option>
+                </select>
+                <button style="display: inline-block" class="btn waves-effect waves-light"
+                        type="submit"
+                        name="action">
+                    Submit
+                </button>
+            </form>
         </div>
 
         <!-- timeframe -->

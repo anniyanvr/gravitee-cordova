@@ -27,37 +27,22 @@
 
         <!-- Choose tab -->
         <div id="showSelectTab" style="margin-bottom: 15px">
-        <label>Choose table</label>
-            <select id="select_tab" onclick="
-                if(document.getElementById('select_tab')){
-                    console.log(document.getElementById('select_tab').selectedIndex);
-
-                    document.getElementById('boxTopApp').setAttribute('style','display: none');
-                    document.getElementById('boxStatus').setAttribute('style','display: none');
-                    document.getElementById('boxTopPlan').setAttribute('style','display: none');
-                    document.getElementById('boxTopSlowApp').setAttribute('style','display: none');
-                    document.getElementById('boxResponseStatus').setAttribute('style','display: none');
-                    document.getElementById('boxResponseTimes').setAttribute('style','display: none');
-                    document.getElementById('boxHitsByApp').setAttribute('style','display: none');
-
-                    switch (document.getElementById('select_tab').selectedIndex) {
-                        case 0: document.getElementById('boxTopApp').setAttribute('style','display: inline'); break;
-                        case 1: document.getElementById('boxStatus').setAttribute('style','display: inline'); break;
-                        case 2: document.getElementById('boxTopPlan').setAttribute('style','display: inline'); break;
-                        case 3: document.getElementById('boxTopSlowApp').setAttribute('style','display: inline'); break;
-                        case 4: document.getElementById('boxResponseStatus').setAttribute('style','display: inline'); break;
-                        case 5: document.getElementById('boxResponseTimes').setAttribute('style','display: inline'); break;
-                        case 6: document.getElementById('boxHitsByApp').setAttribute('style','display: inline'); break;
-                    }
-                }" class="browser-default">
-                <option value="topApplications">Top applications</option>
-                <option value="status">Status</option>
-                <option value="topPlan">Top plan</option>
-                <option value="topSlowApplications">Top slow applications</option>
-                <option value="responseStatus">Response status</option>
-                <option value="responseTimes">Response times</option>
-                <option value="hitsByApplication">Hits by application</option>
-            </select>
+            <form ng-submit="changeAPIsAnalytics()" style="text-align: center">
+                <select style="width: 50%; display: inline-block" id="select_tabAPIs" class="browser-default">
+                    <option value="topApplications">Top applications</option>
+                    <option value="status">Status</option>
+                    <option value="topPlan">Top plan</option>
+                    <option value="topSlowApplications">Top slow applications</option>
+                    <option value="responseStatus">Response status</option>
+                    <option value="responseTimes">Response times</option>
+                    <option value="hitsByApplication">Hits by application</option>
+                </select>
+                <button style="display: inline-block" class="btn waves-effect waves-light"
+                        type="submit"
+                        name="action">
+                    Submit
+                </button>
+            </form>
         </div>
 
         <!-- timeframe -->

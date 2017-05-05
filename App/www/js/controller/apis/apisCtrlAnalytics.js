@@ -6,6 +6,17 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
     var id = $routeParams.id;
     var constant = localStorage.baseURL+"constants.json";
 
+    // timestamp date
+    var now = new Date();
+    var year   = now.getFullYear();
+    var month    = ('0'+(now.getMonth()+1));
+    var day    = ('0'+now.getDate()   ).slice(-2);
+    var hour   = ('0'+now.getHours()  ).slice(-2);
+    var min  = ('0'+now.getMinutes()).slice(-2);
+    var second = ('0'+now.getSeconds()).slice(-2);
+    var date_1 = ((day-1)+'/'+month+'/'+year+' '+hour+':'+min+':'+second);
+    var date = (day+'/'+month+'/'+year+' '+hour+':'+min+':'+second);
+
     // this is a test
     // console.log('test');
 
@@ -45,13 +56,22 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
         }
     }
 
+    function toTimestamp(strDate){
+        var datum = Date.parse(strDate);
+        return datum/1000;
+    }
+
     $http.get(constant).success(function (response) {
 
         var api = response["baseURL"]+"apis/"+id+"/"; // with login
-        var applications = response["baseURL"] + "apis/" + id + "/analytics?type=group_by&field=application&size=20&interval=600000&from=1493280226908&to=1493366626908&";
-        var status = response["baseURL"] + "apis/" + id + "/analytics?type=group_by&field=status&ranges=100:199;200:299;300:399;400:499;500:599&interval=600000&from=1493281828478&to=1493368228478&";
-        var topPlan = response["baseURL"] + "apis/" + id + "/analytics?type=group_by&field=plan&size=20&interval=600000&from=1493282575607&to=1493368975607&";
-        var topSlowApplications = response["baseURL"] + "apis/" + id + "/analytics?type=group_by&field=application&order=-avg:response-time&size=20&interval=43200000&from=1485593665780&to=1493369665780&";
+        var applications = response["baseURL"] + "apis/" + id +
+            "/analytics?type=group_by&field=application&size=20&interval=600000&from="+toTimestamp(date_1)+"908&to="+toTimestamp(date)+"908&";
+        var status = response["baseURL"] +
+            "apis/" + id + "/analytics?type=group_by&field=status&ranges=100:199;200:299;300:399;400:499;500:599&interval=600000&from="+toTimestamp(date_1)+"478&to="+toTimestamp(date)+"478&";
+        var topPlan = response["baseURL"] +
+            "apis/" + id + "/analytics?type=group_by&field=plan&size=20&interval=600000&from="+toTimestamp(date_1)+"607&to="+toTimestamp(date)+"607&";
+        var topSlowApplications = response["baseURL"] + "apis/" + id +
+            "/analytics?type=group_by&field=application&order=-avg:response-time&size=20&interval=43200000&from="+toTimestamp(date_1)+"780&to="+toTimestamp(date)+"780&";
 
         /* General */
         $http.get(api,{
@@ -89,6 +109,30 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
         });
 
     });
+
+
+    $scope.changeAPIsAnalytics = function () {
+
+        document.getElementById('boxTopApp').setAttribute('style','display: none');
+        document.getElementById('boxStatus').setAttribute('style','display: none');
+        document.getElementById('boxTopPlan').setAttribute('style','display: none');
+        document.getElementById('boxTopSlowApp').setAttribute('style','display: none');
+        document.getElementById('boxResponseStatus').setAttribute('style','display: none');
+        document.getElementById('boxResponseTimes').setAttribute('style','display: none');
+        document.getElementById('boxHitsByApp').setAttribute('style','display: none');
+
+        var selectElmt = document.getElementById('select_tabAPIs');
+        var value = selectElmt.options[selectElmt.selectedIndex].value;
+
+        if(value === "topApplications")     { document.getElementById('boxTopApp').setAttribute('style','display: inline'); }
+        if(value === "status")              { document.getElementById('boxStatus').setAttribute('style','display: inline'); }
+        if(value === "topPlan")             { document.getElementById('boxTopPlan').setAttribute('style','display: inline'); }
+        if(value === "topSlowApplications") { document.getElementById('boxTopSlowApp').setAttribute('style','display: inline'); }
+        if(value === "responseStatus")      { document.getElementById('boxResponseStatus').setAttribute('style','display: inline'); }
+        if(value === "responseTimes")       { document.getElementById('boxResponseTimes').setAttribute('style','display: inline'); }
+        if(value === "hitsByApplication")   { document.getElementById('boxHitsByApp').setAttribute('style','display: inline'); }
+
+    }
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {

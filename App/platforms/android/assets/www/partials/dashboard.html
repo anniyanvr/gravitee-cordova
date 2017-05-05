@@ -4,33 +4,21 @@
         <!-- Choose tab -->
         <div id="showSelectTab" style="margin-bottom: 15px">
             <label>Choose table</label>
-            <select id="select_tab" onclick="
-                if(document.getElementById('select_tab')){
-                    console.log(document.getElementById('select_tab').selectedIndex);
-
-                    document.getElementById('boxTopApi').setAttribute('style','display: none');
-                    document.getElementById('boxTopApplications').setAttribute('style','display: none');
-                    document.getElementById('boxTopFailedAPIs').setAttribute('style','display: none');
-                    document.getElementById('boxTopSlowAPIs').setAttribute('style','display: none');
-                    document.getElementById('boxTopOverheadAPIs').setAttribute('style','display: none');
-                    document.getElementById('boxAPIEvents').setAttribute('style','display: none');
-
-                    switch (document.getElementById('select_tab').selectedIndex) {
-                        case 0: document.getElementById('boxTopApi').setAttribute('style','display: inline'); break;
-                        case 1: document.getElementById('boxTopApplications').setAttribute('style','display: inline'); break;
-                        case 2: document.getElementById('boxTopFailedAPIs').setAttribute('style','display: inline'); break;
-                        case 3: document.getElementById('boxTopSlowAPIs').setAttribute('style','display: inline'); break;
-                        case 4: document.getElementById('boxTopOverheadAPIs').setAttribute('style','display: inline'); break;
-                        case 5: document.getElementById('boxAPIEvents').setAttribute('style','display: inline'); break;
-                    }
-                }" class="browser-default">
-                <option>Top APIs</option>
-                <option>Top applications</option>
-                <option>Top failed APIs</option>
-                <option>Top slow APIs</option>
-                <option>Top overhead APIs</option>
-                <option>API events</option>
-            </select>
+            <form ng-submit="changeDashboardAnalytics()" style="text-align: center">
+                <select style="width: 50%; display: inline-block" id="select_tabDashboard" class="browser-default">
+                    <option value="topAPIs">Top APIs</option>
+                    <option value="topApp">Top applications</option>
+                    <option value="topFailedAPIs">Top failed APIs</option>
+                    <option value="topSlowAPIs">Top slow APIs</option>
+                    <option value="topOverheadAPIs">Top overhead APIs</option>
+                    <option value="apiEvent">API events</option>
+                </select>
+                <button style="display: inline-block" class="btn waves-effect waves-light"
+                        type="submit"
+                        name="action">
+                    Submit
+                </button>
+            </form>
         </div>
 
         <!-- timeframe -->
