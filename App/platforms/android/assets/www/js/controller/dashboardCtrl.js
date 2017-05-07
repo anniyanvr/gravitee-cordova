@@ -9,14 +9,14 @@ function dashboardCtrl($scope, $http) {
 
     // timestamp date
     var now = new Date();
-    var year   = now.getFullYear();
-    var month    = ('0'+(now.getMonth()+1));
-    var day    = ('0'+now.getDate()   ).slice(-2);
-    var hour   = ('0'+now.getHours()  ).slice(-2);
-    var min  = ('0'+now.getMinutes()).slice(-2);
-    var second = ('0'+now.getSeconds()).slice(-2);
-    var date_1 = ((day-1)+'/'+month+'/'+year+' '+hour+':'+min+':'+second);
-    var date = (day+'/'+month+'/'+year+' '+hour+':'+min+':'+second);
+    var year    = now.getFullYear();
+    var month   = ('0'+(now.getMonth()+1));
+    var day     = ('0'+now.getDate()   ).slice(-2);
+    var hour    = ('0'+now.getHours()  ).slice(-2);
+    var min     = ('0'+now.getMinutes()).slice(-2);
+    var second  = ('0'+now.getSeconds()).slice(-2);
+    var date_1  = ( month +'/'+'0'+(day-1)+'/'+year+' '+hour+':'+min+':'+second);
+    var date  = ( month +'/'+day+'/'+year+' '+hour+':'+min+':'+second);
 
     httpSuccessAPIDashboard = function (response) {
         if(typeof (response.value) === 'undefined')
@@ -95,6 +95,12 @@ function dashboardCtrl($scope, $http) {
         return datum/1000;
     }
 
+    // alert(toTimestamp('02/13/2009 23:31:30'));
+    // console.log(date_1 + " " + toTimestamp(date_1) );
+    // console.log(date + " " + toTimestamp(date) );
+//    "platform/events?type=START_API,STOP_API,PUBLISH_API,UNPUBLISH_API&api_ids=&from=" + toTimestamp(date_1) + "494&to=" + toTimestamp(date) + "494&page=0&size=10";
+
+
     $http.get(constant).success(function (response) {
 
         var apis = response["baseURL"] +
@@ -108,7 +114,7 @@ function dashboardCtrl($scope, $http) {
         var topOverheadAPIs = response["baseURL"] +
             "platform/analytics?type=group_by&field=api&order=-avg:proxy-latency&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
         var event = response["baseURL"] +
-            "platform/events?type=START_API,STOP_API,PUBLISH_API,UNPUBLISH_API&api_ids=&from=" + toTimestamp(date_1) + "494&to=" + toTimestamp(date) + "494&page=0&size=10";
+            "platform/events?type=START_API,STOP_API,PUBLISH_API,UNPUBLISH_API&api_ids=&from=" + toTimestamp(date_1) + "298&to=" + toTimestamp(date) + "298&page=0&size=10";
 
         /* apis */
         $http.get(apis,{

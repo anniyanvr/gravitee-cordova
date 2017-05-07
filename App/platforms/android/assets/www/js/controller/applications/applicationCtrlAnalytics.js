@@ -8,14 +8,14 @@ function applicationCtrlAnalytics($scope, $routeParams, $http) {
 
     // timestamp date
     var now = new Date();
-    var year   = now.getFullYear();
-    var month    = ('0'+(now.getMonth()+1));
-    var day    = ('0'+now.getDate()   ).slice(-2);
-    var hour   = ('0'+now.getHours()  ).slice(-2);
-    var min  = ('0'+now.getMinutes()).slice(-2);
-    var second = ('0'+now.getSeconds()).slice(-2);
-    var date_1 = ((day-1)+'/'+month+'/'+year+' '+hour+':'+min+':'+second);
-    var date = (day+'/'+month+'/'+year+' '+hour+':'+min+':'+second);
+    var year    = now.getFullYear();
+    var month   = ('0'+(now.getMonth()+1));
+    var day     = ('0'+now.getDate()   ).slice(-2);
+    var hour    = ('0'+now.getHours()  ).slice(-2);
+    var min     = ('0'+now.getMinutes()).slice(-2);
+    var second  = ('0'+now.getSeconds()).slice(-2);
+    var date_1  = ( month +'/'+'0'+(day-1)+'/'+year+' '+hour+':'+min+':'+second);
+    var date  = ( month +'/'+day+'/'+year+' '+hour+':'+min+':'+second);
 
     // this is a test for cache
     // console.log("test for cache");
