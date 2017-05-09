@@ -1,0 +1,60 @@
+<section ng-controller="apisCtrlPlans">
+    <section class="panel panel-padding">
+
+        <!-- presentation -->
+        <div style="text-align: left; width: 100%;
+                        background-color: #f7f7f7;">
+
+            <h4>
+                {{rep.name}}
+                <small>
+                    ({{rep.version}})
+                    <image
+                            class="APIsBottomButton"
+                            ng-if="rep.visibility === 'public'"
+                            src="img/visibility.png"></image>
+
+                    <image
+                            class="APIsBottomButton"
+                            ng-if="rep.visibility === 'private'"
+                            src="img/private.png"></image>
+                </small>
+            </h4>
+            <p>{{rep.description}}</p>
+
+        </div>
+
+        <!-- Select status -->
+        <div class="group" style="text-align: center">
+            <form ng-submit="changeStatus()">
+                <select style="display: inline-block; width: 60%" id="selectStatus" class="browser-default">
+                    <option value="published">Published</option>
+                    <option value="staging">Staging</option>
+                    <option value="closed">Closed</option>
+                </select>
+                <button style="display: inline-block" class="btn waves-effect waves-light"
+                        type="submit"
+                        name="action">
+                    Submit
+                </button>
+            </form>
+        </div>
+
+        <div style="text-align: center;">
+            <div style="display: inline" ng-repeat="stat in status">
+                <div style="width: 130px; display: inline-block">
+                    <div class="card blue-grey darken-1">
+
+                        <div class="card-content white-text" style="height: 200px">
+                            <span class="card-title">{{stat.name}}</span>
+                            <small>{{stat.description}} ({{stat.security}})</small>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+</section>

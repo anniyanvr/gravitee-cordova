@@ -20,6 +20,8 @@ app.config(function ($routeProvider) {
       /* .when('/createAPI', {templateUrl: 'partials/apis/createAPI.html'})  -- Read-only */
       .when('/generalAPIs/:id', {templateUrl: 'partials/apis/generalAPIs.html'})
       .when('/gatewayAPIs/:id', {templateUrl: 'partials/apis/gatewayAPIs.html'})
+      .when('/plansAPIs/:id', {templateUrl: 'partials/apis/plansAPI.html'})
+      .when('/policiesAPIs/:id', {templateUrl: 'partials/apis/policiesAPIs.html'})
       .when('/analyticsAPIs/:id', {templateUrl: 'partials/apis/analyticsAPI.html'})
       .when('/applications', {templateUrl: 'partials/applications.html'})
       .when('/applicationGlobalSettings/:id', {templateUrl: 'partials/applications/globalSettingsApp.html'})

@@ -1,0 +1,38 @@
+<section ng-controller="apisCtrlPolicies">
+    <section class="panel panel-padding">
+
+        <!-- presentation -->
+        <div style="text-align: left; width: 100%;
+                        background-color: #f7f7f7;">
+
+            <h4>
+                {{rep.name}}
+                <small>
+                    ({{rep.version}})
+                    <image
+                            class="APIsBottomButton"
+                            ng-if="rep.visibility === 'public'"
+                            src="img/visibility.png"></image>
+
+                    <image
+                            class="APIsBottomButton"
+                            ng-if="rep.visibility === 'private'"
+                            src="img/private.png"></image>
+                </small>
+            </h4>
+            <p>{{rep.description}}</p>
+
+        </div>
+
+        <div class="row" ng-repeat="p in policies">
+            <div class="col s12 m12">
+                <div class="card">
+                    <div class="card-content">
+                        {{p.name}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</section>

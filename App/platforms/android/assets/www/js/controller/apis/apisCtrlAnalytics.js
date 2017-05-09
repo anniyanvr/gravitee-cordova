@@ -36,7 +36,10 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
             $scope.showTopApplication = 'true';
         }
     }
-    httpSuccessAPIAnalyticsStatus = function (response) { $scope.status = response; }
+    httpSuccessAPIAnalyticsStatus = function (response) {
+        var tab = createKeysAndValues(response);
+        highcharts("status",tab[0],tab[1]);
+    }
     httpSuccessAPIAnalyticsPlan = function (response) {
 
         if(typeof (response.value) === 'undefined')
@@ -167,5 +170,69 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
         } while (i < input.length);
 
         return output;
+    }
+
+    // Highcharts
+
+    function createKeysAndValues(name) {
+        var tt = [];
+        var keys = []; var vals = [];
+        for(var i in name){
+            var key = i;
+            var val = name[i];
+            for(var j in val){
+                var sub_key = j;
+                var sub_val = val[j];
+                keys.push(sub_key);
+                vals.push(sub_val);
+            }
+        }
+        tt.push(keys); tt.push(vals);
+        return tt;
+    }
+
+    function highcharts(div,categories,data) {
+
+        Highcharts.chart(div, {
+            chart: {
+                type: 'areaspline'
+            },
+            title: {
+                text: div
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 0,
+                y: 0,
+                floating: true,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+            },
+            xAxis: {
+                categories: categories
+            },
+            yAxis: {
+                title: {
+                    text: 'Status'
+                }
+            },
+            tooltip: {
+                shared: true,
+                valueSuffix: ' units'
+            },
+            credits: {
+                enabled: false
+            },
+            plotOptions: {
+                areaspline: {
+                    fillOpacity: 0.5
+                }
+            },
+            series: [{
+                name: 'Status',
+                data: data
+            }]
+        });
     }
 }

@@ -1,27 +1,15 @@
 /**
- * Created by Quentin on 11/04/2017.
+ * Created by root on 09/05/17.
  */
 
-
-function apisCtrlGeneral($scope, $routeParams, $http) {
-
+function apisCtrlPlans($scope, $routeParams, $http) {
     var id = $routeParams.id;
     // console.log("id : "+$routeParams.id);
 
     var constant = localStorage.baseURL+"constants.json";
 
-    httpSuccessAPI = function (response) {
-        $scope.rep = response;
-    }
-
-    var menuAPIs = document.getElementById('menuAPIs');
-    menuAPIs.setAttribute('style', 'display: inline-block width: 100%');
-    document.getElementById('menuAPIsGeneral').setAttribute('href','#/generalAPIs/'+id);
-    document.getElementById('menuAPIsGateway').setAttribute('href','#/gatewayAPIs/'+id);
-    document.getElementById('menuAPIsPlans').setAttribute('href','#/plansAPIs/'+id);
-    document.getElementById('menuAPIsPolicies').setAttribute('href','#/policiesAPIs/'+id);
-    document.getElementById('menuAPIsAnalytics').setAttribute('href','#/analyticsAPIs/'+id);
-
+    httpSuccessAPIPlans = function (response) { $scope.rep = response; }
+    httpSuccessChangeStatus = function (response) { $scope.status = response; }
 
     $http.get(constant).success(function (response) {
 
@@ -29,11 +17,28 @@ function apisCtrlGeneral($scope, $routeParams, $http) {
 
         $http.get(api,{
             headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessAPI).error(function () {
+        }).success(httpSuccessAPIPlans).error(function () {
+            document.location.href="index.html";
+        });
+
+        $http.get(localStorage.baseURL + "management/apis/" + id + "/plans?status=published",{
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        }).success(httpSuccessChangeStatus).error(function () {
             document.location.href="index.html";
         });
     });
 
+    /* change Status */
+    $scope.changeStatus = function () {
+        var selectElmt = document.getElementById('selectStatus');
+        var value = selectElmt.options[selectElmt.selectedIndex].value;
+
+        $http.get(localStorage.baseURL + "management/apis/" + id + "/plans?status=" + value, {
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username + ':' + localStorage.password)}
+        }).success(httpSuccessChangeStatus).error(function () {
+            document.location.href = "index.html";
+        });
+    }
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {
