@@ -21,6 +21,7 @@ function apisCtrlGeneral($scope, $routeParams, $http) {
     document.getElementById('menuAPIsPlans').setAttribute('href','#/plansAPIs/'+id);
     document.getElementById('menuAPIsPolicies').setAttribute('href','#/policiesAPIs/'+id);
     document.getElementById('menuAPIsAnalytics').setAttribute('href','#/analyticsAPIs/'+id);
+    document.getElementById('menuAPIsHealthCheck').setAttribute('href','#/healthCheckAPI/'+id);
 
 
     $http.get(constant).success(function (response) {

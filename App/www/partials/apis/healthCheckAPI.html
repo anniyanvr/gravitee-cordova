@@ -1,0 +1,56 @@
+<section ng-controller="apisCtrlHealthCheck">
+    <section class="panel panel-padding">
+
+        <!-- presentation -->
+        <div style="text-align: left; width: 100%;
+                        background-color: #f7f7f7;">
+
+            <h4>
+                {{rep.name}}
+                <small>
+                    ({{rep.version}})
+                    <image
+                            class="APIsBottomButton"
+                            ng-if="rep.visibility === 'public'"
+                            src="img/visibility.png"></image>
+
+                    <image
+                            class="APIsBottomButton"
+                            ng-if="rep.visibility === 'private'"
+                            src="img/private.png"></image>
+                </small>
+            </h4>
+            <p>{{rep.description}}</p>
+
+        </div>
+
+        <!-- Choose time -->
+        <div style="margin-bottom: 15px">
+            <form ng-submit="changeTime()" style="text-align: center">
+                <select style="width: 50%; display: inline-block" id="select_time" class="browser-default">
+                    <option value="3600000" selected>Last 24 hours</option>
+                </select>
+                <button style="display: inline-block" class="btn waves-effect waves-light"
+                        type="submit"
+                        name="action">
+                    Submit
+                </button>
+            </form>
+        </div>
+
+        <div class="row">
+            <div class="col s12 m12">
+                <div class="card">
+                    <div class="card-content">
+                        <input value="{{healthCheck}}" disabled>
+                        <p>Show data from {{date_1}}</p>
+                        <p>to {{date}}</p>
+                        <p>with a range of {{timestamp_interval}}</p>
+                        <p>ms ({{Time_type}})</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</section>
