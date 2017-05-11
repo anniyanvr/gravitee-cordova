@@ -77,28 +77,44 @@ app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
     var menuApplications = document.getElementById('menuApplications');
     var menuGateway = document.getElementById('menuInstances');
 
+    var buttonAPIs = document.getElementById('apis');
+    var buttonApplications = document.getElementById('applications');
+    var buttonInstances = document.getElementById('instances');
+    var buttonDashboard = document.getElementById('dashboard');
+    // var buttonConfiguration = document.getElementById('configuration');
+
+    // default
+    buttonAPIs.setAttribute('style','background-color: rgba(0, 0, 0, 0.2);');
+
     function resetMenu() {
+
+        buttonAPIs.setAttribute('style','background-color: white');
+        buttonApplications.setAttribute('style','background-color: white');
+        buttonInstances.setAttribute('style','background-color: white');
+        buttonDashboard.setAttribute('style','background-color: white');
+        // buttonConfiguration.setAttribute('style','background-color: white');
+
         menuConfig.setAttribute('style','display: none');
         menuAPIs.setAttribute('style','display: none');
         menuApplications.setAttribute('style','display: none');
         menuGateway.setAttribute('style','display: none');
     }
 
+    function color(button) {
+        button.setAttribute('style','background-color: rgba(0, 0, 0, 0.2);');
+    }
+
     /* function showConfigurationMenu() {
         menuConfig.setAttribute('style','display: inline-block; width: 100%');
+        color(buttonConfiguration);
     } */
 
     function initButton() {
-        var buttonAPIs = document.getElementById('apis');
-        var buttonApplications = document.getElementById('applications');
-        var buttonInstances = document.getElementById('instances');
-        var buttonDashboard = document.getElementById('dashboard');
-        // var buttonConfiguration = document.getElementById('configuration');
 
-        initEventHandlers(buttonAPIs, 'click', function(){ resetMenu(); }); /* APIs */
-        initEventHandlers(buttonApplications, 'click', function () { resetMenu() }); /* Applications */
-        initEventHandlers(buttonInstances, 'click', function(){ resetMenu() }); /* Instances */
-        initEventHandlers(buttonDashboard, 'click', function () { resetMenu() }); /* Dashboard */
+        initEventHandlers(buttonAPIs, 'click',          function () { resetMenu(); color(buttonAPIs)            }); /* APIs */
+        initEventHandlers(buttonApplications, 'click',  function () { resetMenu(); color(buttonApplications)    }); /* Applications */
+        initEventHandlers(buttonInstances, 'click',     function () { resetMenu(); color(buttonInstances)       }); /* Instances */
+        initEventHandlers(buttonDashboard, 'click',     function () { resetMenu(); color(buttonDashboard)       }); /* Dashboard */
         // initEventHandlers(buttonConfiguration, 'click', function () { resetMenu(); showConfigurationMenu(); }); /* Configuration */
     } // initButton
 
