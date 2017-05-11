@@ -1,42 +1,37 @@
 /**
- * Created by Quentin on 11/04/2017.
+ * Created by root on 11/05/17.
  */
 
-
-function apisCtrlGeneral($scope, $routeParams, $http) {
-
+function apisCtrlEvents($scope, $routeParams, $http){
     var id = $routeParams.id;
     // console.log("id : "+$routeParams.id);
 
     var constant = localStorage.baseURL+"constants.json";
 
-    httpSuccessAPI = function (response) {
+    httpSuccessAPIEvents = function (response) {
         $scope.rep = response;
+        $scope.endpoints = response.proxy['endpoints'];
+        $scope.loadB = response.proxy['load_balancing'];
     }
-
-    var menuAPIs = document.getElementById('menuAPIs');
-    menuAPIs.setAttribute('style', 'display: inline-block width: 100%');
-    document.getElementById('menuAPIsGeneral').setAttribute('href','#/generalAPIs/'+id);
-    document.getElementById('menuAPIsGateway').setAttribute('href','#/gatewayAPIs/'+id);
-    document.getElementById('menuAPIsPlans').setAttribute('href','#/plansAPIs/'+id);
-    document.getElementById('menuAPIsPolicies').setAttribute('href','#/policiesAPIs/'+id);
-    document.getElementById('menuAPIsAnalytics').setAttribute('href','#/analyticsAPIs/'+id);
-    document.getElementById('menuAPIsHealthCheck').setAttribute('href','#/healthCheckAPI/'+id);
-    document.getElementById('menuAPIsHistory').setAttribute('href','#/historyAPI/'+id);
-    document.getElementById('menuAPIsEvents').setAttribute('href','#/eventsAPI/'+id);
-
+    httpSuccessEventsAll = function (response) { $scope.events = response; }
 
     $http.get(constant).success(function (response) {
 
         var api = response["baseURL"]+"apis/"+id+"/"; // with login
+        var events = response["baseURL"] + "apis/" +id + "/events?type=START_API,STOP_API";
 
         $http.get(api,{
             headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessAPI).error(function () {
+        }).success(httpSuccessAPIEvents).error(function () {
+            document.location.href="index.html";
+        });
+
+        $http.get(events,{
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        }).success(httpSuccessEventsAll).error(function () {
             document.location.href="index.html";
         });
     });
-
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {

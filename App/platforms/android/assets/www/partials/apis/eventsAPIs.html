@@ -1,0 +1,41 @@
+<section ng-controller="apisCtrlEvents">
+    <section class="panel panel-padding">
+
+        <!-- presentation -->
+        <div style="text-align: left; width: 100%;
+                        background-color: #f7f7f7;">
+
+            <h4>
+                {{rep.name}}
+                <small>
+                    ({{rep.version}})
+                    <image
+                            class="APIsBottomButton"
+                            ng-if="rep.visibility === 'public'"
+                            src="img/visibility.png"></image>
+
+                    <image
+                            class="APIsBottomButton"
+                            ng-if="rep.visibility === 'private'"
+                            src="img/private.png"></image>
+                </small>
+            </h4>
+            <p>{{rep.description}}</p>
+
+        </div>
+
+        <div style="text-align: center;">
+            <div style="display: inline" ng-repeat="event in events">
+                <div style="width: 130px; display: inline-block">
+                    <div class="card">
+                        <div class="card-content">
+                            <h6 style="text-transform: uppercase">{{event.type}}</h6>
+                            <small>{{event.created_at}} AM by {{event.properties["username"]}}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</section>

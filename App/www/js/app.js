@@ -41,8 +41,9 @@ app.config(function ($routeProvider) {
 
 app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
 
-    /* Authority -- error 500 */
+    /* Authority */
     var constant = localStorage.baseURL+"constants.json";
+    var authority = false;
     $http.get(constant).success(function (response) {
         var user = response["baseURL"] + "user/"; // with login
         $http.get(user,{
@@ -50,7 +51,16 @@ app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
                 'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)
             }
         }).success(function (response) {
-            console.log(response["authorities"]);
+            for (var i=0;i<response.authorities.length;i++){
+                //alert(response.authorities[i]["authority"]);
+                if (response.authorities[i]["authority"] === "ADMIN"){
+                    authority = true;
+                    buttonInstances.setAttribute('style','display: inline');
+                    buttonDashboard.setAttribute('style','display: inline');
+                    buttonConfiguration.setAttribute('style','display: inline');
+
+                }
+            }
         })
     });
 
@@ -82,7 +92,13 @@ app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
     var buttonApplications = document.getElementById('applications');
     var buttonInstances = document.getElementById('instances');
     var buttonDashboard = document.getElementById('dashboard');
-    // var buttonConfiguration = document.getElementById('configuration');
+    var buttonConfiguration = document.getElementById('configuration');
+
+    if (authority === false){
+        buttonInstances.setAttribute('style','display: none');
+        buttonDashboard.setAttribute('style','display: none');
+        buttonConfiguration.setAttribute('style','display: none');
+    }
 
     // default
     buttonAPIs.setAttribute('style','background-color: rgba(0, 0, 0, 0.2);');
@@ -93,7 +109,13 @@ app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
         buttonApplications.setAttribute('style','background-color: white');
         buttonInstances.setAttribute('style','background-color: white');
         buttonDashboard.setAttribute('style','background-color: white');
-        // buttonConfiguration.setAttribute('style','background-color: white');
+        buttonConfiguration.setAttribute('style','background-color: white');
+
+        if (authority === false){
+            buttonInstances.setAttribute('style','display: none');
+            buttonDashboard.setAttribute('style','display: none');
+            buttonConfiguration.setAttribute('style','display: none');
+        }
 
         menuConfig.setAttribute('style','display: none');
         menuAPIs.setAttribute('style','display: none');
@@ -105,10 +127,10 @@ app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
         button.setAttribute('style','background-color: rgba(0, 0, 0, 0.2);');
     }
 
-    /* function showConfigurationMenu() {
+    function showConfigurationMenu() {
         menuConfig.setAttribute('style','display: inline-block; width: 100%');
         color(buttonConfiguration);
-    } */
+    }
 
     function initButton() {
 
@@ -116,7 +138,7 @@ app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
         initEventHandlers(buttonApplications, 'click',  function () { resetMenu(); color(buttonApplications)    }); /* Applications */
         initEventHandlers(buttonInstances, 'click',     function () { resetMenu(); color(buttonInstances)       }); /* Instances */
         initEventHandlers(buttonDashboard, 'click',     function () { resetMenu(); color(buttonDashboard)       }); /* Dashboard */
-        // initEventHandlers(buttonConfiguration, 'click', function () { resetMenu(); showConfigurationMenu(); }); /* Configuration */
+        initEventHandlers(buttonConfiguration, 'click', function () { resetMenu(); showConfigurationMenu(); }); /* Configuration */
     } // initButton
 
     function initEventHandlers(element, event, fx) {
@@ -126,7 +148,6 @@ app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
             element.attachEvent('on' + event, fx);
     } // observe
     initEventHandlers(window, 'load', initButton);
-
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {
