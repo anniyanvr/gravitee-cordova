@@ -25,6 +25,7 @@ app.config(function ($routeProvider) {
       .when('/analyticsAPIs/:id', {templateUrl: 'partials/apis/analyticsAPI.html'})
       .when('/healthCheckAPI/:id', {templateUrl: 'partials/apis/healthCheckAPI.html'})
       .when('/historyAPI/:id', {templateUrl: 'partials/apis/historyAPI.html'})
+      .when('/eventsAPI/:id', {templateUrl: 'partials/apis/eventsAPIs.html'})
       .when('/applications', {templateUrl: 'partials/applications.html'})
       .when('/applicationGlobalSettings/:id', {templateUrl: 'partials/applications/globalSettingsApp.html'})
       .when('/applicationAnalytics/:id', {templateUrl: 'partials/applications/analyticsApp.html'})
