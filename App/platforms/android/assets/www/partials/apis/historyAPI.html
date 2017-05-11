@@ -1,0 +1,87 @@
+<section ng-controller="apisCtrlHistory">
+    <section class="panel panel-padding">
+
+        <!-- presentation -->
+        <div style="text-align: left; width: 100%;
+                        background-color: #f7f7f7;">
+
+            <h4>
+                {{rep.name}}
+                <small>
+                    ({{rep.version}})
+                    <image
+                            class="APIsBottomButton"
+                            ng-if="rep.visibility === 'public'"
+                            src="img/visibility.png"></image>
+
+                    <image
+                            class="APIsBottomButton"
+                            ng-if="rep.visibility === 'private'"
+                            src="img/private.png"></image>
+                </small>
+            </h4>
+            <p>{{rep.description}}</p>
+
+        </div>
+
+        <script>
+            function showHistory() {
+                document.getElementById('showHistory').setAttribute('style','display: inline-block');
+            }
+        </script>
+
+        <div class="row" ng-repeat="h in history">
+            <div class="col s6 m3" style="cursor: pointer" onclick="showHistory()">
+                <div class="card">
+                    <div class="card-content">
+                        <h6 style="text-transform: uppercase">{{h.type}}</h6>
+                        <small>{{h.created_at}} AM by {{h.properties["username"]}}</small>
+                    </div>
+                </div>
+            </div>
+            <div style="display: none" id="showHistory" class="col s12 m12">
+                <div class="card">
+                    <div class="card-content" style="font-size: small">
+                        {
+                            <p style="margin-left: 15px" >"id": "{{rep.id}}",</p>
+                            <p style="margin-left: 15px" >"name": "{{rep.name}}",</p>
+                            <p style="margin-left: 15px" >"version": "{{rep.version}}",</p>
+                            <p style="margin-left: 15px" >"description": "{{rep.description}},"</p>
+                            <p style="margin-left: 15px" >"proxy": { </p>
+                            <p style="margin-left: 30px" >"context_path":"{{rep.proxy["context_path"]}},"</p>
+                            <p style="margin-left: 30px" >"strip_context_path":"{{rep.proxy["strip_context_path"]}},"</p>
+                            <p style="margin-left: 30px" >"dumpRequest":"{{rep.proxy["dumpRequest"]}},"</p>
+                            <p style="margin-left: 30px" >"multiTenant":"{{rep.proxy["multiTenant"]}},"</p>
+                            <p style="margin-left: 30px" >"endpoints": [ {</p>
+                                <h6 style="margin-left: 45px" ng-repeat="r in endpoints">
+                                <p>"name": "{{r.name}}",</p>
+                                <p>"target": "{{r.target}}",</p>
+                                <p>"weight": {{r.weight}},</p>
+                                <p>"backup": {{r.backup}},</p>
+                                <p>"healthcheck": {{r.healthcheck}},</p>
+                                <p>"http": {</p>
+                                    <p style="margin-left: 15px">"connectTimeout": {{r.http["connectTimeout"]}}</p>
+                                    <p style="margin-left: 15px">"idleTimeout": {{r.http["idleTimeout"]}}</p>
+                                    <p style="margin-left: 15px">"keepAlive": {{r.http["keepAlive"]}}</p>
+                                    <p style="margin-left: 15px">"readTimeout": {{r.http["readTimeout"]}}</p>
+                                    <p style="margin-left: 15px">"pipelining": {{r.http["pipelining"]}}</p>
+                                    <p style="margin-left: 15px">"maxConcurrentConnections": {{r.http["maxConcurrentConnections"]}}</p>
+                                    <p style="margin-left: 15px">"useCompression": {{r.http["useCompression"]}}</p>
+                                <p>}</p>
+                            </h6>
+                            <p style="margin-left: 30px">} ],</p>
+                            <p style="margin-left: 30px">"load_balancing": {</p>
+                            <p style="margin-left: 45px">"type": {{loadB.type}}</p>
+                            <p style="margin-left: 30px">}</p>
+                            <p style="margin-left: 15px">},</p>
+                            <p style="margin-left: 15px">"paths": {</p>
+                            <p style="margin-left: 30px">"/": {{rep.paths["/"]}}</p>
+                            <p style="margin-left: 15px">}</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</section>

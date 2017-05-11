@@ -1,24 +1,35 @@
 /**
- * Created by Quentin on 24/04/2017.
+ * Created by root on 11/05/17.
  */
 
-function apisCtrlGateway($scope, $routeParams, $http) {
+function apisCtrlHistory($scope, $routeParams, $http) {
+
     var id = $routeParams.id;
+    // console.log("id : "+$routeParams.id);
+
     var constant = localStorage.baseURL+"constants.json";
 
-    httpSuccessAPIGateway = function (response) {
+    httpSuccessAPIHistory = function (response) {
         $scope.rep = response;
         $scope.endpoints = response.proxy['endpoints'];
         $scope.loadB = response.proxy['load_balancing'];
     }
+    httpSuccessHistoryAll = function (response) { $scope.history = response; }
 
     $http.get(constant).success(function (response) {
 
         var api = response["baseURL"]+"apis/"+id+"/"; // with login
+        var history = response["baseURL"] + "apis/" +id + "/events?type=PUBLISH_API";
 
         $http.get(api,{
             headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessAPIGateway).error(function () {
+        }).success(httpSuccessAPIHistory).error(function () {
+            document.location.href="index.html";
+        });
+
+        $http.get(history,{
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        }).success(httpSuccessHistoryAll).error(function () {
             document.location.href="index.html";
         });
     });
