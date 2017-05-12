@@ -34,7 +34,13 @@ settings.controller('settingsCtrl', ['$scope',
         $scope.submitFormEdit = function () {
             console.log(tempo);
             var obj = JSON.parse(localStorage.tabEnvironment);
-            obj.splice(tempo,1,$scope.environmentEdit);
+            if($scope.environmentEdit[$scope.environmentEdit.length-1] === '/'){
+                obj.splice(tempo,1,$scope.environmentEdit);
+            }
+            else{
+                var env = $scope.environmentEdit+'/';
+                obj.splice(tempo,1,env);
+            }
             console.log(obj);
             tabEnvironment = obj;
             localStorage.setItem("tabEnvironment",(JSON.stringify(tabEnvironment)));
@@ -75,7 +81,14 @@ settings.controller('settingsCtrl', ['$scope',
         }
 
         $scope.submitFormSettings = function(){
-            tabEnvironment.push($scope.environment);
+            if($scope.environment[$scope.environment.length-1] === '/'){
+                tabEnvironment.push($scope.environment);
+            }
+            else{
+                var environment = $scope.environment+'/';
+                tabEnvironment.push(environment);
+            }
+
             $scope.environment = "";
 
             localStorage.setItem("tabEnvironment",(JSON.stringify(tabEnvironment)));

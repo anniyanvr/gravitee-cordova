@@ -4,8 +4,43 @@
 
 function dashboardCtrl($scope, $http) {
 
-    var constant = localStorage.baseURL+"constants.json";
+//    var constant = localStorage.baseURL+"constants.json";
     var selectPage = document.getElementById('selectPage');
+
+    var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+    function encode(input) {
+        var output = "";
+        var chr1, chr2, chr3 = "";
+        var enc1, enc2, enc3, enc4 = "";
+        var i = 0;
+
+        do {
+            chr1 = input.charCodeAt(i++);
+            chr2 = input.charCodeAt(i++);
+            chr3 = input.charCodeAt(i++);
+
+            enc1 = chr1 >> 2;
+            enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+            enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+            enc4 = chr3 & 63;
+
+            if (isNaN(chr2)) {
+                enc3 = enc4 = 64;
+            } else if (isNaN(chr3)) {
+                enc4 = 64;
+            }
+
+            output = output +
+                keyStr.charAt(enc1) +
+                keyStr.charAt(enc2) +
+                keyStr.charAt(enc3) +
+                keyStr.charAt(enc4);
+            chr1 = chr2 = chr3 = "";
+            enc1 = enc2 = enc3 = enc4 = "";
+        } while (i < input.length);
+
+        return output;
+    }
 
     // timestamp date
     var now = new Date();
@@ -101,20 +136,20 @@ function dashboardCtrl($scope, $http) {
 //    "platform/events?type=START_API,STOP_API,PUBLISH_API,UNPUBLISH_API&api_ids=&from=" + toTimestamp(date_1) + "494&to=" + toTimestamp(date) + "494&page=0&size=10";
 
 
-    $http.get(constant).success(function (response) {
+  //  $http.get(constant).success(function (response) {
 
-        var apis = response["baseURL"] +
-            "platform/analytics?type=group_by&field=api&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
-        var applications = response["baseURL"] +
-            "platform/analytics?type=group_by&field=application&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
-        var failedAPIs = response["baseURL"] +
-            "platform/analytics?type=group_by&field=api&query=status:[500%20TO%20599]&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
-        var topSlowAPIs = response["baseURL"] +
-            "platform/analytics?type=group_by&field=api&order=-avg:response-time&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
-        var topOverheadAPIs = response["baseURL"] +
-            "platform/analytics?type=group_by&field=api&order=-avg:proxy-latency&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
-        var event = response["baseURL"] +
-            "platform/events?type=START_API,STOP_API,PUBLISH_API,UNPUBLISH_API&api_ids=&from=" + toTimestamp(date_1) + "298&to=" + toTimestamp(date) + "298&page=0&size=10";
+        var apis = localStorage.baseURL +
+            "management/platform/analytics?type=group_by&field=api&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
+        var applications = localStorage.baseURL +
+            "management/platform/analytics?type=group_by&field=application&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
+        var failedAPIs = localStorage.baseURL +
+            "management/platform/analytics?type=group_by&field=api&query=status:[500%20TO%20599]&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
+        var topSlowAPIs = localStorage.baseURL +
+            "management/platform/analytics?type=group_by&field=api&order=-avg:response-time&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
+        var topOverheadAPIs = localStorage.baseURL +
+            "management/platform/analytics?type=group_by&field=api&order=-avg:proxy-latency&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
+        var event = localStorage.baseURL +
+            "management/platform/events?type=START_API,STOP_API,PUBLISH_API,UNPUBLISH_API&api_ids=&from=" + toTimestamp(date_1) + "298&to=" + toTimestamp(date) + "298&page=0&size=10";
 
         /* apis */
         $http.get(apis,{
@@ -157,7 +192,7 @@ function dashboardCtrl($scope, $http) {
         }).success(httpSuccessEventDashboard).error(function () {
             document.location.href="index.html";
         });
-    });
+//    });
 
 
     $scope.changeDashboardAnalytics = function () {
@@ -179,40 +214,5 @@ function dashboardCtrl($scope, $http) {
         if(value === "topOverheadAPIs") { document.getElementById('boxTopOverheadAPIs').setAttribute('style','display: inline'); }
         if(value === "apiEvent")        { document.getElementById('boxAPIEvents').setAttribute('style','display: inline'); }
 
-    }
-
-    var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
-    function encode(input) {
-        var output = "";
-        var chr1, chr2, chr3 = "";
-        var enc1, enc2, enc3, enc4 = "";
-        var i = 0;
-
-        do {
-            chr1 = input.charCodeAt(i++);
-            chr2 = input.charCodeAt(i++);
-            chr3 = input.charCodeAt(i++);
-
-            enc1 = chr1 >> 2;
-            enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
-            enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
-            enc4 = chr3 & 63;
-
-            if (isNaN(chr2)) {
-                enc3 = enc4 = 64;
-            } else if (isNaN(chr3)) {
-                enc4 = 64;
-            }
-
-            output = output +
-                keyStr.charAt(enc1) +
-                keyStr.charAt(enc2) +
-                keyStr.charAt(enc3) +
-                keyStr.charAt(enc4);
-            chr1 = chr2 = chr3 = "";
-            enc1 = enc2 = enc3 = enc4 = "";
-        } while (i < input.length);
-
-        return output;
     }
 }

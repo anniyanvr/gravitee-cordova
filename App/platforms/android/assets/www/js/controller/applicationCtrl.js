@@ -4,25 +4,7 @@
 
 function applicationCtrl($scope, $http) {
 
-    var constant = localStorage.baseURL+"constants.json";
-
-    httpSuccessAllApplications = function (response) {
-        $scope.rep = response;
-    }
-
-    $http.get(constant).success(function (response) {
-
-        var applicationsAll = response["baseURL"]+"applications/"; // with login
-        // var applicationsAll = 'https://demo.gravitee.io/management/applications/';
-
-        // test
-        $http.get(applicationsAll,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessAllApplications).error(function () {
-            document.location.href="index.html";
-        });
-    });
-
+//    var constant = localStorage.baseURL+"constants.json";
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {
@@ -58,4 +40,21 @@ function applicationCtrl($scope, $http) {
 
         return output;
     }
+
+    httpSuccessAllApplications = function (response) {
+        $scope.rep = response;
+    }
+
+//    $http.get(constant).success(function (response) {
+
+        var applicationsAll = localStorage.baseURL+"management/applications/"; // with login
+        // var applicationsAll = 'https://demo.gravitee.io/management/applications/';
+
+        // test
+        $http.get(applicationsAll,{
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        }).success(httpSuccessAllApplications).error(function () {
+            document.location.href="index.html";
+        });
+  //  });
 }

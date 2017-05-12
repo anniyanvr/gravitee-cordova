@@ -3,23 +3,7 @@
  */
 
 function configurationCtrl($scope, $http) {
-    var constant = localStorage.baseURL+"constants.json";
-
-    httpSuccessConfiguration = function (response) {
-        console.log(response);
-        $scope.rep = response;
-    }
-
-    $http.get(constant).success(function (response) {
-
-        var configurationAll = response["baseURL"]+"configuration/views/"; // with login
-
-        $http.get(configurationAll,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessConfiguration).error(function () {
-            document.location.href="index.html";
-        });
-    });
+//    var constant = localStorage.baseURL+"constants.json";
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {
@@ -55,4 +39,20 @@ function configurationCtrl($scope, $http) {
 
         return output;
     }
+
+    httpSuccessConfiguration = function (response) {
+        console.log(response);
+        $scope.rep = response;
+    }
+
+  //  $http.get(constant).success(function (response) {
+
+        var configurationAll = localStorage.baseURL+"management/configuration/views/"; // with login
+
+        $http.get(configurationAll,{
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        }).success(httpSuccessConfiguration).error(function () {
+            document.location.href="index.html";
+        });
+//    });
 }

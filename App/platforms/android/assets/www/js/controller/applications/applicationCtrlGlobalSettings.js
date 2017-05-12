@@ -5,28 +5,7 @@
 function applicationCtrlGlobalSettings($scope, $routeParams, $http) {
     var id = $routeParams.id;
 
-    var constant = localStorage.baseURL+"constants.json";
-
-    httpSuccessApplication = function (response) {
-        $scope.rep = response;
-    }
-
-    var menuApplications = document.getElementById('menuApplications');
-    menuApplications.setAttribute('style', 'display: inline-block width: 100%');
-    document.getElementById('applicationGlobalSettings').setAttribute('href','#/applicationGlobalSettings/'+id);
-    document.getElementById('applicationAnalytics').setAttribute('href','#/applicationAnalytics/'+id);
-
-    $http.get(constant).success(function (response) {
-
-        var api = response["baseURL"]+"applications/"+id+"/"; // with login
-
-        $http.get(api,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessApplication).error(function () {
-            document.location.href="index.html";
-        });
-    });
-
+//    var constant = localStorage.baseURL+"constants.json";
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {
@@ -62,4 +41,24 @@ function applicationCtrlGlobalSettings($scope, $routeParams, $http) {
 
         return output;
     }
+
+    httpSuccessApplication = function (response) {
+        $scope.rep = response;
+    }
+
+    var menuApplications = document.getElementById('menuApplications');
+    menuApplications.setAttribute('style', 'display: inline-block width: 100%');
+    document.getElementById('applicationGlobalSettings').setAttribute('href','#/applicationGlobalSettings/'+id);
+    document.getElementById('applicationAnalytics').setAttribute('href','#/applicationAnalytics/'+id);
+
+    //$http.get(constant).success(function (response) {
+
+        var api = localStorage.baseURL+"management/applications/"+id+"/"; // with login
+
+        $http.get(api,{
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        }).success(httpSuccessApplication).error(function () {
+            document.location.href="index.html";
+        });
+    //});
 }

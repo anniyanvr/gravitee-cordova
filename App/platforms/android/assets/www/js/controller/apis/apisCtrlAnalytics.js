@@ -4,7 +4,42 @@
 
 function apisCtrlAnalytics($scope, $routeParams, $http) {
     var id = $routeParams.id;
-    var constant = localStorage.baseURL+"constants.json";
+    //var constant = localStorage.baseURL+"constants.json";
+
+    var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+    function encode(input) {
+        var output = "";
+        var chr1, chr2, chr3 = "";
+        var enc1, enc2, enc3, enc4 = "";
+        var i = 0;
+
+        do {
+            chr1 = input.charCodeAt(i++);
+            chr2 = input.charCodeAt(i++);
+            chr3 = input.charCodeAt(i++);
+
+            enc1 = chr1 >> 2;
+            enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+            enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+            enc4 = chr3 & 63;
+
+            if (isNaN(chr2)) {
+                enc3 = enc4 = 64;
+            } else if (isNaN(chr3)) {
+                enc4 = 64;
+            }
+
+            output = output +
+                keyStr.charAt(enc1) +
+                keyStr.charAt(enc2) +
+                keyStr.charAt(enc3) +
+                keyStr.charAt(enc4);
+            chr1 = chr2 = chr3 = "";
+            enc1 = enc2 = enc3 = enc4 = "";
+        } while (i < input.length);
+
+        return output;
+    }
 
     // timestamp date
     var now = new Date();
@@ -64,16 +99,14 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
         return datum/1000;
     }
 
-    $http.get(constant).success(function (response) {
+    //$http.get(constant).success(function (response) {
 
-        var api = response["baseURL"]+"apis/"+id+"/"; // with login
-        var applications = response["baseURL"] + "apis/" + id +
+        var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
+        var applications = localStorage.baseURL+"management/apis/" + id +
             "/analytics?type=group_by&field=application&size=20&interval=600000&from="+toTimestamp(date_1)+"908&to="+toTimestamp(date)+"908&";
-        var status = response["baseURL"] +
-            "apis/" + id + "/analytics?type=group_by&field=status&ranges=100:199;200:299;300:399;400:499;500:599&interval=600000&from="+toTimestamp(date_1)+"478&to="+toTimestamp(date)+"478&";
-        var topPlan = response["baseURL"] +
-            "apis/" + id + "/analytics?type=group_by&field=plan&size=20&interval=600000&from="+toTimestamp(date_1)+"607&to="+toTimestamp(date)+"607&";
-        var topSlowApplications = response["baseURL"] + "apis/" + id +
+        var status = localStorage.baseURL+"management/apis/" + id + "/analytics?type=group_by&field=status&ranges=100:199;200:299;300:399;400:499;500:599&interval=600000&from="+toTimestamp(date_1)+"478&to="+toTimestamp(date)+"478&";
+        var topPlan = localStorage.baseURL+"management/apis/" + id + "/analytics?type=group_by&field=plan&size=20&interval=600000&from="+toTimestamp(date_1)+"607&to="+toTimestamp(date)+"607&";
+        var topSlowApplications = localStorage.baseURL+"management/apis/" + id +
             "/analytics?type=group_by&field=application&order=-avg:response-time&size=20&interval=43200000&from="+toTimestamp(date_1)+"780&to="+toTimestamp(date)+"780&";
 
         /* General */
@@ -111,7 +144,7 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
             document.location.href="index.html";
         });
 
-    });
+    //});
 
 
     $scope.changeAPIsAnalytics = function () {
@@ -135,41 +168,6 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
         if(value === "responseTimes")       { document.getElementById('boxResponseTimes').setAttribute('style','display: inline'); }
         if(value === "hitsByApplication")   { document.getElementById('boxHitsByApp').setAttribute('style','display: inline'); }
 
-    }
-
-    var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
-    function encode(input) {
-        var output = "";
-        var chr1, chr2, chr3 = "";
-        var enc1, enc2, enc3, enc4 = "";
-        var i = 0;
-
-        do {
-            chr1 = input.charCodeAt(i++);
-            chr2 = input.charCodeAt(i++);
-            chr3 = input.charCodeAt(i++);
-
-            enc1 = chr1 >> 2;
-            enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
-            enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
-            enc4 = chr3 & 63;
-
-            if (isNaN(chr2)) {
-                enc3 = enc4 = 64;
-            } else if (isNaN(chr3)) {
-                enc4 = 64;
-            }
-
-            output = output +
-                keyStr.charAt(enc1) +
-                keyStr.charAt(enc2) +
-                keyStr.charAt(enc3) +
-                keyStr.charAt(enc4);
-            chr1 = chr2 = chr3 = "";
-            enc1 = enc2 = enc3 = enc4 = "";
-        } while (i < input.length);
-
-        return output;
     }
 
     // Highcharts

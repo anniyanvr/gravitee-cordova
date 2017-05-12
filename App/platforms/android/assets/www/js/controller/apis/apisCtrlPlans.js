@@ -6,39 +6,7 @@ function apisCtrlPlans($scope, $routeParams, $http) {
     var id = $routeParams.id;
     // console.log("id : "+$routeParams.id);
 
-    var constant = localStorage.baseURL+"constants.json";
-
-    httpSuccessAPIPlans = function (response) { $scope.rep = response; }
-    httpSuccessChangeStatus = function (response) { $scope.status = response; }
-
-    $http.get(constant).success(function (response) {
-
-        var api = response["baseURL"]+"apis/"+id+"/"; // with login
-
-        $http.get(api,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessAPIPlans).error(function () {
-            document.location.href="index.html";
-        });
-
-        $http.get(localStorage.baseURL + "management/apis/" + id + "/plans?status=published",{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessChangeStatus).error(function () {
-            document.location.href="index.html";
-        });
-    });
-
-    /* change Status */
-    $scope.changeStatus = function () {
-        var selectElmt = document.getElementById('selectStatus');
-        var value = selectElmt.options[selectElmt.selectedIndex].value;
-
-        $http.get(localStorage.baseURL + "management/apis/" + id + "/plans?status=" + value, {
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username + ':' + localStorage.password)}
-        }).success(httpSuccessChangeStatus).error(function () {
-            document.location.href = "index.html";
-        });
-    }
+//    var constant = localStorage.baseURL+"constants.json";
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {
@@ -73,5 +41,37 @@ function apisCtrlPlans($scope, $routeParams, $http) {
         } while (i < input.length);
 
         return output;
+    }
+
+    httpSuccessAPIPlans = function (response) { $scope.rep = response; }
+    httpSuccessChangeStatus = function (response) { $scope.status = response; }
+
+//    $http.get(constant).success(function (response) {
+
+        var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
+
+        $http.get(api,{
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        }).success(httpSuccessAPIPlans).error(function () {
+            document.location.href="index.html";
+        });
+
+        $http.get(localStorage.baseURL + "management/apis/" + id + "/plans?status=published",{
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        }).success(httpSuccessChangeStatus).error(function () {
+            document.location.href="index.html";
+        });
+  //  });
+
+    /* change Status */
+    $scope.changeStatus = function () {
+        var selectElmt = document.getElementById('selectStatus');
+        var value = selectElmt.options[selectElmt.selectedIndex].value;
+
+        $http.get(localStorage.baseURL + "management/apis/" + id + "/plans?status=" + value, {
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username + ':' + localStorage.password)}
+        }).success(httpSuccessChangeStatus).error(function () {
+            document.location.href = "index.html";
+        });
     }
 }

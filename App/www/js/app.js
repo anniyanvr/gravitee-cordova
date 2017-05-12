@@ -44,25 +44,8 @@ app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
     /* Authority */
     var constant = localStorage.baseURL+"constants.json";
     var authority = false;
-    $http.get(constant).success(function (response) {
-        var user = response["baseURL"] + "user/"; // with login
-        $http.get(user,{
-            headers: {
-                'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)
-            }
-        }).success(function (response) {
-            for (var i=0;i<response.authorities.length;i++){
-                //alert(response.authorities[i]["authority"]);
-                if (response.authorities[i]["authority"] === "ADMIN"){
-                    authority = true;
-                    buttonInstances.setAttribute('style','display: inline');
-                    buttonDashboard.setAttribute('style','display: inline');
-                    buttonConfiguration.setAttribute('style','display: inline');
-
-                }
-            }
-        })
-    });
+    //$http.get(constant).success(function (response) {
+    //});
 
     /* Username */
     $scope.username = localStorage.username;
@@ -183,4 +166,22 @@ app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
 
         return output;
     }
+
+    var user = localStorage.baseURL + "management/user/"; // with login
+    $http.get(user,{
+        headers: {
+            'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)
+        }
+    }).success(function (response) {
+        for (var i=0;i<response.authorities.length;i++){
+            //alert(response.authorities[i]["authority"]);
+            if (response.authorities[i]["authority"] === "ADMIN"){
+                authority = true;
+                buttonInstances.setAttribute('style','display: inline');
+                buttonDashboard.setAttribute('style','display: inline');
+                buttonConfiguration.setAttribute('style','display: inline');
+
+            }
+        }
+    })
 }]);

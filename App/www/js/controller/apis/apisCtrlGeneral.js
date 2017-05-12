@@ -8,35 +8,7 @@ function apisCtrlGeneral($scope, $routeParams, $http) {
     var id = $routeParams.id;
     // console.log("id : "+$routeParams.id);
 
-    var constant = localStorage.baseURL+"constants.json";
-
-    httpSuccessAPI = function (response) {
-        $scope.rep = response;
-    }
-
-    var menuAPIs = document.getElementById('menuAPIs');
-    menuAPIs.setAttribute('style', 'display: inline-block width: 100%');
-    document.getElementById('menuAPIsGeneral').setAttribute('href','#/generalAPIs/'+id);
-    document.getElementById('menuAPIsGateway').setAttribute('href','#/gatewayAPIs/'+id);
-    document.getElementById('menuAPIsPlans').setAttribute('href','#/plansAPIs/'+id);
-    document.getElementById('menuAPIsPolicies').setAttribute('href','#/policiesAPIs/'+id);
-    document.getElementById('menuAPIsAnalytics').setAttribute('href','#/analyticsAPIs/'+id);
-    document.getElementById('menuAPIsHealthCheck').setAttribute('href','#/healthCheckAPI/'+id);
-    document.getElementById('menuAPIsHistory').setAttribute('href','#/historyAPI/'+id);
-    document.getElementById('menuAPIsEvents').setAttribute('href','#/eventsAPI/'+id);
-
-
-    $http.get(constant).success(function (response) {
-
-        var api = response["baseURL"]+"apis/"+id+"/"; // with login
-
-        $http.get(api,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessAPI).error(function () {
-            document.location.href="index.html";
-        });
-    });
-
+//    var constant = localStorage.baseURL+"constants.json";
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {
@@ -72,4 +44,31 @@ function apisCtrlGeneral($scope, $routeParams, $http) {
 
         return output;
     }
+
+    httpSuccessAPI = function (response) {
+        $scope.rep = response;
+    }
+
+    var menuAPIs = document.getElementById('menuAPIs');
+    menuAPIs.setAttribute('style', 'display: inline-block width: 100%');
+    document.getElementById('menuAPIsGeneral').setAttribute('href','#/generalAPIs/'+id);
+    document.getElementById('menuAPIsGateway').setAttribute('href','#/gatewayAPIs/'+id);
+    document.getElementById('menuAPIsPlans').setAttribute('href','#/plansAPIs/'+id);
+    document.getElementById('menuAPIsPolicies').setAttribute('href','#/policiesAPIs/'+id);
+    document.getElementById('menuAPIsAnalytics').setAttribute('href','#/analyticsAPIs/'+id);
+    document.getElementById('menuAPIsHealthCheck').setAttribute('href','#/healthCheckAPI/'+id);
+    document.getElementById('menuAPIsHistory').setAttribute('href','#/historyAPI/'+id);
+    document.getElementById('menuAPIsEvents').setAttribute('href','#/eventsAPI/'+id);
+
+
+ //   $http.get(constant).success(function (response) {
+
+        var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
+
+        $http.get(api,{
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        }).success(httpSuccessAPI).error(function () {
+            document.location.href="index.html";
+        });
+   // });
 }

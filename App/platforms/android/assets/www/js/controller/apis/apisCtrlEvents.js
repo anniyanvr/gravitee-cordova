@@ -6,32 +6,7 @@ function apisCtrlEvents($scope, $routeParams, $http){
     var id = $routeParams.id;
     // console.log("id : "+$routeParams.id);
 
-    var constant = localStorage.baseURL+"constants.json";
-
-    httpSuccessAPIEvents = function (response) {
-        $scope.rep = response;
-        $scope.endpoints = response.proxy['endpoints'];
-        $scope.loadB = response.proxy['load_balancing'];
-    }
-    httpSuccessEventsAll = function (response) { $scope.events = response; }
-
-    $http.get(constant).success(function (response) {
-
-        var api = response["baseURL"]+"apis/"+id+"/"; // with login
-        var events = response["baseURL"] + "apis/" +id + "/events?type=START_API,STOP_API";
-
-        $http.get(api,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessAPIEvents).error(function () {
-            document.location.href="index.html";
-        });
-
-        $http.get(events,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessEventsAll).error(function () {
-            document.location.href="index.html";
-        });
-    });
+    //var constant = localStorage.baseURL+"constants.json";
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {
@@ -67,4 +42,29 @@ function apisCtrlEvents($scope, $routeParams, $http){
 
         return output;
     }
+
+    httpSuccessAPIEvents = function (response) {
+        $scope.rep = response;
+        $scope.endpoints = response.proxy['endpoints'];
+        $scope.loadB = response.proxy['load_balancing'];
+    }
+    httpSuccessEventsAll = function (response) { $scope.events = response; }
+
+    //$http.get(constant).success(function (response) {
+
+        var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
+        var events = localStorage.baseURL+"management/apis/" +id + "/events?type=START_API,STOP_API";
+
+        $http.get(api,{
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        }).success(httpSuccessAPIEvents).error(function () {
+            document.location.href="index.html";
+        });
+
+        $http.get(events,{
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        }).success(httpSuccessEventsAll).error(function () {
+            document.location.href="index.html";
+        });
+    //});
 }

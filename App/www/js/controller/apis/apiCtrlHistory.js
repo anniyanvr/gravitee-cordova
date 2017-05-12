@@ -7,32 +7,7 @@ function apisCtrlHistory($scope, $routeParams, $http) {
     var id = $routeParams.id;
     // console.log("id : "+$routeParams.id);
 
-    var constant = localStorage.baseURL+"constants.json";
-
-    httpSuccessAPIHistory = function (response) {
-        $scope.rep = response;
-        $scope.endpoints = response.proxy['endpoints'];
-        $scope.loadB = response.proxy['load_balancing'];
-    }
-    httpSuccessHistoryAll = function (response) { $scope.history = response; }
-
-    $http.get(constant).success(function (response) {
-
-        var api = response["baseURL"]+"apis/"+id+"/"; // with login
-        var history = response["baseURL"] + "apis/" +id + "/events?type=PUBLISH_API";
-
-        $http.get(api,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessAPIHistory).error(function () {
-            document.location.href="index.html";
-        });
-
-        $http.get(history,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessHistoryAll).error(function () {
-            document.location.href="index.html";
-        });
-    });
+    //var constant = localStorage.baseURL+"constants.json";
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {
@@ -68,4 +43,29 @@ function apisCtrlHistory($scope, $routeParams, $http) {
 
         return output;
     }
+
+    httpSuccessAPIHistory = function (response) {
+        $scope.rep = response;
+        $scope.endpoints = response.proxy['endpoints'];
+        $scope.loadB = response.proxy['load_balancing'];
+    }
+    httpSuccessHistoryAll = function (response) { $scope.history = response; }
+
+    //$http.get(constant).success(function (response) {
+
+        var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
+        var history = localStorage.baseURL + "management/apis/" +id + "/events?type=PUBLISH_API";
+
+        $http.get(api,{
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        }).success(httpSuccessAPIHistory).error(function () {
+            document.location.href="index.html";
+        });
+
+        $http.get(history,{
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        }).success(httpSuccessHistoryAll).error(function () {
+            document.location.href="index.html";
+        });
+    //});
 }

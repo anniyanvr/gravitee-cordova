@@ -4,24 +4,7 @@
 
 function apisCtrlGateway($scope, $routeParams, $http) {
     var id = $routeParams.id;
-    var constant = localStorage.baseURL+"constants.json";
-
-    httpSuccessAPIGateway = function (response) {
-        $scope.rep = response;
-        $scope.endpoints = response.proxy['endpoints'];
-        $scope.loadB = response.proxy['load_balancing'];
-    }
-
-    $http.get(constant).success(function (response) {
-
-        var api = response["baseURL"]+"apis/"+id+"/"; // with login
-
-        $http.get(api,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessAPIGateway).error(function () {
-            document.location.href="index.html";
-        });
-    });
+    //var constant = localStorage.baseURL+"constants.json";
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {
@@ -57,4 +40,21 @@ function apisCtrlGateway($scope, $routeParams, $http) {
 
         return output;
     }
+
+    httpSuccessAPIGateway = function (response) {
+        $scope.rep = response;
+        $scope.endpoints = response.proxy['endpoints'];
+        $scope.loadB = response.proxy['load_balancing'];
+    }
+
+//    $http.get(constant).success(function (response) {
+
+        var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
+
+        $http.get(api,{
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        }).success(httpSuccessAPIGateway).error(function () {
+            document.location.href="index.html";
+        });
+//    });
 }
