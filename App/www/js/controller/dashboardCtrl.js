@@ -54,47 +54,87 @@ function dashboardCtrl($scope, $http) {
     var date  = ( month +'/'+day+'/'+year+' '+hour+':'+min+':'+second);
 
     httpSuccessAPIDashboard = function (response) {
-        if(typeof (response.value) === 'undefined')
-            $scope.showTopAPIs = 'false';
-        else {
-            $scope.apis = response;
-            $scope.showTopAPIs = 'true';
+        var struct = response;
+        var tbl = document.getElementById('id_table_topAPI'),
+            k, hit, data;
+
+        for( k in struct.values ){
+            hit = struct.values[k];
+            data = struct.metadata[k];
+
+            tbl.innerHTML +=
+                '<tr>' +
+                '<td>' + data.name + '</td>' +
+                '<td>' + hit + '</td>' +
+                '</tr>';
         }
     }
     httpSuccessApplicationsDashboard = function (response) {
 
         //console.log(typeof (response.value) === 'undefined');
-        if(typeof (response.value) === 'undefined')
-            $scope.showTopApplication = 'false';
-        else {
-            $scope.application = response;
-            $scope.showTopApplication = 'true';
+        var struct = response;
+        var tbl = document.getElementById('id_table_topApplications'),
+            k, hit, data;
+
+        for( k in struct.values ){
+            hit = struct.values[k];
+            data = struct.metadata[k];
+
+            tbl.innerHTML +=
+                '<tr>' +
+                '<td>' + data.name + '</td>' +
+                '<td>' + hit + '</td>' +
+                '</tr>';
         }
     }
     httpSuccessFailedAPIsDashboard = function (response) {
-        if(typeof (response.value) === 'undefined')
-            $scope.showTopFailed = 'false';
-        else {
-            $scope.topFailed = response;
-            $scope.showTopFailed = 'true';
+        var struct = response;
+        var tbl = document.getElementById('id_table_topFailedAPIs'),
+            k, hit, data;
+
+        for( k in struct.values ){
+            hit = struct.values[k];
+            data = struct.metadata[k];
+
+            tbl.innerHTML +=
+                '<tr>' +
+                '<td>' + data.name + '</td>' +
+                '<td>' + hit + '</td>' +
+                '</tr>';
         }
     }
     httpSuccessTopOverheadAPIsDashboard = function (response) {
 
-        if(typeof (response.value) === 'undefined')
-            $scope.showTopOverhead = 'false';
-        else {
-            $scope.overhead = response;
-            $scope.showTopOverhead = 'true';
+        var struct = response;
+        var tbl = document.getElementById('id_table_topOverheadAPIs'),
+            k, hit, data;
+
+        for( k in struct.values ){
+            hit = struct.values[k];
+            data = struct.metadata[k];
+
+            tbl.innerHTML +=
+                '<tr>' +
+                '<td>' + data.name + '</td>' +
+                '<td>' + hit + '</td>' +
+                '</tr>';
         }
     }
     httpSuccessTopSlowAPIsDashboard = function (response) {
 
-        if(typeof (response.value) === 'undefined')
-            $scope.showSlowAPIs = 'false';
-        else {
-            $scope.slowAPIs = response;
-            $scope.showSlowAPIs = 'true';
+        var struct = response;
+        var tbl = document.getElementById('top_slowAPIs'),
+            k, hit, data;
+
+        for( k in struct.values ){
+            hit = struct.values[k];
+            data = struct.metadata[k];
+
+            tbl.innerHTML +=
+                '<tr>' +
+                '<td>' + data.name + '</td>' +
+                '<td>' + hit + '</td>' +
+                '</tr>';
         }
     }
     httpSuccessEventDashboard = function (response) {

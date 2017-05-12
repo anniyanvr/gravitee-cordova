@@ -69,28 +69,7 @@
                         <div class="card-content black-text">
                             <span class="card-title">Top Applications</span>
 
-                            <!-- No undefined -->
-                            <table class="striped" ng-if="showTopApplication === 'true'">
-                                <tr>
-                                    <th>Application</th>
-                                    <th>Hits</th>
-                                </tr>
-                                <tr ng-repeat="appli in application">
-                                    <td>{{appli.values}}</td>
-                                    <td>{{appli.metadata}}</td>
-                                </tr>
-                            </table>
-
-                            <!-- No result -->
-                            <table class="striped" ng-if="showTopApplication === 'false'">
-                                <tr>
-                                    <th>Application</th>
-                                    <th>Hits</th>
-                                </tr>
-                                <tr>
-                                    <td>No result</td>
-                                    <td></td>
-                                </tr>
+                            <table id="id_table_applications" class="striped">
                             </table>
 
                         </div>
@@ -116,28 +95,7 @@
                         <div class="card-content black-text">
                             <span class="card-title">Top plan</span>
 
-                            <!-- No undefined -->
-                            <table class="striped" ng-if="showTopPlan === 'true'">
-                                <tr>
-                                    <th>Plan</th>
-                                    <th>Hits</th>
-                                </tr>
-                                <tr ng-repeat="p in plan">
-                                    <td>{{plan.values}}</td>
-                                    <td>{{plan.metadata}}</td>
-                                </tr>
-                            </table>
-
-                            <!-- No result -->
-                            <table class="striped" ng-if="showTopPlan === 'false'">
-                                <tr>
-                                    <th>Plan</th>
-                                    <th>Hits</th>
-                                </tr>
-                                <tr>
-                                    <td>No result</td>
-                                    <td></td>
-                                </tr>
+                            <table id="id_table_plans" class="striped">
                             </table>
 
                         </div>
@@ -152,28 +110,7 @@
                         <div class="card-content black-text">
                             <span class="card-title">Top slow applications</span>
 
-                            <!-- No undefined -->
-                            <table class="striped" ng-if="showSlowApplications === 'true'">
-                                <tr>
-                                    <th>Application</th>
-                                    <th>Latency (in ms)</th>
-                                </tr>
-                                <tr ng-repeat="slow in slowApplications">
-                                    <td>{{slow.values}}</td>
-                                    <td>{{slow.metadata}}</td>
-                                </tr>
-                            </table>
-
-                            <!-- No result -->
-                            <table class="striped" ng-if="showSlowApplications === 'false'">
-                                <tr>
-                                    <th>Application</th>
-                                    <th>Latency (in ms)</th>
-                                </tr>
-                                <tr>
-                                    <td>No result</td>
-                                    <td></td>
-                                </tr>
+                            <table id="id_table_slowApplications" class="striped">
                             </table>
 
                         </div>

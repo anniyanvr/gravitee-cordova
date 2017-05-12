@@ -52,28 +52,7 @@
                     <div class="card-content black-text">
                         <span class="card-title">Top API</span>
 
-                        <!-- No undefined -->
-                        <table class="striped" ng-if="showTopAPIs === 'true'">
-                            <tr>
-                                <th>API</th>
-                                <th>Hits</th>
-                            </tr>
-                            <tr ng-repeat="a in apis">
-                                <td>{{a.values}}</td>
-                                <td>{{a.metadata}}</td>
-                            </tr>
-                        </table>
-
-                        <!-- No result -->
-                        <table class="striped" ng-if="showTopAPIs === 'false'">
-                            <tr>
-                                <th>API</th>
-                                <th>Hits</th>
-                            </tr>
-                            <tr>
-                                <td>No result</td>
-                                <td></td>
-                            </tr>
+                        <table id="id_table_topAPI" class="striped">
                         </table>
 
                     </div>

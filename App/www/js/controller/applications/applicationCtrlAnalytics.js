@@ -57,11 +57,19 @@ function applicationCtrlAnalytics($scope, $routeParams, $http) {
 
     httpSuccessApplicationAnalytics = function (response) { $scope.rep = response; }
     httpSuccessApplicationTopAPI = function (response) {
-        if(typeof (response.value) === 'undefined')
-            $scope.showTopAPIs = 'false';
-        else {
-            $scope.apis = response;
-            $scope.showTopAPIs = 'true';
+        var struct = response;
+        var tbl = document.getElementById('id_table_topAPI'),
+            k, hit, data;
+
+        for( k in struct.values ){
+            hit = struct.values[k];
+            data = struct.metadata[k];
+
+            tbl.innerHTML +=
+                '<tr>' +
+                '<td>' + data.name + '</td>' +
+                '<td>' + hit + '</td>' +
+                '</tr>';
         }
     }
     httpSuccessApplicationStatus = function (response) {

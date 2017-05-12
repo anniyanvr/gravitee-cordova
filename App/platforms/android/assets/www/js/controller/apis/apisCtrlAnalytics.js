@@ -60,15 +60,23 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
     $scope.showTopPlan = 'true';
     $scope.showSlowApplications = 'true';
 
-    httpSuccessAPIAnalytics = function (response) { $scope.rep = response; }
+    httpSuccessAPIAnalytics = function (response) {
+        $scope.rep = response; }
     httpSuccessAPIAnalyticsApplications = function (response) {
 
-        //console.log(typeof (response.value) === 'undefined');
-        if(typeof (response.value) === 'undefined')
-            $scope.showTopApplication = 'false';
-        else {
-            $scope.application = response;
-            $scope.showTopApplication = 'true';
+        var struct = response;
+        var tbl = document.getElementById('id_table_applications'),
+            k, hit, data;
+
+        for( k in struct.values ){
+            hit = struct.values[k];
+            data = struct.metadata[k];
+
+            tbl.innerHTML +=
+                '<tr>' +
+                '<td>' + data.name + '</td>' +
+                '<td>' + hit + '</td>' +
+                '</tr>';
         }
     }
     httpSuccessAPIAnalyticsStatus = function (response) {
@@ -77,20 +85,36 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
     }
     httpSuccessAPIAnalyticsPlan = function (response) {
 
-        if(typeof (response.value) === 'undefined')
-            $scope.showTopPlan = 'false';
-        else {
-            $scope.plan = response;
-            $scope.showTopPlan = 'true';
+        var struct = response;
+        var tbl = document.getElementById('id_table_plans'),
+            k, hit, data;
+
+        for( k in struct.values ){
+            hit = struct.values[k];
+            data = struct.metadata[k];
+
+            tbl.innerHTML +=
+                '<tr>' +
+                '<td>' + data.name + '</td>' +
+                '<td>' + hit + '</td>' +
+                '</tr>';
         }
     }
     httpSuccessAPIAnalyticsSlowApplications = function (response) {
 
-        if(typeof (response.value) === 'undefined')
-            $scope.showSlowApplications = 'false';
-        else {
-            $scope.slowApplications = response;
-            $scope.showSlowApplications = 'true';
+        var struct = response;
+        var tbl = document.getElementById('id_table_slowApplications'),
+            k, hit, data;
+
+        for( k in struct.values ){
+            hit = struct.values[k];
+            data = struct.metadata[k];
+
+            tbl.innerHTML +=
+                '<tr>' +
+                '<td>' + data.name + '</td>' +
+                '<td>' + hit + '</td>' +
+                '</tr>';
         }
     }
 
