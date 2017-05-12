@@ -48,7 +48,7 @@ login.controller('loginCtrl', ['$scope','$http',
 
             loader.setAttribute('style','display: none');
            document.location.href="loginAccept.html";
-        }).error(function () {
+        }).error(function (status) {
             loader.setAttribute('style','display: none');
             $scope.errorShow = 'Please verify your informations';
         })

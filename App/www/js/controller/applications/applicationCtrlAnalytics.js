@@ -31,7 +31,7 @@ function applicationCtrlAnalytics($scope, $routeParams, $http) {
     }
     httpSuccessApplicationStatus = function (response) {
         var tab = createKeysAndValues(response);
-        highcharts("status",tab[0],tab[1]);
+        highchartsStatus("status",tab[0],tab[1]);
     }
 
     function toTimestamp(strDate){
@@ -140,6 +140,56 @@ function applicationCtrlAnalytics($scope, $routeParams, $http) {
         }
         tt.push(keys); tt.push(vals);
         return tt;
+    }
+
+    function highchartsStatus(div,categories,data) {
+        Highcharts.chart(div, {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Status'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: [{
+                    name: categories[0],
+                    y: data[0]
+                }, {
+                    name: categories[1],
+                    y: data[1]
+                }, {
+                    name: categories[2],
+                    y: data[2]
+                }, {
+                    name: categories[3],
+                    y: data[3]
+                }, {
+                    name: categories[4],
+                    y: data[4]
+                }]
+            }]
+        });
     }
 
     function highcharts(div,categories,data) {
