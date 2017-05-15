@@ -6,7 +6,7 @@
             <label>Choose table</label>
             <form ng-submit="changeDashboardAnalytics()" style="text-align: center">
                 <select style="width: 50%; display: inline-block" id="select_tabDashboard" class="browser-default">
-                    <option value="topAPIs">Top APIs</option>
+                    <option value="topAPIs">Top API</option>
                     <option value="topApp">Top applications</option>
                     <option value="topFailedAPIs">Top failed APIs</option>
                     <option value="topSlowAPIs">Top slow APIs</option>
@@ -43,9 +43,13 @@
             <div class="col s12 m12">
                 <div class="card">
                     <div class="card-content black-text">
-                        <span class="card-title">Top APIs</span>
+                        <span class="card-title">Top API</span>
 
                         <table id="id_table_topAPI" class="striped">
+                            <tr>
+                                <td style="font-weight: bold"> API </td>
+                                <td style="font-weight: bold"> Hits </td>
+                            </tr>
                         </table>
 
                     </div>
@@ -61,6 +65,10 @@
                         <span class="card-title">Top applications</span>
 
                         <table id="id_table_topApplications" class="striped">
+                            <tr>
+                                <td style="font-weight: bold"> Application </td>
+                                <td style="font-weight: bold"> Hits </td>
+                            </tr>
                         </table>
 
                     </div>
@@ -76,6 +84,10 @@
                         <span class="card-title">Top failed APIs</span>
 
                         <table id="id_table_topFailedAPIs" class="striped">
+                            <tr>
+                                <td style="font-weight: bold"> Application </td>
+                                <td style="font-weight: bold"> Hits </td>
+                            </tr>
                         </table>
 
                     </div>
@@ -91,6 +103,10 @@
                         <span class="card-title">Top slow APIs</span>
 
                         <table id="top_slowAPIs" class="striped">
+                            <tr>
+                                <td style="font-weight: bold"> API </td>
+                                <td style="font-weight: bold"> Latency (in ms) </td>
+                            </tr>
                         </table>
 
                     </div>
@@ -106,6 +122,10 @@
                         <span class="card-title">Top overhead APIs</span>
 
                         <table id="id_table_topOverheadAPIs" class="striped">
+                            <tr>
+                                <td style="font-weight: bold"> API </td>
+                                <td style="font-weight: bold"> Latency (in ms) </td>
+                            </tr>
                         </table>
 
                     </div>
