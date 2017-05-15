@@ -76,6 +76,35 @@ function applicationCtrlAnalytics($scope, $routeParams, $http) {
         var tab = createKeysAndValues(response);
         highchartsStatus("status",tab[0],tab[1]);
     }
+    httpSuccessAppAnalyticsResponseStatus = function (response) {
+        // console.log(response["values"][0].buckets.length);
+        var keys = [] , data = [];
+        for (var r = 0 ; r < response["values"][0].buckets.length; r++ ){
+            keys.push(response["values"][0].buckets[r].name);
+            data.push(response["values"][0].buckets[r].data);
+        }
+        var title = (document.getElementById("responseStatusText").getAttribute("value"));
+        highcharts(title,"responseStatus",keys,data);
+    }
+    httpSuccessAppAnalyticsResponseTimes = function (response) {
+        var keys = [] , data = [];
+        for (var r = 0 ; r < response["values"][0].buckets.length; r++ ){
+            keys.push(response["values"][0].buckets[r].name);
+            data.push(response["values"][0].buckets[r].data);
+        }
+        var title = (document.getElementById("responseTimesText").getAttribute("value"));
+        highcharts(title,"responseTimes",keys,data);
+    }
+    httpSuccessAppAnalyticsHBAPI = function (response) {
+        var keys = [] , data = [];
+        for (var r = 0 ; r < response["values"][0].buckets.length; r++ ){
+            var metadata = response["values"][0].metadata;
+            keys.push(metadata[r+1].name);
+            data.push(response["values"][0].buckets[r].data);
+        }
+        var title = (document.getElementById("HBAPIsText").getAttribute("value"));
+        highcharts(title,"HBAPI",keys,data);
+    }
 
     function toTimestamp(strDate){
         var datum = Date.parse(strDate);
@@ -89,7 +118,14 @@ function applicationCtrlAnalytics($scope, $routeParams, $http) {
         var status = localStorage.baseURL+"management/applications/"+id+"/" +
             "analytics?type=group_by&field=status&ranges=100:199;200:299;300:399;400:499;500:599&interval=600000&from="+toTimestamp(date_1)+"899&to="+toTimestamp(date)+"899&";
 
-        /* General */
+        var responseStatus = localStorage.baseURL+"management/applications/"+id+"/"+
+            "analytics?type=date_histo&aggs=field:status&interval=600000&from="+toTimestamp(date_1)+"624&to="+toTimestamp(date)+"624&";
+        var responseTimes = localStorage.baseURL+"management/applications/"+id+"/"+
+            "analytics?type=date_histo&aggs=avg:response-time&interval=600000&from="+toTimestamp(date_1)+"624&to="+toTimestamp(date)+"624&";
+        var hitsByAPI = localStorage.baseURL+"management/applications/"+id+"/"+
+            "analytics?type=date_histo&aggs=field:api&interval=600000&from="+toTimestamp(date_1)+"624&to="+toTimestamp(date)+"624&";
+
+    /* General */
         $http.get(application,{
             headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
         }).success(httpSuccessApplicationAnalytics).error(function () {
@@ -109,6 +145,28 @@ function applicationCtrlAnalytics($scope, $routeParams, $http) {
         }).success(httpSuccessApplicationStatus).error(function () {
             document.location.href="index.html";
         });
+
+        /* Response Status */
+        $http.get(responseStatus,{
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        }).success(httpSuccessAppAnalyticsResponseStatus).error(function () {
+            document.location.href="index.html";
+        });
+
+        /* Response Times */
+        $http.get(responseTimes,{
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        }).success(httpSuccessAppAnalyticsResponseTimes).error(function () {
+            document.location.href="index.html";
+        });
+
+        /* Hits By API */
+        $http.get(hitsByAPI,{
+            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        }).success(httpSuccessAppAnalyticsHBAPI).error(function () {
+            document.location.href="index.html";
+        });
+
   //  });
 
 
@@ -200,35 +258,36 @@ function applicationCtrlAnalytics($scope, $routeParams, $http) {
         });
     }
 
-    function highcharts(div,categories,data) {
+    function highcharts(title,div,categories,data) {
+
+        //      console.log(categories);
+        //      console.log(data[0]);
+        var series = [];
+        for (var i = 0 ; i<categories.length; i++){
+            series.push({
+                name: categories[i],
+                data: data[i]
+            });
+        }
+        console.log(series);
 
         Highcharts.chart(div, {
             chart: {
                 type: 'areaspline'
             },
             title: {
-                text: div
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'left',
-                verticalAlign: 'top',
-                x: 0,
-                y: 0,
-                floating: true,
-                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+                text: title
             },
             xAxis: {
-                categories: categories
+                type: 'datetime'
             },
             yAxis: {
                 title: {
-                    text: 'Status'
+                    text: title
                 }
             },
             tooltip: {
-                shared: true,
-                valueSuffix: ' units'
+                shared: true
             },
             credits: {
                 enabled: false
@@ -238,10 +297,7 @@ function applicationCtrlAnalytics($scope, $routeParams, $http) {
                     fillOpacity: 0.5
                 }
             },
-            series: [{
-                name: 'Status',
-                data: data
-            }]
+            series: series
         });
     }
 }
