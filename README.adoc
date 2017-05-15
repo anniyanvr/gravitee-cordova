@@ -1,0 +1,21 @@
+= gravitee-cordova
+
+= Install
+- NodeJS (https://nodejs.org/en/)
+- Cordova :
+```
+$ npm install -g cordova
+```
+- Java SE Development kit (http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+- Android SDK
+- Apache ant (http://ant.apache.org/)
+- Add bin folders to your PATH
+
+= Build and Run
+```
+$ git clone https://github.com/gravitee-io/gravitee-cordova.git
+$ cd gravitee-cordova/App/
+$ cordova build android
+$ cordova emulate android       #to deploy the app on a default android emulator
+$ cordova run android --device  #to deploy the app on a connected device
+```
