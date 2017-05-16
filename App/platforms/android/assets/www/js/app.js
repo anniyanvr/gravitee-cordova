@@ -16,26 +16,40 @@ app.config(['$httpProvider', function($httpProvider) {
 
 app.config(function ($routeProvider) {
   $routeProvider
+
+  // APIs
       .when('/apis', {templateUrl: 'partials/apis.html'})
       /* .when('/createAPI', {templateUrl: 'partials/apis/createAPI.html'})  -- Read-only */
       .when('/generalAPIs/:id', {templateUrl: 'partials/apis/generalAPIs.html'})
       .when('/gatewayAPIs/:id', {templateUrl: 'partials/apis/gatewayAPIs.html'})
       .when('/plansAPIs/:id', {templateUrl: 'partials/apis/plansAPI.html'})
+      .when('/resourcesAPIs/:id', {templateUrl: 'partials/apis/resourcesAPIs.html'})
       .when('/policiesAPIs/:id', {templateUrl: 'partials/apis/policiesAPIs.html'})
+      .when('/membersAPIs/:id', {templateUrl: 'partials/apis/membersAPIs.html'})
       .when('/analyticsAPIs/:id', {templateUrl: 'partials/apis/analyticsAPI.html'})
       .when('/healthCheckAPI/:id', {templateUrl: 'partials/apis/healthCheckAPI.html'})
       .when('/historyAPI/:id', {templateUrl: 'partials/apis/historyAPI.html'})
       .when('/eventsAPI/:id', {templateUrl: 'partials/apis/eventsAPIs.html'})
+
+  // Applications
       .when('/applications', {templateUrl: 'partials/applications.html'})
       .when('/applicationGlobalSettings/:id', {templateUrl: 'partials/applications/globalSettingsApp.html'})
       .when('/applicationAnalytics/:id', {templateUrl: 'partials/applications/analyticsApp.html'})
+
+  // Configuration
       .when('/configuration', {templateUrl: 'partials/configuration.html'})
       .when('/configurationTags', {templateUrl: 'partials/configuration/shardingTags.html'})
       .when('/configurationTenants', {templateUrl: 'partials/configuration/tenants.html'})
+
+  // Dashboard
       .when('/dashboard', {templateUrl: 'partials/dashboard.html'})
+
+  // Instances
       .when('/instances', {templateUrl: 'partials/instances.html'})
       .when('/instancesEnvironment/:event', {templateUrl: 'partials/instances/environmentInstance.html'})
       .when('/instancesMonitoring/:event', {templateUrl: 'partials/instances/monitoringInstance.html'})
+
+  // Otherwise
       .otherwise({redirectTo: 'apis'})
 })
 

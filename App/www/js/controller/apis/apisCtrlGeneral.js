@@ -54,7 +54,9 @@ function apisCtrlGeneral($scope, $routeParams, $http) {
     document.getElementById('menuAPIsGeneral').setAttribute('href','#/generalAPIs/'+id);
     document.getElementById('menuAPIsGateway').setAttribute('href','#/gatewayAPIs/'+id);
     document.getElementById('menuAPIsPlans').setAttribute('href','#/plansAPIs/'+id);
+    document.getElementById('menuAPIsResources').setAttribute('href','#/resourcesAPIs/'+id);
     document.getElementById('menuAPIsPolicies').setAttribute('href','#/policiesAPIs/'+id);
+    document.getElementById('menuAPIsMembers').setAttribute('href','#/membersAPIs/'+id);
     document.getElementById('menuAPIsAnalytics').setAttribute('href','#/analyticsAPIs/'+id);
     document.getElementById('menuAPIsHealthCheck').setAttribute('href','#/healthCheckAPI/'+id);
     document.getElementById('menuAPIsHistory').setAttribute('href','#/historyAPI/'+id);

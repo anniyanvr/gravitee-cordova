@@ -1,0 +1,41 @@
+<section ng-controller="apisCtrlMembers">
+    <section class="panel panel-padding">
+
+        <!-- presentation -->
+        <div style="text-align: left; width: 100%;
+                        background-color: #f7f7f7;">
+
+            <h4>
+                {{rep.name}}
+                <small>
+                    ({{rep.version}})
+                    <image
+                            class="APIsBottomButton"
+                            ng-if="rep.visibility === 'public'"
+                            src="img/visibility.png"></image>
+
+                    <image
+                            class="APIsBottomButton"
+                            ng-if="rep.visibility === 'private'"
+                            src="img/private.png"></image>
+                </small>
+            </h4>
+            <p>{{rep.description}}</p>
+
+        </div>
+
+        <table class="striped">
+            <tr>
+                <th>Member</th>
+                <th></th>
+                <th>Role</th>
+            </tr>
+            <tr  ng-repeat="m in members">
+                <td ng-if="m.type !== 'primary_owner'" ><input style="color: black" value="{{m.firstname}} {{m.lastname}} [{{m.username}}]" disabled></td>
+                <td ng-if="m.type !== 'primary_owner'" ><input style="color: black" value="{{m.email}}" disabled></td>
+                <td ng-if="m.type !== 'primary_owner'" ><input style="color: black" value="{{m.type}}" disabled></td>
+            </tr>
+        </table>
+
+    </section>
+</section>
