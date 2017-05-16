@@ -50,12 +50,13 @@ function applicationCtrlGlobalSettings($scope, $routeParams, $http) {
     menuApplications.setAttribute('style', 'display: inline-block width: 100%');
     document.getElementById('applicationGlobalSettings').setAttribute('href','#/applicationGlobalSettings/'+id);
     document.getElementById('applicationAnalytics').setAttribute('href','#/applicationAnalytics/'+id);
+    document.getElementById('applicationMembers').setAttribute('href','#/applicationMembers/'+id);
 
     //$http.get(constant).success(function (response) {
 
-        var api = localStorage.baseURL+"management/applications/"+id+"/"; // with login
+        var app = localStorage.baseURL+"management/applications/"+id+"/"; // with login
 
-        $http.get(api,{
+        $http.get(app,{
             headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
         }).success(httpSuccessApplication).error(function () {
             document.location.href="index.html";

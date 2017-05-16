@@ -1,0 +1,48 @@
+<section ng-controller="applicationCtrlMembers">
+    <section class="panel panel-padding">
+
+        <!-- show my api -->
+        <div class="panel-padding">
+
+            <!-- presentation -->
+            <div style="text-align: left; width: 100%;
+                        background-color: #f7f7f7;">
+
+                <h4>
+                    {{rep.name}}
+                    <small>
+                        ({{rep.version}})
+                        <image
+                                class="APIsBottomButton"
+                                ng-if="rep.visibility === 'public'"
+                                src="img/visibility.png"></image>
+
+                        <image
+                                class="APIsBottomButton"
+                                ng-if="rep.visibility === 'private'"
+                                src="img/private.png"></image>
+                    </small>
+                </h4>
+                <p>{{rep.description}}</p>
+
+            </div>
+
+            <hr width="80%">
+
+        </div>
+
+        <table class="striped">
+            <tr>
+                <th>Member</th>
+                <th></th>
+                <th>Role</th>
+            </tr>
+            <tr  ng-repeat="m in members">
+                <td><input style="color: black" value="{{m.firstname}} {{m.lastname}} [{{m.username}}]" disabled></td>
+                <td><input style="color: black" value="{{m.email}}" disabled></td>
+                <td><input style="color: black" value="{{m.type}}" disabled></td>
+            </tr>
+        </table>
+
+    </section>
+</section>
