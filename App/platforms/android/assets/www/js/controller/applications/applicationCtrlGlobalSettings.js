@@ -51,6 +51,7 @@ function applicationCtrlGlobalSettings($scope, $routeParams, $http) {
     document.getElementById('applicationGlobalSettings').setAttribute('href','#/applicationGlobalSettings/'+id);
     document.getElementById('applicationAnalytics').setAttribute('href','#/applicationAnalytics/'+id);
     document.getElementById('applicationMembers').setAttribute('href','#/applicationMembers/'+id);
+    document.getElementById('applicationSubscription').setAttribute('href','#/applicationSubscription/'+id);
 
     //$http.get(constant).success(function (response) {
 

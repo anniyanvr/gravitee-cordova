@@ -23,6 +23,7 @@ app.config(function ($routeProvider) {
       .when('/generalAPIs/:id', {templateUrl: 'partials/apis/generalAPIs.html'})
       .when('/gatewayAPIs/:id', {templateUrl: 'partials/apis/gatewayAPIs.html'})
       .when('/plansAPIs/:id', {templateUrl: 'partials/apis/plansAPI.html'})
+      .when('/subAPIs/:id', {templateUrl: 'partials/apis/subscriptionAPIs.html'})
       .when('/resourcesAPIs/:id', {templateUrl: 'partials/apis/resourcesAPIs.html'})
       .when('/policiesAPIs/:id', {templateUrl: 'partials/apis/policiesAPIs.html'})
       .when('/membersAPIs/:id', {templateUrl: 'partials/apis/membersAPIs.html'})
@@ -34,6 +35,7 @@ app.config(function ($routeProvider) {
   // Applications
       .when('/applications', {templateUrl: 'partials/applications.html'})
       .when('/applicationGlobalSettings/:id', {templateUrl: 'partials/applications/globalSettingsApp.html'})
+      .when('/applicationSubscription/:id', {templateUrl: 'partials/applications/subscriptionApp.html'})
       .when('/applicationMembers/:id', {templateUrl: 'partials/applications/membersApp.html'})
       .when('/applicationAnalytics/:id', {templateUrl: 'partials/applications/analyticsApp.html'})
 

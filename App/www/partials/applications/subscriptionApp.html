@@ -1,0 +1,56 @@
+<section ng-controller="applicationCtrlSubscription">
+    <section class="panel panel-padding">
+
+        <!-- show my app -->
+        <div class="panel-padding">
+
+            <!-- presentation -->
+            <div style="text-align: left; width: 100%;
+                        background-color: #f7f7f7;">
+
+                <h4>{{rep.name}}<small>({{rep.type}})</small></h4>
+                <p>{{rep.description}}</p>
+
+            </div>
+            <hr width="80%">
+
+            <div class="group" style="text-align: center; margin-bottom: 15px">
+                <form ng-submit="changeSub()">
+                    <select style="display: inline-block; width: 60%" id="select_sub" class="browser-default">
+                        <option value="accepted">Accepted</option>
+                        <option value="pending">Pending</option>
+                        <option value="rejected">Rejected</option>
+                        <option value="closed">Closed</option>
+                    </select>
+                    <button style="display: inline-block" class="btn waves-effect waves-light"
+                            type="submit"
+                            name="action">
+                        Submit
+                    </button>
+                </form>
+            </div>
+
+            <table class="striped" ng-repeat="sub in subscription">
+                <h4  ng-if="sub.status === statusShow" style="margin-top: 5px; color: #006CAB; font-size: 14px; font-family: inherit;">{{sub.plan["apis"]}}</h4>
+                <tr  ng-if="sub.status === statusShow">
+                    <th>Plan</th>
+                    <th>Subscription Date</th>
+                    <th>Process Date</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Status</th>
+                </tr>
+                <tr  ng-if="sub.status === statusShow">
+                    <td><input style="color: black" value="{{sub.plan['name']}}" disabled></td>
+                    <td><input style="color: black" value="{{sub.created_at}}" disabled></td>
+                    <td><input style="color: black" value="{{sub.processed_at}}" disabled></td>
+                    <td><input style="color: black" value="{{sub.starting_at}}" disabled></td>
+                    <td><input style="color: black" value="{{sub.ending_at}}" disabled></td>
+                    <td><input style="color: black" value="{{sub.status}}" disabled></td>
+                </tr>
+            </table>
+
+        </div>
+
+    </section>
+</section>
