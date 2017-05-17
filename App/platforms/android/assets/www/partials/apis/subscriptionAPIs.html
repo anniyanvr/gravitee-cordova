@@ -46,9 +46,10 @@
             </div>
 
             <table class="striped" ng-repeat="sub in subscription">
-                <h4  ng-if="sub.status === statusShow" style="margin-top: 5px; color: #006CAB; font-size: 14px; font-family: inherit;">
-                    {{sub.plan.application[0].name}}
-                </h4>
+                <caption  ng-if="sub.status === statusShow" style="text-align: left; margin-top: 5px; font-family: inherit;">
+                    <small style="color: black; font-weight:bold; font-size: 14px;">{{sub.application["name"]}}</small>
+                    <small>by {{sub.application.owner["username"]}}</small>
+                </caption>
                 <tr  ng-if="sub.status === statusShow">
                     <th>Plan</th>
                     <th>Subscription Date</th>
