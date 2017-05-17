@@ -1,0 +1,47 @@
+<section ng-controller="apisCtrlGeneral">
+    <section class="panel">
+        <!-- show my api -->
+        <div class="panel-padding">
+
+            <!-- presentation -->
+            <div style="text-align: left; width: 100%;
+                        background-color: #f7f7f7;">
+
+                <h4>
+                    {{rep.name}}
+                    <small>
+                        ({{rep.version}})
+                        <image
+                                class="APIsBottomButton"
+                                ng-if="rep.visibility === 'public'"
+                                src="img/visibility.png"></image>
+
+                        <image
+                                class="APIsBottomButton"
+                                ng-if="rep.visibility === 'private'"
+                                src="img/private.png"></image>
+                    </small>
+                </h4>
+                <p>{{rep.description}}</p>
+
+            </div>
+
+            <hr width="80%">
+
+            <table class="striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Value</th>
+                    <th>Dynamic</th>
+                </tr>
+                <tr ng-repeat="p in rep.properties">
+                    <td><input style="color: black" value="{{p.key}}" disabled></td>
+                    <td><input style="color: black" value="{{p.value}}" disabled></td>
+                    <td><input style="color: black" value="{{p.dynamic}}" disabled></td>
+                </tr>
+            </table>
+
+        </div>
+
+    </section>
+</section>
