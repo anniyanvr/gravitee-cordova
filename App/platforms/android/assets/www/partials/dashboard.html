@@ -159,6 +159,7 @@
                             <tr ng-repeat="e in event">
                                 <td>{{e.updated_at}}</td>
                                 <td ng-if="e.type === 'start_api'">Start</td>
+                                <td ng-if="e.type === 'stop_api'">Stop</td>
                                 <td ng-if="e.type === 'publish_api'">Deploy</td>
                                 <td>{{e.properties["api_name"]}} ({{e.properties["api_version"]}})</td>
                             </tr>
