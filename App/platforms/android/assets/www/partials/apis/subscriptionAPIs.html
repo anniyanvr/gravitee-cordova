@@ -60,10 +60,10 @@
                 </tr>
                 <tr  ng-if="sub.status === statusShow">
                     <td><input style="color: black" value="{{sub.plan['name']}}" disabled></td>
-                    <td><input style="color: black" value="{{sub.created_at}}" disabled></td>
-                    <td><input style="color: black" value="{{sub.processed_at}}" disabled></td>
-                    <td><input style="color: black" value="{{sub.starting_at}}" disabled></td>
-                    <td><input style="color: black" value="{{sub.ending_at}}" disabled></td>
+                    <td><input style="color: black" value="{{sub.created_at | date:'MM/dd/yyyy h:mm a' }}" disabled></td>
+                    <td><input style="color: black" value="{{sub.processed_at | date:'MM/dd/yyyy h:mm a' }}" disabled></td>
+                    <td><input style="color: black" value="{{sub.starting_at | date:'MM/dd/yyyy h:mm a' }}" disabled></td>
+                    <td><input style="color: black" value="{{sub.ending_at | date:'MM/dd/yyyy h:mm a' }}" disabled></td>
                     <td><input style="color: black" value="{{sub.status}}" disabled></td>
                 </tr>
             </table>

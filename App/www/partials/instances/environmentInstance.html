@@ -37,10 +37,10 @@
                 <td>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M15 1H9v2h6V1z"></path><path d="M11 14h2V8h-2v6z"></path><path d="M12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7zm7.03-12.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.07 4.74 14.12 4 12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61z"></path></svg>
                 </td>
-                <td>Started at</td><td>{{rep.started_at}}</td></tr>
+                <td>Started at</td><td>{{rep.started_at | date:'MM/dd/yyyy h:mm a' }}</td></tr>
             <tr>
                 <td style="width: 50px"><i class="material-icons">favorite</i></td>
-                <td>Last heartbeat at</td><td>{{rep.last_heartbeat_at}}</td></tr>
+                <td>Last heartbeat at</td><td>{{rep.last_heartbeat_at | date:'MM/dd/yyyy h:mm a' }}</td></tr>
         </table>
 
 

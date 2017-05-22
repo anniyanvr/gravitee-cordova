@@ -35,7 +35,7 @@
                 <div class="card">
                     <div class="card-content">
                         <h6 style="text-transform: uppercase">{{h.type}}</h6>
-                        <small>{{h.created_at}} AM by {{h.properties["username"]}}</small>
+                        <small>{{h.created_at | date:'MM/dd/yyyy h:mm a' }} AM by {{h.properties["username"]}}</small>
                     </div>
                 </div>
             </div>
