@@ -44,6 +44,7 @@ app.config(function ($routeProvider) {
       .when('/configuration', {templateUrl: 'partials/configuration.html'})
       .when('/configurationTags', {templateUrl: 'partials/configuration/shardingTags.html'})
       .when('/configurationTenants', {templateUrl: 'partials/configuration/tenants.html'})
+      .when('/configurationGroups', {templateUrl: 'partials/configuration/groups.html'})
 
   // Dashboard
       .when('/dashboard', {templateUrl: 'partials/dashboard.html'})

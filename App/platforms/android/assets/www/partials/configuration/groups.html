@@ -1,0 +1,48 @@
+<section  ng-controller="configurationCtrlGroups">
+    <section class="panel panel-padding">
+
+        <h1
+                style="margin-top: 16px; font-size: 32px; font-family: inherit;">
+            Groups
+        </h1> <!-- title -->
+
+        <form style="text-align: center" ng-submit="selectGroup()">
+            <select style="width: 60%; display: inline-block; margin-bottom: 15px" id="selectGroup" class="browser-default">
+                <option style="text-transform: uppercase" value="application" selected>Application Groups</option>
+                <option style="text-transform: uppercase" value="api">Api Groups</option>
+            </select>
+            <button style="display: inline-block" class="btn waves-effect waves-light"
+                    type="submit"
+                    name="action">
+                Submit
+            </button>
+        </form>
+
+        <table id="applicationShow" class="striped">
+            <tr>
+                <th>Name</th>
+                <th>Applications</th>
+                <th>Members</th>
+            </tr>
+            <tr ng-repeat="r in rep">
+                <td ng-if="r.type === 'application'">{{r.name}}</td>
+                <td ng-if="r.type === 'application'"></td>
+                <td ng-if="r.type === 'application'"></td>
+            </tr>
+        </table>
+
+        <table id="apiShow" class="striped">
+            <tr>
+                <th>Name</th>
+                <th>Apis</th>
+                <th>Members</th>
+            </tr>
+            <tr ng-repeat="r in rep">
+                <td ng-if="r.type === 'api'">{{r.name}}</td>
+                <td ng-if="r.type === 'api'"></td>
+                <td ng-if="r.type === 'api'"></td>
+            </tr>
+        </table>
+
+    </section>
+</section>
