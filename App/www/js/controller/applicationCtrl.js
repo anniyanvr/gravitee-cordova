@@ -4,8 +4,6 @@
 
 function applicationCtrl($scope, $http) {
 
-//    var constant = localStorage.baseURL+"constants.json";
-
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {
         var output = "";
@@ -45,16 +43,11 @@ function applicationCtrl($scope, $http) {
         $scope.rep = response;
     }
 
-//    $http.get(constant).success(function (response) {
+    var applicationsAll = localStorage.baseURL+"management/applications/"; // with login
 
-        var applicationsAll = localStorage.baseURL+"management/applications/"; // with login
-        // var applicationsAll = 'https://demo.gravitee.io/management/applications/';
-
-        // test
-        $http.get(applicationsAll,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessAllApplications).error(function () {
-            document.location.href="index.html";
-        });
-  //  });
+    $http.get(applicationsAll,{
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+    }).success(httpSuccessAllApplications).error(function () {
+        document.location.href="index.html";
+    });
 }

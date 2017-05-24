@@ -41,9 +41,7 @@ function apisCtrlSubscription($scope, $routeParams, $http) {
     }
 
     httpSuccessAPI = function (response) { $scope.rep = response; $scope.statusShow = "accepted";}
-    httpSuccessAPISubscription = function (response) {
-        $scope.subscription = response;
-    }
+    httpSuccessAPISubscription = function (response) { $scope.subscription = response; }
 
     var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
     var apiSub = localStorage.baseURL+"management/apis/"+id+"/subscriptions"; // with login

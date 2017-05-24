@@ -5,8 +5,6 @@
 function applicationCtrlGlobalSettings($scope, $routeParams, $http) {
     var id = $routeParams.id;
 
-//    var constant = localStorage.baseURL+"constants.json";
-
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {
         var output = "";
@@ -42,10 +40,9 @@ function applicationCtrlGlobalSettings($scope, $routeParams, $http) {
         return output;
     }
 
-    httpSuccessApplication = function (response) {
-        $scope.rep = response;
-    }
+    httpSuccessApplication = function (response) { $scope.rep = response; }
 
+    /* Menu Applications Management */
     var menuApplications = document.getElementById('menuApplications');
     menuApplications.setAttribute('style', 'display: inline-block width: 100%');
     document.getElementById('applicationGlobalSettings').setAttribute('href','#/applicationGlobalSettings/'+id);
@@ -53,14 +50,11 @@ function applicationCtrlGlobalSettings($scope, $routeParams, $http) {
     document.getElementById('applicationMembers').setAttribute('href','#/applicationMembers/'+id);
     document.getElementById('applicationSubscription').setAttribute('href','#/applicationSubscription/'+id);
 
-    //$http.get(constant).success(function (response) {
+    var app = localStorage.baseURL+"management/applications/"+id+"/"; // with login
 
-        var app = localStorage.baseURL+"management/applications/"+id+"/"; // with login
-
-        $http.get(app,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessApplication).error(function () {
-            document.location.href="index.html";
-        });
-    //});
+    $http.get(app,{
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+    }).success(httpSuccessApplication).error(function () {
+        document.location.href="index.html";
+    });
 }

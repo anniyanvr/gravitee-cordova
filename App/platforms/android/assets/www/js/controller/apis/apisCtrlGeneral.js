@@ -6,9 +6,6 @@
 function apisCtrlGeneral($scope, $routeParams, $http) {
 
     var id = $routeParams.id;
-    // console.log("id : "+$routeParams.id);
-
-//    var constant = localStorage.baseURL+"constants.json";
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {
@@ -45,10 +42,10 @@ function apisCtrlGeneral($scope, $routeParams, $http) {
         return output;
     }
 
-    httpSuccessAPI = function (response) {
-        $scope.rep = response;
-    }
+    /* General */
+    httpSuccessAPI = function (response) { $scope.rep = response; }
 
+    /* Menu APIs management */
     var menuAPIs = document.getElementById('menuAPIs');
     menuAPIs.setAttribute('style', 'display: inline-block width: 100%');
     document.getElementById('menuAPIsGeneral').setAttribute('href','#/generalAPIs/'+id);
@@ -65,14 +62,11 @@ function apisCtrlGeneral($scope, $routeParams, $http) {
     document.getElementById('menuAPIsEvents').setAttribute('href','#/eventsAPI/'+id);
 
 
- //   $http.get(constant).success(function (response) {
+    var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
 
-        var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
-
-        $http.get(api,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessAPI).error(function () {
-            document.location.href="index.html";
-        });
-   // });
+    $http.get(api,{
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+    }).success(httpSuccessAPI).error(function () {
+        document.location.href="index.html";
+    });
 }

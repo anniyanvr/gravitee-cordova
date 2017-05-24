@@ -4,9 +4,6 @@
 
 function apisCtrlEvents($scope, $routeParams, $http){
     var id = $routeParams.id;
-    // console.log("id : "+$routeParams.id);
-
-    //var constant = localStorage.baseURL+"constants.json";
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {
@@ -50,21 +47,18 @@ function apisCtrlEvents($scope, $routeParams, $http){
     }
     httpSuccessEventsAll = function (response) { $scope.events = response; }
 
-    //$http.get(constant).success(function (response) {
+    var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
+    var events = localStorage.baseURL+"management/apis/" +id + "/events?type=START_API,STOP_API";
 
-        var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
-        var events = localStorage.baseURL+"management/apis/" +id + "/events?type=START_API,STOP_API";
+    $http.get(api,{
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+    }).success(httpSuccessAPIEvents).error(function () {
+        document.location.href="index.html";
+    });
 
-        $http.get(api,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessAPIEvents).error(function () {
-            document.location.href="index.html";
-        });
-
-        $http.get(events,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessEventsAll).error(function () {
-            document.location.href="index.html";
-        });
-    //});
+    $http.get(events,{
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+    }).success(httpSuccessEventsAll).error(function () {
+        document.location.href="index.html";
+    });
 }

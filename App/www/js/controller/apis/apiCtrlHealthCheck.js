@@ -63,6 +63,7 @@ function apisCtrlHealthCheck($scope, $routeParams, $http) {
     httpSuccessAPIHealthCheck = function (response) { $scope.rep = response; }
     httpSuccessAPIHealthCheckShow = function (response) { $scope.healthCheck = response; }
 
+    // convert date to timestamp
     function toTimestamp(strDate){
         var datum = Date.parse(strDate);
         return datum/1000;
@@ -83,19 +84,18 @@ function apisCtrlHealthCheck($scope, $routeParams, $http) {
         });
     }
 
-    //$http.get(constant).success(function (response) {
+    var api = localStorage.baseURL + "management/apis/" + id + "/"; // with login
 
-        var api = localStorage.baseURL + "management/apis/" + id + "/"; // with login
-        /* General */
-        $http.get(api, {
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username + ':' + localStorage.password)}
-        }).success(httpSuccessAPIHealthCheck).error(function () {
-            document.location.href = "index.html";
-        });
+    /* General */
+    $http.get(api, {
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username + ':' + localStorage.password)}
+    }).success(httpSuccessAPIHealthCheck).error(function () {
+        document.location.href = "index.html";
+    });
 
-        healtcheckFunction("60000",lastHour,date);
-    //});
+    healtcheckFunction("60000",lastHour,date);
 
+    // change time with select
     $scope.changeTime = function () {
         var selectElmt = document.getElementById('select_time');
         var text = selectElmt.options[selectElmt.selectedIndex].value;

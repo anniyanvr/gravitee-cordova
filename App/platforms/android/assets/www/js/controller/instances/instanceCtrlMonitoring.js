@@ -5,7 +5,6 @@
 function instanceCtrlMonitoring($scope, $routeParams, $http) {
 
     var event = $routeParams.event;
-//    var constant = localStorage.baseURL + "constants.json";
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {
@@ -42,6 +41,7 @@ function instanceCtrlMonitoring($scope, $routeParams, $http) {
         return output;
     }
 
+    // functions
     httpSuccessInstancesMonitoringResponse = function(response){
         $scope.monitoring = response;
         console.log(response.cpu["percent_use"]);
@@ -59,15 +59,13 @@ function instanceCtrlMonitoring($scope, $routeParams, $http) {
         });
     }
 
-//    $http.get(constant).success(function (response) {
+    // url
+    var instances = localStorage.baseURL+"management/instances/"+event; // with login
 
-        var instances = localStorage.baseURL+"management/instances/"+event; // with login
-        //var instances = 'https://demo.gravitee.io/management/instances/'+event;
-
-        $http.get(instances,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessInstancesMonitoring).error(function () {
-            document.location.href="index.html";
-        });
-//    });
+    // url processing
+    $http.get(instances,{
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+    }).success(httpSuccessInstancesMonitoring).error(function () {
+        document.location.href="index.html";
+    });
 }

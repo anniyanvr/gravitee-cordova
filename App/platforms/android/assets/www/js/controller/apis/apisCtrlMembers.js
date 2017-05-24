@@ -40,14 +40,15 @@ function apisCtrlMembers($scope, $routeParams, $http) {
         return output;
     }
 
+    /* functions */
     httpSuccessAPIMem = function (response) { $scope.rep = response; }
-    httpSuccessAPIMembers = function (response) {
-        $scope.members = response;
-    }
+    httpSuccessAPIMembers = function (response) { $scope.members = response; }
 
+    /* URLs */
     var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
     var members = localStorage.baseURL+"management/apis/"+id+"/members/"; // with login
 
+    /* URLs Management */
     $http.get(api,{
         headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
     }).success(httpSuccessAPIMem).error(function () {

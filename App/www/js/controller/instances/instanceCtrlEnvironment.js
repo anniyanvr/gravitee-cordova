@@ -47,7 +47,7 @@ function instanceCtrlEnvironment($scope, $routeParams, $http) {
     document.getElementById('menuInstancesMonitoring').setAttribute('href','#/instancesMonitoring/'+event);
 
     /* for scope */
-//    var constant = localStorage.baseURL + "constants.json";
+    //    var constant = localStorage.baseURL + "constants.json";
 
     httpSuccessInstances = function (response) {
         $scope.rep = response;
@@ -56,15 +56,11 @@ function instanceCtrlEnvironment($scope, $routeParams, $http) {
         console.log(response.systemProperties);
     }
 
-//    $http.get(constant).success(function (response) {
+    var instances = localStorage.baseURL+"management/instances/"+event; // with login
 
-        var instances = localStorage.baseURL+"management/instances/"+event; // with login
-        //var instances = 'https://demo.gravitee.io/management/instances/'+event;
-
-        $http.get(instances,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessInstances).error(function () {
-            document.location.href="index.html";
-        });
-//    });
+    $http.get(instances,{
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+    }).success(httpSuccessInstances).error(function () {
+        document.location.href="index.html";
+    });
 }

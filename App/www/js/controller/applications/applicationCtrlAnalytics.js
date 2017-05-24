@@ -4,7 +4,6 @@
 
 function applicationCtrlAnalytics($scope, $routeParams, $http) {
     var id = $routeParams.id;
-//    var constant = localStorage.baseURL+"constants.json";
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {
@@ -52,9 +51,7 @@ function applicationCtrlAnalytics($scope, $routeParams, $http) {
     var date_1  = ( month +'/'+'0'+(day-1)+'/'+year+' '+hour+':'+min+':'+second);
     var date  = ( month +'/'+day+'/'+year+' '+hour+':'+min+':'+second);
 
-    // this is a test for cache
-    // console.log("test for cache");
-
+    // functions
     httpSuccessApplicationAnalytics = function (response) { $scope.rep = response; }
     httpSuccessApplicationTopAPI = function (response) {
         var struct = response;
@@ -114,70 +111,70 @@ function applicationCtrlAnalytics($scope, $routeParams, $http) {
         highcharts(title,"HBAPI",keys,donnees);
     }
 
+    // convert date to timestamp
     function toTimestamp(strDate){
         var datum = Date.parse(strDate);
         return datum/1000;
     }
 
-//    $http.get(constant).success(function (response) {
-        var application = localStorage.baseURL+"management/applications/"+id+"/"; // with login
-        var topAPI = localStorage.baseURL + "management/applications/"+id+"/" +
-            "analytics?type=group_by&field=api&size=20&interval=600000&from="+toTimestamp(date_1)+"899&to="+toTimestamp(date)+"899&";
-        var status = localStorage.baseURL+"management/applications/"+id+"/" +
-            "analytics?type=group_by&field=status&ranges=100:199;200:299;300:399;400:499;500:599&interval=600000&from="+toTimestamp(date_1)+"899&to="+toTimestamp(date)+"899&";
+    /* Definition of URLs */
+    var application = localStorage.baseURL+"management/applications/"+id+"/"; // with login
+    var topAPI = localStorage.baseURL + "management/applications/"+id+"/" +
+        "analytics?type=group_by&field=api&size=20&interval=600000&from="+toTimestamp(date_1)+"899&to="+toTimestamp(date)+"899&";
+    var status = localStorage.baseURL+"management/applications/"+id+"/" +
+        "analytics?type=group_by&field=status&ranges=100:199;200:299;300:399;400:499;500:599&interval=600000&from="+toTimestamp(date_1)+"899&to="+toTimestamp(date)+"899&";
 
-        var responseStatus = localStorage.baseURL+"management/applications/"+id+"/"+
-            "analytics?type=date_histo&aggs=field:status&interval=600000&from="+toTimestamp(date_1)+"624&to="+toTimestamp(date)+"624&";
-        var responseTimes = localStorage.baseURL+"management/applications/"+id+"/"+
-            "analytics?type=date_histo&aggs=avg:response-time&interval=600000&from="+toTimestamp(date_1)+"624&to="+toTimestamp(date)+"624&";
-        var hitsByAPI = localStorage.baseURL+"management/applications/"+id+"/"+
-            "analytics?type=date_histo&aggs=field:api&interval=600000&from="+toTimestamp(date_1)+"624&to="+toTimestamp(date)+"624&";
+    var responseStatus = localStorage.baseURL+"management/applications/"+id+"/"+
+        "analytics?type=date_histo&aggs=field:status&interval=600000&from="+toTimestamp(date_1)+"624&to="+toTimestamp(date)+"624&";
+    var responseTimes = localStorage.baseURL+"management/applications/"+id+"/"+
+        "analytics?type=date_histo&aggs=avg:response-time&interval=600000&from="+toTimestamp(date_1)+"624&to="+toTimestamp(date)+"624&";
+    var hitsByAPI = localStorage.baseURL+"management/applications/"+id+"/"+
+        "analytics?type=date_histo&aggs=field:api&interval=600000&from="+toTimestamp(date_1)+"624&to="+toTimestamp(date)+"624&";
 
+    /* ----- URLs processing ----- */
     /* General */
-        $http.get(application,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessApplicationAnalytics).error(function () {
-            document.location.href="index.html";
-        });
+    $http.get(application,{
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+    }).success(httpSuccessApplicationAnalytics).error(function () {
+        document.location.href="index.html";
+    });
 
-        /* topAPI */
-        $http.get(topAPI,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessApplicationTopAPI).error(function () {
-            document.location.href="index.html";
-        });
+    /* topAPI */
+    $http.get(topAPI,{
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+    }).success(httpSuccessApplicationTopAPI).error(function () {
+        document.location.href="index.html";
+    });
 
-        /* status */
-        $http.get(status,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessApplicationStatus).error(function () {
-            document.location.href="index.html";
-        });
+    /* status */
+    $http.get(status,{
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+    }).success(httpSuccessApplicationStatus).error(function () {
+        document.location.href="index.html";
+    });
 
-        /* Response Status */
-        $http.get(responseStatus,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessAppAnalyticsResponseStatus).error(function () {
-            document.location.href="index.html";
-        });
+    /* Response Status */
+    $http.get(responseStatus,{
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+    }).success(httpSuccessAppAnalyticsResponseStatus).error(function () {
+        document.location.href="index.html";
+    });
 
-        /* Response Times */
-        $http.get(responseTimes,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessAppAnalyticsResponseTimes).error(function () {
-            document.location.href="index.html";
-        });
+    /* Response Times */
+    $http.get(responseTimes,{
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+    }).success(httpSuccessAppAnalyticsResponseTimes).error(function () {
+        document.location.href="index.html";
+    });
 
-        /* Hits By API */
-        $http.get(hitsByAPI,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessAppAnalyticsHBAPI).error(function () {
-            document.location.href="index.html";
-        });
+    /* Hits By API */
+    $http.get(hitsByAPI,{
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+    }).success(httpSuccessAppAnalyticsHBAPI).error(function () {
+        document.location.href="index.html";
+    });
 
-  //  });
-
-
+    /* Select management */
     $scope.changeAPPAnalytics = function () {
 
         document.getElementById('boxTopApi').setAttribute('style','display: none');

@@ -63,26 +63,9 @@ app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
     /* Authority */
     var constant = localStorage.baseURL+"constants.json";
     var authority = false;
-    //$http.get(constant).success(function (response) {
-    //});
 
     /* Username */
     $scope.username = localStorage.username;
-
-    /* Checkbox -- mode -- example */
-    // var body = document.getElementById('body');
-
-    /* Switch example
-    $('input').on('change', function(event){
-        var $myCheckbox = $(this);
-        if($myCheckbox.prop('checked')){
-            var notification = document.getElementById('notif');
-            notification.setAttribute('style','font-size: 14px; font-weight: 400; text-decoration: line-through;')
-        } else {
-            var notification = document.getElementById('notif');
-            notification.setAttribute('style','font-size: 14px; font-weight: 400;')
-        }
-    }); */
 
     /* Menu */
     var menuConfig = document.getElementById('menuConfiguration');

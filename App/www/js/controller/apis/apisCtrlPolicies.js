@@ -4,9 +4,6 @@
 
 function apisCtrlPolicies($scope, $routeParams, $http) {
     var id = $routeParams.id;
-    // console.log("id : "+$routeParams.id);
-
-//    var constant = localStorage.baseURL+"constants.json";
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {
@@ -46,20 +43,17 @@ function apisCtrlPolicies($scope, $routeParams, $http) {
     httpSuccessAPIPolicies = function (response) { $scope.rep = response; }
     httpSuccessAPIPoliciesAll = function (response) { $scope.policies = response; }
 
-//    $http.get(constant).success(function (response) {
+    var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
 
-        var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
+    $http.get(api,{
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+    }).success(httpSuccessAPIPolicies).error(function () {
+        document.location.href="index.html";
+    });
 
-        $http.get(api,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessAPIPolicies).error(function () {
-            document.location.href="index.html";
-        });
-
-        $http.get(localStorage.baseURL + "management/policies/",{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessAPIPoliciesAll).error(function () {
-            document.location.href="index.html";
-        });
-//    });
+    $http.get(localStorage.baseURL + "management/policies/",{
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+    }).success(httpSuccessAPIPoliciesAll).error(function () {
+        document.location.href="index.html";
+    });
 }

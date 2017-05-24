@@ -4,16 +4,8 @@
 
 function apisCtrl($scope, $http) {
 
-    //var constant = localStorage.baseURL+"constants.json";
-    //var version = localStorage.baseURL+"build.json";
-    //var baseURLAPI;
-
     var loaderBar = document.getElementById('divLoader');
     loaderBar.setAttribute('class','progress');
-
-    /*var showAPIs = document.getElementById('showAPIs');
-    showAPIs.style.textAlign = 'center';
-    showAPIs.style.marginBottom = '12px';*/
 
     /* get all views */
     var allViews = localStorage.baseURL + "management/configuration/views/";
@@ -120,26 +112,19 @@ function apisCtrl($scope, $http) {
         /* loaderBar */
         loaderBar.removeAttribute('class');
     }
-    // httpSuccessVersion = function (response) {$scope.versionApis = response;}
 
-    //$http.get(constant).success(function (response) {
-      //  $scope.portalTitle = response["portalTitle"];
+    var apisAll = localStorage.baseURL+"management/apis/"; // with login
 
-        var apisAll = localStorage.baseURL+"management/apis/"; // with login
+    baseURLAPI = apisAll;
+    $http.get(apisAll,{
+        headers: {
+            'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)
+        }
+    }).success(httpSuccessAllAPIS).error(function () {
+        document.location.href="index.html";
+    });
 
-        // var apisAll = "https://demo.gravitee.io/management/apis/"; // demo
-
-        baseURLAPI = apisAll;
-        $http.get(apisAll,{
-            headers: {
-                'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)
-            }
-        }).success(httpSuccessAllAPIS).error(function () {
-            document.location.href="index.html";
-        });
-    //});
-    //$http.get(version).success(httpSuccessVersion);
-
+    /* show all APIs */
     $scope.allAPIs = function () {
         loaderBar.setAttribute('class','progress');
         $http.get(baseURLAPI,{
@@ -147,7 +132,5 @@ function apisCtrl($scope, $http) {
         }).success(httpSuccessAllAPIS).error(function () {
             document.location.href="index.html";
         });
-    } /* show all APIs */
-
-
+    }
 }

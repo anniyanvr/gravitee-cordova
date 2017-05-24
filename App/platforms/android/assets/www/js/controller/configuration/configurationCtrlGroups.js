@@ -39,6 +39,7 @@ function configurationCtrlGroups($scope, $http) {
         return output;
     }
 
+    // set default style for apiShow
     document.getElementById('apiShow').setAttribute('style','display: none');
 
     httpSuccessConfigurationGroups = function (response) {
@@ -46,6 +47,7 @@ function configurationCtrlGroups($scope, $http) {
         $scope.rep = response;
     }
 
+    /* Select Management */
     $scope.selectGroup = function () {
         var selectElmt = document.getElementById('selectGroup');
         var value = selectElmt.options[selectElmt.selectedIndex].value;
@@ -55,8 +57,10 @@ function configurationCtrlGroups($scope, $http) {
         if (value === 'api'){ document.getElementById('apiShow').removeAttribute('style'); }
     }
 
+    // url
     var configurationGroups = localStorage.baseURL+"management/configuration/groups"; // with login
 
+    // url processing
     $http.get(configurationGroups,{
         headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
     }).success(httpSuccessConfigurationGroups).error(function () {

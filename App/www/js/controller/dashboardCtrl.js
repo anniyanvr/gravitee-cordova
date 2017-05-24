@@ -4,7 +4,6 @@
 
 function dashboardCtrl($scope, $http) {
 
-//    var constant = localStorage.baseURL+"constants.json";
     var selectPage = document.getElementById('selectPage');
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
@@ -53,6 +52,7 @@ function dashboardCtrl($scope, $http) {
     var date_1  = ( month +'/'+'0'+(day-1)+'/'+year+' '+hour+':'+min+':'+second);
     var date  = ( month +'/'+day+'/'+year+' '+hour+':'+min+':'+second);
 
+    // functions
     httpSuccessAPIDashboard = function (response) {
         var struct = response;
         var tbl = document.getElementById('id_table_topAPI'),
@@ -151,6 +151,7 @@ function dashboardCtrl($scope, $http) {
         }
     }
 
+    // select page management
     $scope.selectPage = function () {
         var selectElmt = document.getElementById('selectPage');
         var num = selectElmt.options[selectElmt.selectedIndex].text;
@@ -165,76 +166,70 @@ function dashboardCtrl($scope, $http) {
         });
     }
 
+    // convert date to timestamp
     function toTimestamp(strDate){
         var datum = Date.parse(strDate);
         return datum/1000;
     }
 
-    // alert(toTimestamp('02/13/2009 23:31:30'));
-    // console.log(date_1 + " " + toTimestamp(date_1) );
-    // console.log(date + " " + toTimestamp(date) );
-//    "platform/events?type=START_API,STOP_API,PUBLISH_API,UNPUBLISH_API&api_ids=&from=" + toTimestamp(date_1) + "494&to=" + toTimestamp(date) + "494&page=0&size=10";
+    // URLs
+    var apis = localStorage.baseURL +
+        "management/platform/analytics?type=group_by&field=api&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
+    var applications = localStorage.baseURL +
+        "management/platform/analytics?type=group_by&field=application&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
+    var failedAPIs = localStorage.baseURL +
+        "management/platform/analytics?type=group_by&field=api&query=status:[500%20TO%20599]&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
+    var topSlowAPIs = localStorage.baseURL +
+        "management/platform/analytics?type=group_by&field=api&order=-avg:response-time&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
+    var topOverheadAPIs = localStorage.baseURL +
+        "management/platform/analytics?type=group_by&field=api&order=-avg:proxy-latency&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
+    var event = localStorage.baseURL +
+        "management/platform/events?type=START_API,STOP_API,PUBLISH_API,UNPUBLISH_API&api_ids=&from=" + toTimestamp(date_1) + "298&to=" + toTimestamp(date) + "298&page=0&size=10";
 
+    // URLs processing
+    /* apis */
+    $http.get(apis,{
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+    }).success(httpSuccessAPIDashboard).error(function () {
+        document.location.href="index.html";
+    });
 
-  //  $http.get(constant).success(function (response) {
+    /* applications */
+    $http.get(applications,{
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+    }).success(httpSuccessApplicationsDashboard).error(function () {
+        document.location.href="index.html";
+    });
 
-        var apis = localStorage.baseURL +
-            "management/platform/analytics?type=group_by&field=api&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
-        var applications = localStorage.baseURL +
-            "management/platform/analytics?type=group_by&field=application&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
-        var failedAPIs = localStorage.baseURL +
-            "management/platform/analytics?type=group_by&field=api&query=status:[500%20TO%20599]&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
-        var topSlowAPIs = localStorage.baseURL +
-            "management/platform/analytics?type=group_by&field=api&order=-avg:response-time&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
-        var topOverheadAPIs = localStorage.baseURL +
-            "management/platform/analytics?type=group_by&field=api&order=-avg:proxy-latency&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
-        var event = localStorage.baseURL +
-            "management/platform/events?type=START_API,STOP_API,PUBLISH_API,UNPUBLISH_API&api_ids=&from=" + toTimestamp(date_1) + "298&to=" + toTimestamp(date) + "298&page=0&size=10";
+    /* failedAPIs */
+    $http.get(failedAPIs,{
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+    }).success(httpSuccessFailedAPIsDashboard).error(function () {
+        document.location.href="index.html";
+    });
 
-        /* apis */
-        $http.get(apis,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessAPIDashboard).error(function () {
-            document.location.href="index.html";
-        });
+    /* topSlowAPIs */
+    $http.get(topSlowAPIs,{
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+    }).success(httpSuccessTopSlowAPIsDashboard).error(function () {
+        document.location.href="index.html";
+    });
 
-        /* applications */
-        $http.get(applications,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessApplicationsDashboard).error(function () {
-            document.location.href="index.html";
-        });
+    /* topOverheadAPIs */
+    $http.get(topOverheadAPIs,{
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+    }).success(httpSuccessTopOverheadAPIsDashboard).error(function () {
+        document.location.href="index.html";
+    });
 
-        /* failedAPIs */
-        $http.get(failedAPIs,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessFailedAPIsDashboard).error(function () {
-            document.location.href="index.html";
-        });
+    /* event */
+    $http.get(event,{
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+    }).success(httpSuccessEventDashboard).error(function () {
+        document.location.href="index.html";
+    });
 
-        /* topSlowAPIs */
-        $http.get(topSlowAPIs,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessTopSlowAPIsDashboard).error(function () {
-            document.location.href="index.html";
-        });
-
-        /* topOverheadAPIs */
-        $http.get(topOverheadAPIs,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessTopOverheadAPIsDashboard).error(function () {
-            document.location.href="index.html";
-        });
-
-        /* event */
-        $http.get(event,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessEventDashboard).error(function () {
-            document.location.href="index.html";
-        });
-//    });
-
-
+    // Select Management
     $scope.changeDashboardAnalytics = function () {
 
         document.getElementById('boxTopApi').setAttribute('style','display: none');

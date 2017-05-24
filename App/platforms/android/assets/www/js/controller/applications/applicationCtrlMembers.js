@@ -40,14 +40,15 @@ function applicationCtrlMembers($scope, $routeParams, $http) {
         return output;
     }
 
+    // functions
     httpSuccessApplication = function (response) { $scope.rep = response; }
-    httpSuccessApplicationMembers = function (response) {
-        $scope.members = response;
-    }
+    httpSuccessApplicationMembers = function (response) { $scope.members = response; }
 
+    // urls
     var app = localStorage.baseURL+"management/applications/"+id+"/"; // with login
     var appMembers = localStorage.baseURL+"management/applications/"+id+"/members"; // with login
 
+    // URLs processing
     $http.get(app,{
         headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
     }).success(httpSuccessApplication).error(function () {

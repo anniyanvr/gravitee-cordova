@@ -4,9 +4,6 @@
 
 function apisCtrlPlans($scope, $routeParams, $http) {
     var id = $routeParams.id;
-    // console.log("id : "+$routeParams.id);
-
-//    var constant = localStorage.baseURL+"constants.json";
 
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {
@@ -43,25 +40,25 @@ function apisCtrlPlans($scope, $routeParams, $http) {
         return output;
     }
 
+    /* functions */
     httpSuccessAPIPlans = function (response) { $scope.rep = response; }
     httpSuccessChangeStatus = function (response) { $scope.status = response; }
 
-//    $http.get(constant).success(function (response) {
+    // url
+    var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
 
-        var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
+    // URLs Management
+    $http.get(api,{
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+    }).success(httpSuccessAPIPlans).error(function () {
+        document.location.href="index.html";
+    });
 
-        $http.get(api,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessAPIPlans).error(function () {
-            document.location.href="index.html";
-        });
-
-        $http.get(localStorage.baseURL + "management/apis/" + id + "/plans?status=published",{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
-        }).success(httpSuccessChangeStatus).error(function () {
-            document.location.href="index.html";
-        });
-  //  });
+    $http.get(localStorage.baseURL + "management/apis/" + id + "/plans?status=published",{
+        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+    }).success(httpSuccessChangeStatus).error(function () {
+        document.location.href="index.html";
+    });
 
     /* change Status */
     $scope.changeStatus = function () {
