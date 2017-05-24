@@ -54,6 +54,7 @@ login.controller('loginCtrl', ['$scope','$http',
         })
     }
 
+    // permet d'encoder en base64
     var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     function encode(input) {
         var output = "";

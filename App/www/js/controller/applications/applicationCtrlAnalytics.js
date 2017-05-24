@@ -87,13 +87,18 @@ function applicationCtrlAnalytics($scope, $routeParams, $http) {
         highcharts(title,"responseStatus",keys,data);
     }
     httpSuccessAppAnalyticsResponseTimes = function (response) {
-        var keys = [] , data = [];
-        for (var r = 0 ; r < response["values"][0].buckets.length; r++ ){
-            keys.push(response["values"][0].buckets[r].name);
-            data.push(response["values"][0].buckets[r].data);
+        var keys = [] , donnees = [];
+
+        for (let i=0;i<response["values"].length;i++){
+            for (var r = 0 ; r < response["values"][0].buckets.length; r++ ){
+                keys.push(response["values"][i].buckets[r].name);
+                donnees.push(response["values"][i].buckets[r].data);
+            }
+            //    alert(donnees);
         }
+
         var title = (document.getElementById("responseTimesText").getAttribute("value"));
-        highcharts(title,"responseTimes",keys,data);
+        highcharts(title,"responseTimes",keys,donnees);
     }
     httpSuccessAppAnalyticsHBAPI = function (response) {
         var keys = [] , data = [];

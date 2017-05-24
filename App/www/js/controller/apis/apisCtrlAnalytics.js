@@ -128,13 +128,18 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
         highcharts(title,"responseStatus",keys,data);
     }
     httpSuccessAPIAnalyticsResponseTimes = function (response) {
-        var keys = [] , data = [];
-        for (var r = 0 ; r < response["values"][0].buckets.length; r++ ){
-            keys.push(response["values"][0].buckets[r].name);
-            data.push(response["values"][0].buckets[r].data);
+        var keys = [] , donnees = [];
+
+        for (let i=0;i<response["values"].length;i++){
+            for (var r = 0 ; r < response["values"][0].buckets.length; r++ ){
+                keys.push(response["values"][i].buckets[r].name);
+                donnees.push(response["values"][i].buckets[r].data);
+            }
+        //    alert(donnees);
         }
+
         var title = (document.getElementById("responseTimesText").getAttribute("value"));
-        highcharts(title,"responseTimes",keys,data);
+        highcharts(title,"responseTimes",keys,donnees);
     }
     httpSuccessAPIAnalyticsHBApplications = function (response) {
         var keys = [] , data = [];
@@ -163,7 +168,8 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
             "/analytics?type=group_by&field=application&order=-avg:response-time&size=20&interval=43200000&from="+toTimestamp(date_1)+"780&to="+toTimestamp(date)+"780&";
 
         var responseStatus = localStorage.baseURL+"management/apis/"+id+"/analytics?type=date_histo&aggs=field:status&interval=600000&from="+toTimestamp(date_1)+"646&to="+toTimestamp(date)+"646&";
-        var responseTimes = localStorage.baseURL+"management/apis/"+id+"/analytics?type=date_histo&aggs=avg:response-time;avg:api-response-time&interval=30000&from="+toTimestamp(date_1)+"173&to="+toTimestamp(date)+"765&";
+        var responseTimes = localStorage.baseURL+"management/apis/"+id+
+            "/analytics?type=date_histo&aggs=avg:response-time;avg:api-response-time&interval=600000&from="+toTimestamp(date_1)+"173&to="+toTimestamp(date)+"765&";
         var hitsByApplications = localStorage.baseURL+"management/apis/"+id+"/analytics?type=date_histo&aggs=field:application&interval=10000&from="+toTimestamp(date_1)+"539&to="+toTimestamp(date)+"764&";
 
         /* General */
@@ -353,8 +359,16 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
                 enabled: false
             },
             plotOptions: {
-                areaspline: {
-                    fillOpacity: 0.5
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
                 }
             },
             series: series
