@@ -101,14 +101,17 @@ function applicationCtrlAnalytics($scope, $routeParams, $http) {
         highcharts(title,"responseTimes",keys,donnees);
     }
     httpSuccessAppAnalyticsHBAPI = function (response) {
-        var keys = [] , data = [];
-        for (var r = 0 ; r < response["values"][0].buckets.length; r++ ){
-            var metadata = response["values"][0].metadata;
-            keys.push(metadata[r+1].name);
-            data.push(response["values"][0].buckets[r].data);
+        var keys = [] , donnees = [], id=[] ;
+        for (var r=0;r<response.values[0].buckets.length;r++){
+            id.push(response.values[0].buckets[r].name);
+            donnees.push(response.values[0].buckets[r].data);
         }
+        for (var i=0;i<id.length;i++){
+            keys.push(response.values[0].metadata[id[i]].name);
+        }
+
         var title = (document.getElementById("HBAPIsText").getAttribute("value"));
-        highcharts(title,"HBAPI",keys,data);
+        highcharts(title,"HBAPI",keys,donnees);
     }
 
     function toTimestamp(strDate){
@@ -244,19 +247,19 @@ function applicationCtrlAnalytics($scope, $routeParams, $http) {
                 name: 'Brands',
                 colorByPoint: true,
                 data: [{
-                    name: categories[0],
+                    name: '1xx',
                     y: data[0]
                 }, {
-                    name: categories[1],
+                    name: '2xx',
                     y: data[1]
                 }, {
-                    name: categories[2],
+                    name: '3xx',
                     y: data[2]
                 }, {
-                    name: categories[3],
+                    name: '4xx',
                     y: data[3]
                 }, {
-                    name: categories[4],
+                    name: '5xx',
                     y: data[4]
                 }]
             }]
@@ -264,9 +267,6 @@ function applicationCtrlAnalytics($scope, $routeParams, $http) {
     }
 
     function highcharts(title,div,categories,data) {
-
-        //      console.log(categories);
-        //      console.log(data[0]);
         var series = [];
         for (var i = 0 ; i<categories.length; i++){
             series.push({

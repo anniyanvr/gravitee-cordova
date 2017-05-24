@@ -133,31 +133,30 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
         for (let i=0;i<response["values"].length;i++){
             for (var r = 0 ; r < response["values"][0].buckets.length; r++ ){
                 keys.push(response["values"][i].buckets[r].name);
-                donnees.push(response["values"][i].buckets[r].data);
+                donnees.push(response["values"][0].buckets[r].data);
             }
-        //    alert(donnees);
         }
 
         var title = (document.getElementById("responseTimesText").getAttribute("value"));
         highcharts(title,"responseTimes",keys,donnees);
     }
     httpSuccessAPIAnalyticsHBApplications = function (response) {
-        var keys = [] , data = [];
-        for (var r = 0 ; r < response["values"][0].buckets.length; r++ ){
-            var metadata = response["values"][0].metadata;
-            keys.push(metadata[r+1].name);
-            data.push(response["values"][0].buckets[r].data);
+        var keys = [] , donnees = [], id=[] ;
+        for (var r=0;r<response.values[0].buckets.length;r++){
+            id.push(response.values[0].buckets[r].name);
+            donnees.push(response.values[0].buckets[r].data);
+        }
+        for (var i=0;i<id.length;i++){
+            keys.push(response.values[0].metadata[id[i]].name);
         }
         var title = (document.getElementById("HBApplicationsText").getAttribute("value"));
-        highcharts(title,"HBApplications",keys,data);
+        highcharts(title,"HBApplications",keys,donnees);
     }
 
     function toTimestamp(strDate){
         var datum = Date.parse(strDate);
         return datum/1000;
     }
-
-    //$http.get(constant).success(function (response) {
 
         var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
         var applications = localStorage.baseURL+"management/apis/" + id +
@@ -170,7 +169,8 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
         var responseStatus = localStorage.baseURL+"management/apis/"+id+"/analytics?type=date_histo&aggs=field:status&interval=600000&from="+toTimestamp(date_1)+"646&to="+toTimestamp(date)+"646&";
         var responseTimes = localStorage.baseURL+"management/apis/"+id+
             "/analytics?type=date_histo&aggs=avg:response-time;avg:api-response-time&interval=600000&from="+toTimestamp(date_1)+"173&to="+toTimestamp(date)+"765&";
-        var hitsByApplications = localStorage.baseURL+"management/apis/"+id+"/analytics?type=date_histo&aggs=field:application&interval=10000&from="+toTimestamp(date_1)+"539&to="+toTimestamp(date)+"764&";
+        var hitsByApplications = localStorage.baseURL+"management/apis/"+id+
+            "/analytics?type=date_histo&aggs=field:application&interval=600000&from="+toTimestamp(date_1)+"539&to="+toTimestamp(date)+"764&";
 
         /* General */
         $http.get(api,{
@@ -227,9 +227,6 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
         }).success(httpSuccessAPIAnalyticsHBApplications).error(function () {
             document.location.href="index.html";
         });
-
-
-    //});
 
 
     $scope.changeAPIsAnalytics = function () {
@@ -305,19 +302,19 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
                 name: 'Brands',
                 colorByPoint: true,
                 data: [{
-                    name: categories[0],
+                    name: '1xx',
                     y: data[0]
                 }, {
-                    name: categories[1],
+                    name: '2xx',
                     y: data[1]
                 }, {
-                    name: categories[2],
+                    name: '3xx',
                     y: data[2]
                 }, {
-                    name: categories[3],
+                    name: '4xx',
                     y: data[3]
                 }, {
-                    name: categories[4],
+                    name: '5xx',
                     y: data[4]
                 }]
             }]
@@ -325,9 +322,6 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
     }
 
     function highcharts(title,div,categories,data) {
-
-  //      console.log(categories);
-  //      console.log(data[0]);
         var series = [];
         for (var i = 0 ; i<categories.length; i++){
              series.push({
