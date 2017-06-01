@@ -9,41 +9,6 @@ function apisCtrlHealthCheck($scope, $routeParams, $http) {
     var selectElmt = document.getElementById('select_time');
     var text = selectElmt.options[selectElmt.selectedIndex].text;
 
-    var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
-    function encode(input) {
-        var output = "";
-        var chr1, chr2, chr3 = "";
-        var enc1, enc2, enc3, enc4 = "";
-        var i = 0;
-
-        do {
-            chr1 = input.charCodeAt(i++);
-            chr2 = input.charCodeAt(i++);
-            chr3 = input.charCodeAt(i++);
-
-            enc1 = chr1 >> 2;
-            enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
-            enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
-            enc4 = chr3 & 63;
-
-            if (isNaN(chr2)) {
-                enc3 = enc4 = 64;
-            } else if (isNaN(chr3)) {
-                enc4 = 64;
-            }
-
-            output = output +
-                keyStr.charAt(enc1) +
-                keyStr.charAt(enc2) +
-                keyStr.charAt(enc3) +
-                keyStr.charAt(enc4);
-            chr1 = chr2 = chr3 = "";
-            enc1 = enc2 = enc3 = enc4 = "";
-        } while (i < input.length);
-
-        return output;
-    }
-
     // timestamp date
     var now = new Date();
     var year    = now.getFullYear();
@@ -52,6 +17,21 @@ function apisCtrlHealthCheck($scope, $routeParams, $http) {
     var hour    = ('0'+now.getHours()  ).slice(-2);
     var min     = ('0'+now.getMinutes()).slice(-2);
     var second  = ('0'+now.getSeconds()).slice(-2);
+
+    function NbJourParMois(iMonth)
+    {
+        console.log('test : ');
+        var date = new Date();
+        console.log(32 - new Date(date.getFullYear(), iMonth,  32).getDate());
+        return (32 - new Date(date.getFullYear(), iMonth,  32).getDate());
+    }
+
+    if(day === '01'){
+        var month_1 = ('0'+(now.getMonth()));
+        var days_month_1 = NbJourParMois(month_1,year);
+        date_1  = ( month_1 +'/'+(days_month_1)+'/'+year+' '+hour+':'+min+':'+second);
+        console.log(date_1);
+    }
 
     // create date time - default
     var lastHour = ( month +'/'+day+'/'+year+' '+'0'+(hour-1)+':'+min+':'+second);
@@ -78,7 +58,9 @@ function apisCtrlHealthCheck($scope, $routeParams, $http) {
         // default - lastHour
         var healthcheck = localStorage.baseURL + "management/apis/" + id +"/health?interval="+val+"&from="+toTimestamp(d_1)+"344&to="+toTimestamp(d)+"344";
         $http.get(healthcheck, {
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username + ':' + localStorage.password)}
+            headers: {
+                'Authorization': 'Basic ' + localStorage.authorization
+            }
         }).success(httpSuccessAPIHealthCheckShow).error(function () {
             document.location.href = "index.html";
         });
@@ -88,7 +70,10 @@ function apisCtrlHealthCheck($scope, $routeParams, $http) {
 
     /* General */
     $http.get(api, {
-        headers: {'Authorization': 'Basic ' + encode(localStorage.username + ':' + localStorage.password)}
+        headers: {
+            //'Authorization': 'Basic ' + encode(localStorage.username + ':' + localStorage.password)
+            'Authorization': 'Basic ' + localStorage.authorization
+        }
     }).success(httpSuccessAPIHealthCheck).error(function () {
         document.location.href = "index.html";
     });
@@ -103,8 +88,33 @@ function apisCtrlHealthCheck($scope, $routeParams, $http) {
 
         var last5min = ( month +'/'+day+'/'+year+' '+hour+':'+(min-5)+':'+second);
         var lastHour = ( month +'/'+day+'/'+year+' '+'0'+(hour-1)+':'+min+':'+second);
-        var last24Hours  = ( month +'/'+(day-1)+'/'+year+' '+hour+':'+min+':'+second);
-        var last3Days  = ( month +'/'+'0'+(day-3)+'/'+year+' '+hour+':'+min+':'+second);
+
+        var last24Hours, last3Days;
+
+        var month_1 = ('0'+(now.getMonth()));
+        var days_month_1 = NbJourParMois(month_1,year);
+
+        if(day === '01'){
+            last24Hours  = ( month_1 +'/'+(days_month_1)+'/'+year+' '+hour+':'+min+':'+second);
+            //console.log(date_1);
+        }
+        else{
+            last24Hours  = ( month +'/'+(day-1)+'/'+year+' '+hour+':'+min+':'+second);
+        }
+
+        if(day === '01'){
+            last3Days = ( month_1 +'/'+(days_month_1-2)+'/'+year+' '+hour+':'+min+':'+second);
+        }
+        else if(day === '02'){
+            last3Days = ( month_1 +'/'+(days_month_1-1)+'/'+year+' '+hour+':'+min+':'+second);
+        }
+        else if(day === '03'){
+            last3Days = ( month_1 +'/'+(days_month_1)+'/'+year+' '+hour+':'+min+':'+second);
+        }
+        else {
+            last3Days  = ( month +'/'+'0'+(day-3)+'/'+year+' '+hour+':'+min+':'+second);
+        }
+
         var lastMonth  = ( '0'+(month-1) +'/'+day+'/'+year+' '+hour+':'+min+':'+second);
         var last3Months  = ( '0'+(month-3) +'/'+day+'/'+year+' '+hour+':'+min+':'+second);
         var date  = ( month +'/'+day+'/'+year+' '+hour+':'+min+':'+second);

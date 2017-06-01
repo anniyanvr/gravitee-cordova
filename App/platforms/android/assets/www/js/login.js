@@ -46,6 +46,8 @@ login.controller('loginCtrl', ['$scope','$http',
             localStorage.setItem("password",password);
             localStorage.setItem("baseURL",baseURL);
 
+            localStorage.setItem("authorization",encode(username+':'+password));
+
             loader.setAttribute('style','display: none');
            document.location.href="loginAccept.html";
         }).error(function (status) {

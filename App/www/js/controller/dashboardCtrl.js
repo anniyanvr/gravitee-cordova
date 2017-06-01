@@ -6,41 +6,6 @@ function dashboardCtrl($scope, $http) {
 
     var selectPage = document.getElementById('selectPage');
 
-    var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
-    function encode(input) {
-        var output = "";
-        var chr1, chr2, chr3 = "";
-        var enc1, enc2, enc3, enc4 = "";
-        var i = 0;
-
-        do {
-            chr1 = input.charCodeAt(i++);
-            chr2 = input.charCodeAt(i++);
-            chr3 = input.charCodeAt(i++);
-
-            enc1 = chr1 >> 2;
-            enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
-            enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
-            enc4 = chr3 & 63;
-
-            if (isNaN(chr2)) {
-                enc3 = enc4 = 64;
-            } else if (isNaN(chr3)) {
-                enc4 = 64;
-            }
-
-            output = output +
-                keyStr.charAt(enc1) +
-                keyStr.charAt(enc2) +
-                keyStr.charAt(enc3) +
-                keyStr.charAt(enc4);
-            chr1 = chr2 = chr3 = "";
-            enc1 = enc2 = enc3 = enc4 = "";
-        } while (i < input.length);
-
-        return output;
-    }
-
     // timestamp date
     var now = new Date();
     var year    = now.getFullYear();
@@ -51,6 +16,21 @@ function dashboardCtrl($scope, $http) {
     var second  = ('0'+now.getSeconds()).slice(-2);
     var date_1  = ( month +'/'+'0'+(day-1)+'/'+year+' '+hour+':'+min+':'+second);
     var date  = ( month +'/'+day+'/'+year+' '+hour+':'+min+':'+second);
+
+    function NbJourParMois(iMonth)
+    {
+        console.log('test : ');
+        var date = new Date();
+        console.log(32 - new Date(date.getFullYear(), iMonth,  32).getDate());
+        return (32 - new Date(date.getFullYear(), iMonth,  32).getDate());
+    }
+
+    if(day === '01'){
+        var month_1 = ('0'+(now.getMonth()));
+        var days_month_1 = NbJourParMois(month_1,year);
+        date_1  = ( month_1 +'/'+(days_month_1)+'/'+year+' '+hour+':'+min+':'+second);
+        console.log(date_1);
+    }
 
     // functions
     httpSuccessAPIDashboard = function (response) {
@@ -158,7 +138,9 @@ function dashboardCtrl($scope, $http) {
         var event = localStorage.baseURL +
             "management/platform/events?type=START_API,STOP_API,PUBLISH_API,UNPUBLISH_API&api_ids=&from=" + toTimestamp(date_1) + "487&to=" + toTimestamp(date) + "487&page=" + (num-1) + "&size=10";
         $http.get(event,{
-            headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+            headers: {
+                'Authorization': 'Basic ' + localStorage.authorization
+            }
         }).success(function (response) {
             $scope.event = response.content;
         }).error(function () {
@@ -189,42 +171,54 @@ function dashboardCtrl($scope, $http) {
     // URLs processing
     /* apis */
     $http.get(apis,{
-        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        headers: {
+            'Authorization': 'Basic ' + localStorage.authorization
+        }
     }).success(httpSuccessAPIDashboard).error(function () {
         document.location.href="index.html";
     });
 
     /* applications */
     $http.get(applications,{
-        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        headers: {
+            'Authorization': 'Basic ' + localStorage.authorization
+        }
     }).success(httpSuccessApplicationsDashboard).error(function () {
         document.location.href="index.html";
     });
 
     /* failedAPIs */
     $http.get(failedAPIs,{
-        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        headers: {
+            'Authorization': 'Basic ' + localStorage.authorization
+        }
     }).success(httpSuccessFailedAPIsDashboard).error(function () {
         document.location.href="index.html";
     });
 
     /* topSlowAPIs */
     $http.get(topSlowAPIs,{
-        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        headers: {
+            'Authorization': 'Basic ' + localStorage.authorization
+        }
     }).success(httpSuccessTopSlowAPIsDashboard).error(function () {
         document.location.href="index.html";
     });
 
     /* topOverheadAPIs */
     $http.get(topOverheadAPIs,{
-        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        headers: {
+            'Authorization': 'Basic ' + localStorage.authorization
+        }
     }).success(httpSuccessTopOverheadAPIsDashboard).error(function () {
         document.location.href="index.html";
     });
 
     /* event */
     $http.get(event,{
-        headers: {'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)}
+        headers: {
+            'Authorization': 'Basic ' + localStorage.authorization
+        }
     }).success(httpSuccessEventDashboard).error(function () {
         document.location.href="index.html";
     });
