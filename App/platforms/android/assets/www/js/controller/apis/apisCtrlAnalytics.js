@@ -319,7 +319,17 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
     function highcharts(title,div,categories,data) {
         var series = [];
         for (var i = 0 ; i<categories.length; i++){
-             series.push({
+
+            var now = new Date();
+            var year    = now.getFullYear();
+            var month   = ('0'+(now.getMonth()+1));
+            var day     = ('0'+now.getDate()   ).slice(-2);
+            var hour    = ('0'+now.getHours()  ).slice(-2);
+            var min     = ('0'+now.getMinutes()).slice(-2);
+            var second  = ('0'+now.getSeconds()).slice(-2);
+            var date  = ( month +'/'+day+'/'+year+' '+hour+':'+min+':'+second);
+
+            series.push({
                 name: categories[i],
                 data: data[i]
             });
@@ -334,7 +344,14 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
                 text: title
             },
             xAxis: {
-                type: 'datetime'
+                type: 'datetime',
+                dateTimeLabelFormats: {
+                    minTickInterval: 24 * 3600 * 1000,
+                    millisecond: '%b %e'
+                },
+                title: {
+                    text: null
+                }
             },
             yAxis: {
                 title: {
@@ -346,19 +363,6 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
             },
             credits: {
                 enabled: false
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: true,
-                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                        style: {
-                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                        }
-                    }
-                }
             },
             series: series
         });
