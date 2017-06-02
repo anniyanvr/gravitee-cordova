@@ -17,7 +17,7 @@ function instanceCtrl($scope, $http) {
         $scope.rep = response;
     }
 
-    var instancesAll = localStorage.baseURL+"management/instances/"; // with login
+    var instancesAll = localStorage.baseURL+"management/instances/?includeStopped=true"; // with login
 
     $http.get(instancesAll,{
         headers: {

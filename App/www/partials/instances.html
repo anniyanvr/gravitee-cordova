@@ -27,7 +27,8 @@
                                         <small style="font-size: x-small">{{r.ip}}:{{r.port}}</small>
 
                                         <small ng-if="r.state === 'started'" style="color:#429f46" class="ng-scope"> {{r.state}} </small>
-                                        <small ng-if="r.state !== 'started'" style="color:red" class="ng-scope"> {{r.state}} </small>
+                                        <small ng-if="r.state === 'stopped'" style="color:red" class="ng-scope"> {{r.state}} </small>
+                                        <small ng-if="r.state === 'unknown'" style="color:#000000" class="ng-scope"> {{r.state}} </small>
 
                                     </span>
                                 </div>
