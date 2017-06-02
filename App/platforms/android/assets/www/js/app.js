@@ -67,6 +67,11 @@ app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
     /* Username */
     $scope.username = localStorage.username;
 
+    /* Picture */
+    $http.get(localStorage.baseURL+'management/user/'+localStorage.username+'/picture',{
+        headers: { 'Authorization': 'Basic ' + localStorage.authorization }
+    }).success(function (response) { $scope.img_profil = response; })
+
     /* Menu */
     var menuConfig = document.getElementById('menuConfiguration');
     var menuAPIs = document.getElementById('menuAPIs');
