@@ -53,18 +53,30 @@ function applicationCtrlAnalytics($scope, $routeParams, $http) {
         var tab = createKeysAndValues(response);
         highchartsStatus("status",tab[0],tab[1]);
     }
+
     httpSuccessAppAnalyticsResponseStatus = function (response) {
         // console.log(response["values"][0].buckets.length);
         var keys = [] , data = [];
+
+        var from, to, interval;
+        from = response["timestamp"]["from"];
+        to = response["timestamp"]["to"];
+        interval = response["timestamp"]["interval"];
+
         for (var r = 0 ; r < response["values"][0].buckets.length; r++ ){
             keys.push(response["values"][0].buckets[r].name);
             data.push(response["values"][0].buckets[r].data);
         }
         var title = (document.getElementById("responseStatusText").getAttribute("value"));
-        highcharts(title,"responseStatus",keys,data);
+        highcharts(title,"responseStatus",keys,data,from,to,interval);
     }
     httpSuccessAppAnalyticsResponseTimes = function (response) {
         var keys = [] , donnees = [];
+
+        var from, to, interval;
+        from = response["timestamp"]["from"];
+        to = response["timestamp"]["to"];
+        interval = response["timestamp"]["interval"];
 
         for (let i=0;i<response["values"].length;i++){
             for (var r = 0 ; r < response["values"][0].buckets.length; r++ ){
@@ -75,10 +87,16 @@ function applicationCtrlAnalytics($scope, $routeParams, $http) {
         }
 
         var title = (document.getElementById("responseTimesText").getAttribute("value"));
-        highcharts(title,"responseTimes",keys,donnees);
+        highcharts(title,"responseTimes",keys,donnees,from,to,interval);
     }
     httpSuccessAppAnalyticsHBAPI = function (response) {
         var keys = [] , donnees = [], id=[] ;
+
+        var from, to, interval;
+        from = response["timestamp"]["from"];
+        to = response["timestamp"]["to"];
+        interval = response["timestamp"]["interval"];
+
         for (var r=0;r<response.values[0].buckets.length;r++){
             id.push(response.values[0].buckets[r].name);
             donnees.push(response.values[0].buckets[r].data);
@@ -88,7 +106,7 @@ function applicationCtrlAnalytics($scope, $routeParams, $http) {
         }
 
         var title = (document.getElementById("HBAPIsText").getAttribute("value"));
-        highcharts(title,"HBAPI",keys,donnees);
+        highcharts(title,"HBAPI",keys,donnees,from,to,interval);
     }
 
     // convert date to timestamp
@@ -255,8 +273,11 @@ function applicationCtrlAnalytics($scope, $routeParams, $http) {
         });
     }
 
-    function highcharts(title,div,categories,data) {
+    function highcharts(title,div,categories,data,from,to,interval) {
+
+        // variables
         var series = [];
+
         for (var i = 0 ; i<categories.length; i++){
             series.push({
                 name: categories[i],
@@ -273,11 +294,25 @@ function applicationCtrlAnalytics($scope, $routeParams, $http) {
                 text: title
             },
             xAxis: {
-                type: 'datetime'
+                type: 'datetime',
+                dateTimeLabelFormats: {
+                    minTickInterval: 24 * 3600 * 1000,
+                    millisecond: '%b %e'
+                },
+                title: {
+                    text: null
+                }
             },
             yAxis: {
                 title: {
                     text: title
+                }
+            },
+            plotOptions: {
+                series: {
+                    pointStart: from,
+                    pointEnd: to,
+                    pointInterval: interval
                 }
             },
             tooltip: {
@@ -285,11 +320,6 @@ function applicationCtrlAnalytics($scope, $routeParams, $http) {
             },
             credits: {
                 enabled: false
-            },
-            plotOptions: {
-                areaspline: {
-                    fillOpacity: 0.5
-                }
             },
             series: series
         });
