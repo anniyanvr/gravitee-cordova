@@ -27,7 +27,7 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
 
     if(day === '01'){
         var month_1 = ('0'+(now.getMonth()));
-        var days_month_1 = NbJourParMois(month_1,year);
+        var days_month_1 = NbJourParMois(month_1);
         date_1  = ( month_1 +'/'+(days_month_1)+'/'+year+' '+hour+':'+min+':'+second);
         console.log(date_1);
     }
@@ -317,18 +317,33 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
     }
 
     function highcharts(title,div,categories,data) {
+
+        // variables
         var series = [];
+
+        // show
+
+        var day_show = day;
+        var month_show = month;
+        var year_show = year;
+
+        if (day === '01') {
+            if (month === '01') {
+                day_show = NbJourParMois(12);
+                month_show = 12;
+                year_show = parseInt(year) - 1;
+            }
+            else {
+                day_show = NbJourParMois(parseInt(month) - 1);
+                month_show = parseInt(month) - 1;
+            }
+        }
+        else { day_show = parseInt(day)-1; }
+
+        var start_date  = ( month_show+'/'+day_show+'/' + year_show+' '+hour+':'+min+':'+second) ;
+        var end_date    = ( month+'/'+day+'/'+year+' '+hour+':'+min+':'+second);
+
         for (var i = 0 ; i<categories.length; i++){
-
-            var now = new Date();
-            var year    = now.getFullYear();
-            var month   = ('0'+(now.getMonth()+1));
-            var day     = ('0'+now.getDate()   ).slice(-2);
-            var hour    = ('0'+now.getHours()  ).slice(-2);
-            var min     = ('0'+now.getMinutes()).slice(-2);
-            var second  = ('0'+now.getSeconds()).slice(-2);
-            var date  = ( month +'/'+day+'/'+year+' '+hour+':'+min+':'+second);
-
             series.push({
                 name: categories[i],
                 data: data[i]
@@ -356,6 +371,13 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
             yAxis: {
                 title: {
                     text: title
+                }
+            },
+            plotOptions: {
+                series: {
+                    pointStart: parseInt(toTimestamp(start_date)+'000'),
+                    pointEnd: parseInt(toTimestamp(end_date)+'000'),
+                    pointInterval: 600000
                 }
             },
             tooltip: {
