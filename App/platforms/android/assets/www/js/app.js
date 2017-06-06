@@ -60,6 +60,13 @@ app.config(function ($routeProvider) {
 
 app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
 
+    /* SignOut */
+    $scope.signOut = function () {
+        $http.post(localStorage.baseURL+'management/user/logout',{
+            headers: { 'Authorization': 'Basic ' + localStorage.authorization }
+        }).success(function (response) { document.location.href="index.html"; })
+    }
+    
     /* Authority */
     var constant = localStorage.baseURL+"constants.json";
     var authority = false;
