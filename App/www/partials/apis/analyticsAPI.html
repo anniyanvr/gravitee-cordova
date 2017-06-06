@@ -10,12 +10,17 @@
                 </tr>
             </table>
 
+            <li><div class="divider"></div></li>
+
+            <br/>
+
             <div style="text-align: center">
-                From : <input style="width: 30%; display: inline-block" type="date" name="date1" onclick="ds_sh(this);" />
-                to : <input style="width: 30%; display: inline-block" type="date" name="date2" onclick="ds_sh(this);" />
-                <a style="text-transform: uppercase; color: black;" class="waves-effect waves-light white btn">apply</a>
+                From : <input style="width: 30%; display: inline-block" type="date" id="date1" onclick="ds_sh(this);" />
+                to : <input style="width: 30%; display: inline-block" type="date" id="date2" onclick="ds_sh(this);" />
+                <a style="text-transform: uppercase; color: black;" ng-click="fromTo()" class="waves-effect waves-light white btn">apply</a>
             </div>
 
+            <br/>
             <li><div class="divider"></div></li>
 
         </ul>
@@ -68,7 +73,7 @@
                             <a href="#" data-activates="slide-out" class="button-collapse2"><i class="material-icons">menu</i></a>
                             Timeframe
                         </h6>
-                        <p>Data from May 31, 2017 12:00:00 AM to Jun 2, 2017 11:59:59 PM</p>
+                        <p>Data from {{date_now_1 | date:'MM/dd/yyyy h:mm a' }} to {{date_now | date:'MM/dd/yyyy h:mm a' }}</p>
                     </div>
                 </div>
             </div>

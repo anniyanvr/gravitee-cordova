@@ -32,6 +32,16 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
         console.log(date_1);
     }
 
+
+    // From date1 to date2
+    $scope.fromTo = function () {
+        date_1 = document.getElementById('date1').value;
+        date = document.getElementById('date2').value;
+
+        if (toTimestamp(date_1) > toTimestamp(date)) { /* error */ }
+        else { defURLs(); }
+    }
+
     /* Application - default */
     $scope.showTopApplication = 'true';
     $scope.showTopPlan = 'true';
@@ -171,77 +181,89 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
         return datum/1000;
     }
 
+    //default
+    defURLs();
+
     /* Definition of URLs */
-    var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
-    var applications = localStorage.baseURL+"management/apis/" + id +
-        "/analytics?type=group_by&field=application&size=20&interval=600000&from="+toTimestamp(date_1)+"908&to="+toTimestamp(date)+"908&";
-    var status = localStorage.baseURL+"management/apis/" + id + "/analytics?type=group_by&field=status&ranges=100:199;200:299;300:399;400:499;500:599&interval=600000&from="+toTimestamp(date_1)+"478&to="+toTimestamp(date)+"478&";
-    var topPlan = localStorage.baseURL+"management/apis/" + id + "/analytics?type=group_by&field=plan&size=20&interval=600000&from="+toTimestamp(date_1)+"607&to="+toTimestamp(date)+"607&";
-    var topSlowApplications = localStorage.baseURL+"management/apis/" + id +
-        "/analytics?type=group_by&field=application&order=-avg:response-time&size=20&interval=43200000&from="+toTimestamp(date_1)+"780&to="+toTimestamp(date)+"780&";
+    function defURLs() {
 
-    var responseStatus = localStorage.baseURL+"management/apis/"+id+"/analytics?type=date_histo&aggs=field:status&interval=600000&from="+toTimestamp(date_1)+"646&to="+toTimestamp(date)+"646&";
-    var responseTimes = localStorage.baseURL+"management/apis/"+id+
-        "/analytics?type=date_histo&aggs=avg:response-time;avg:api-response-time&interval=600000&from="+toTimestamp(date_1)+"173&to="+toTimestamp(date)+"765&";
-    var hitsByApplications = localStorage.baseURL+"management/apis/"+id+
-        "/analytics?type=date_histo&aggs=field:application&interval=600000&from="+toTimestamp(date_1)+"539&to="+toTimestamp(date)+"764&";
+        $scope.date_now_1 = date_1;
+        $scope.date_now = date;
 
-    /* ----- URLs processing ----- */
-    /* General */
-    $http.get(api,{
-        headers: {'Authorization': 'Basic ' + localStorage.authorization}
-    }).success(httpSuccessAPIAnalytics).error(function () {
-        document.location.href="index.html";
-    });
+        var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
 
-    /* Top applications */
-    $http.get(applications,{
-        headers: {'Authorization': 'Basic ' + localStorage.authorization}
-    }).success(httpSuccessAPIAnalyticsApplications).error(function () {
-        document.location.href="index.html";
-    });
+        var applications = localStorage.baseURL+"management/apis/" + id +
+            "/analytics?type=group_by&field=application&size=20&interval=600000&from="+toTimestamp(date_1)+"000&to="+toTimestamp(date)+"000&";
 
-    /* Status */
-    $http.get(status,{
-        headers: {'Authorization': 'Basic ' + localStorage.authorization}
-    }).success(httpSuccessAPIAnalyticsStatus).error(function () {
-        document.location.href="index.html";
-    });
+        var status = localStorage.baseURL+"management/apis/" + id + "/analytics?type=group_by&field=status&ranges=100:199;200:299;300:399;400:499;500:599&interval=600000&from="+toTimestamp(date_1)+"000&to="+toTimestamp(date)+"000&";
+        var topPlan = localStorage.baseURL+"management/apis/" + id + "/analytics?type=group_by&field=plan&size=20&interval=600000&from="+toTimestamp(date_1)+"000&to="+toTimestamp(date)+"000&";
 
-    /* Top plan */
-    $http.get(topPlan,{
-        headers: {'Authorization': 'Basic ' + localStorage.authorization}
-    }).success(httpSuccessAPIAnalyticsPlan).error(function () {
-        document.location.href="index.html";
-    });
+        var topSlowApplications = localStorage.baseURL+"management/apis/" + id +
+            "/analytics?type=group_by&field=application&order=-avg:response-time&size=20&interval=600000&from="+toTimestamp(date_1)+"000&to="+toTimestamp(date)+"000&";
 
-    /* Top slow applications */
-    $http.get(topSlowApplications,{
-        headers: {'Authorization': 'Basic ' + localStorage.authorization}
-    }).success(httpSuccessAPIAnalyticsSlowApplications).error(function () {
-        document.location.href="index.html";
-    });
+        var responseStatus = localStorage.baseURL+"management/apis/"+id+"/analytics?type=date_histo&aggs=field:status&interval=600000&from="+toTimestamp(date_1)+"000&to="+toTimestamp(date)+"000&";
+        var responseTimes = localStorage.baseURL+"management/apis/"+id+
+            "/analytics?type=date_histo&aggs=avg:response-time;avg:api-response-time&interval=600000&from="+toTimestamp(date_1)+"000&to="+toTimestamp(date)+"000&";
+        var hitsByApplications = localStorage.baseURL+"management/apis/"+id+
+            "/analytics?type=date_histo&aggs=field:application&interval=600000&from="+toTimestamp(date_1)+"000&to="+toTimestamp(date)+"000&";
 
-    /* Response Status */
-    $http.get(responseStatus,{
-        headers: {'Authorization': 'Basic ' + localStorage.authorization}
-    }).success(httpSuccessAPIAnalyticsResponseStatus).error(function () {
-        document.location.href="index.html";
-    });
+        /* ----- URLs processing ----- */
+        /* General */
+        $http.get(api,{
+            headers: {'Authorization': 'Basic ' + localStorage.authorization}
+        }).success(httpSuccessAPIAnalytics).error(function () {
+            document.location.href="index.html";
+        });
 
-    /* Response Times */
-    $http.get(responseTimes,{
-        headers: {'Authorization': 'Basic ' + localStorage.authorization}
-    }).success(httpSuccessAPIAnalyticsResponseTimes).error(function () {
-        document.location.href="index.html";
-    });
+        /* Top applications */
+        $http.get(applications,{
+            headers: {'Authorization': 'Basic ' + localStorage.authorization}
+        }).success(httpSuccessAPIAnalyticsApplications).error(function () {
+            document.location.href="index.html";
+        });
 
-    /* Hits By Applications */
-    $http.get(hitsByApplications,{
-        headers: {'Authorization': 'Basic ' + localStorage.authorization}
-    }).success(httpSuccessAPIAnalyticsHBApplications).error(function () {
-        document.location.href="index.html";
-    });
+        /* Status */
+        $http.get(status,{
+            headers: {'Authorization': 'Basic ' + localStorage.authorization}
+        }).success(httpSuccessAPIAnalyticsStatus).error(function () {
+            document.location.href="index.html";
+        });
+
+        /* Top plan */
+        $http.get(topPlan,{
+            headers: {'Authorization': 'Basic ' + localStorage.authorization}
+        }).success(httpSuccessAPIAnalyticsPlan).error(function () {
+            document.location.href="index.html";
+        });
+
+        /* Top slow applications */
+        $http.get(topSlowApplications,{
+            headers: {'Authorization': 'Basic ' + localStorage.authorization}
+        }).success(httpSuccessAPIAnalyticsSlowApplications).error(function () {
+            document.location.href="index.html";
+        });
+
+        /* Response Status */
+        $http.get(responseStatus,{
+            headers: {'Authorization': 'Basic ' + localStorage.authorization}
+        }).success(httpSuccessAPIAnalyticsResponseStatus).error(function () {
+            document.location.href="index.html";
+        });
+
+        /* Response Times */
+        $http.get(responseTimes,{
+            headers: {'Authorization': 'Basic ' + localStorage.authorization}
+        }).success(httpSuccessAPIAnalyticsResponseTimes).error(function () {
+            document.location.href="index.html";
+        });
+
+        /* Hits By Applications */
+        $http.get(hitsByApplications,{
+            headers: {'Authorization': 'Basic ' + localStorage.authorization}
+        }).success(httpSuccessAPIAnalyticsHBApplications).error(function () {
+            document.location.href="index.html";
+        });
+    }
 
     /* Select management */
     $scope.changeAPIsAnalytics = function () {

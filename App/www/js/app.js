@@ -68,7 +68,6 @@ app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
     }
     
     /* Authority */
-    var constant = localStorage.baseURL+"constants.json";
     var authority = false;
 
     /* Username */
