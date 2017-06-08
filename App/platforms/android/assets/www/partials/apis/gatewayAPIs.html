@@ -44,7 +44,8 @@
                                 <hr>
                                 <p style="font-size: medium; font-weight: bold; color: rgb(96,125,139); background-color: rgba(216,216,216,0.4); margin-bottom: 5px">Endpoints</p>
 
-                                <table class="striped">
+                                <pre>
+                                <table class="centered">
                                     <tr style="font-size: small">
                                         <!-- <th></th>  -->
                                         <th>Name</th>
@@ -62,25 +63,16 @@
                                                 <label for="filled-in-box"></label>
                                             </p>
                                         </td> -->
-                                        <td style="max-width: 60px; word-wrap: break-word"><input style="color: black" value="{{r.name}}" disabled></td>
-                                        <td style="max-width: 60px; word-wrap: break-word"><input style="color: black" value="{{r.target}}" disabled></td>
-                                        <td style="max-width: 60px; word-wrap: break-word"><input style="color: black" value="{{r.weight}}" disabled></td>
-                                        <td>
-                                            <i ng-if="r.backup === false" style="color: red;" class="material-icons">close</i>
-                                            <i ng-if="r.backup === true" style="color: #00A000" class="material-icons">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg>
-                                            </i>
-                                        </td>
-                                        <td>
-                                            <i ng-if="r.healthcheck === false" style="color: red;" class="material-icons">close</i>
-                                            <i ng-if="r.healthcheck === true" style="color: #00A000" class="material-icons">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg>
-                                            </i>
-                                        </td>
+                                        <td>{{r.name}}</td>
+                                        <td>{{r.target}}</td>
+                                        <td>{{r.weight}}</td>
+                                        <td><i ng-if="r.backup === false" style="color: red;" class="material-icons">close</i> <i ng-if="r.backup === true" style="color: #00A000" class="material-icons"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></i></td>
+                                        <td><i ng-if="r.healthcheck === false" style="color: red;" class="material-icons">close</i><i ng-if="r.healthcheck === true" style="color: #00A000" class="material-icons"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></i></td>
                                         <!-- <td><i class="material-icons">settings</i></td> -->
                                         <!-- <td></td> -->
                                     </tr>
                                 </table>
+                                </pre>
 
                                 <hr>
                                 <p style="font-size: medium; font-weight: bold; color: rgb(96,125,139); background-color: rgba(216,216,216,0.4);">Load balancing</p>

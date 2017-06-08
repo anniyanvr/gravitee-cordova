@@ -148,8 +148,8 @@ function dashboardCtrl($scope, $http) {
         // add page number -- select
         for (var i=0;i<totalElements/10;i++){
             var number = document.createElement('option');
-            if (i == 0) { number.innerHTML = "<option selected>" + (i+1) + "</option>"; }
-            else { number.innerHTML = "<option>" + (i+1) + "</option>"; }
+            number.innerHTML =
+                "<option>" + (i+1) + "</option>";
             selectPage.appendChild(number);
         }
     }
