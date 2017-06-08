@@ -32,15 +32,21 @@ function apisCtrlAnalytics($scope, $routeParams, $http) {
         console.log(date_1);
     }
 
-
     // From date1 to date2
     $scope.fromTo = function () {
         date_1 = document.getElementById('date1').value;
         date = document.getElementById('date2').value;
 
-        if (toTimestamp(date_1) > toTimestamp(date)) { /* error */ }
-        else { defURLs(); }
+        if (toTimestamp(date_1) > toTimestamp(date)) {
+            $scope.error = Materialize.toast('Error : date1 > date2. Please try again!', 4000, 'orange');
+        }
+        else if (date_1 === "" || date === ""){
+            $scope.error = Materialize.toast('Error : Choose 2 dates please!', 4000, 'orange');
+        }
+        else { defURLs();}
     }
+
+    $scope.error = "";
 
     /* Application - default */
     $scope.showTopApplication = 'true';

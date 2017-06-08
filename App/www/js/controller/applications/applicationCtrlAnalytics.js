@@ -31,6 +31,22 @@ function applicationCtrlAnalytics($scope, $routeParams, $http) {
         console.log(date_1);
     }
 
+    // From date1 to date2
+    $scope.fromTo = function () {
+        date_1 = document.getElementById('date1').value;
+        date = document.getElementById('date2').value;
+
+        if (toTimestamp(date_1) > toTimestamp(date)) {
+            $scope.error = Materialize.toast('Error : date1 > date2. Please try again!', 4000, 'orange');
+        }
+        else if (date_1 === "" || date === ""){
+            $scope.error = Materialize.toast('Error : Choose 2 dates please!', 4000, 'orange');
+        }
+        else { defURLs();}
+    }
+
+    $scope.error = "";
+
     // functions
     httpSuccessApplicationAnalytics = function (response) { $scope.rep = response; }
     httpSuccessApplicationTopAPI = function (response) {
@@ -115,74 +131,84 @@ function applicationCtrlAnalytics($scope, $routeParams, $http) {
         return datum/1000;
     }
 
+    //default
+    defURLs();
+
     /* Definition of URLs */
-    var application = localStorage.baseURL+"management/applications/"+id+"/"; // with login
-    var topAPI = localStorage.baseURL + "management/applications/"+id+"/" +
-        "analytics?type=group_by&field=api&size=20&interval=600000&from="+toTimestamp(date_1)+"899&to="+toTimestamp(date)+"899&";
-    var status = localStorage.baseURL+"management/applications/"+id+"/" +
-        "analytics?type=group_by&field=status&ranges=100:199;200:299;300:399;400:499;500:599&interval=600000&from="+toTimestamp(date_1)+"899&to="+toTimestamp(date)+"899&";
+    function defURLs() {
 
-    var responseStatus = localStorage.baseURL+"management/applications/"+id+"/"+
-        "analytics?type=date_histo&aggs=field:status&interval=600000&from="+toTimestamp(date_1)+"624&to="+toTimestamp(date)+"624&";
-    var responseTimes = localStorage.baseURL+"management/applications/"+id+"/"+
-        "analytics?type=date_histo&aggs=avg:response-time&interval=600000&from="+toTimestamp(date_1)+"624&to="+toTimestamp(date)+"624&";
-    var hitsByAPI = localStorage.baseURL+"management/applications/"+id+"/"+
-        "analytics?type=date_histo&aggs=field:api&interval=600000&from="+toTimestamp(date_1)+"624&to="+toTimestamp(date)+"624&";
+        $scope.date_now_1 = date_1;
+        $scope.date_now = date;
 
-    /* ----- URLs processing ----- */
-    /* General */
-    $http.get(application,{
-        headers: {
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessApplicationAnalytics).error(function () {
-        document.location.href="index.html";
-    });
+        /* Definition of URLs */
+        var application = localStorage.baseURL + "management/applications/" + id + "/"; // with login
+        var topAPI = localStorage.baseURL + "management/applications/" + id + "/" +
+            "analytics?type=group_by&field=api&size=20&interval=600000&from=" + toTimestamp(date_1) + "899&to=" + toTimestamp(date) + "899&";
+        var status = localStorage.baseURL + "management/applications/" + id + "/" +
+            "analytics?type=group_by&field=status&ranges=100:199;200:299;300:399;400:499;500:599&interval=600000&from=" + toTimestamp(date_1) + "899&to=" + toTimestamp(date) + "899&";
 
-    /* topAPI */
-    $http.get(topAPI,{
-        headers: {
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessApplicationTopAPI).error(function () {
-        document.location.href="index.html";
-    });
+        var responseStatus = localStorage.baseURL + "management/applications/" + id + "/" +
+            "analytics?type=date_histo&aggs=field:status&interval=600000&from=" + toTimestamp(date_1) + "624&to=" + toTimestamp(date) + "624&";
+        var responseTimes = localStorage.baseURL + "management/applications/" + id + "/" +
+            "analytics?type=date_histo&aggs=avg:response-time&interval=600000&from=" + toTimestamp(date_1) + "624&to=" + toTimestamp(date) + "624&";
+        var hitsByAPI = localStorage.baseURL + "management/applications/" + id + "/" +
+            "analytics?type=date_histo&aggs=field:api&interval=600000&from=" + toTimestamp(date_1) + "624&to=" + toTimestamp(date) + "624&";
 
-    /* status */
-    $http.get(status,{
-        headers: {
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessApplicationStatus).error(function () {
-        document.location.href="index.html";
-    });
+        /* ----- URLs processing ----- */
+        /* General */
+        $http.get(application, {
+            headers: {
+                'Authorization': 'Basic ' + localStorage.authorization
+            }
+        }).success(httpSuccessApplicationAnalytics).error(function () {
+            document.location.href = "index.html";
+        });
 
-    /* Response Status */
-    $http.get(responseStatus,{
-        headers: {
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessAppAnalyticsResponseStatus).error(function () {
-        document.location.href="index.html";
-    });
+        /* topAPI */
+        $http.get(topAPI, {
+            headers: {
+                'Authorization': 'Basic ' + localStorage.authorization
+            }
+        }).success(httpSuccessApplicationTopAPI).error(function () {
+            document.location.href = "index.html";
+        });
 
-    /* Response Times */
-    $http.get(responseTimes,{
-        headers: {
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessAppAnalyticsResponseTimes).error(function () {
-        document.location.href="index.html";
-    });
+        /* status */
+        $http.get(status, {
+            headers: {
+                'Authorization': 'Basic ' + localStorage.authorization
+            }
+        }).success(httpSuccessApplicationStatus).error(function () {
+            document.location.href = "index.html";
+        });
 
-    /* Hits By API */
-    $http.get(hitsByAPI,{
-        headers: {
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessAppAnalyticsHBAPI).error(function () {
-        document.location.href="index.html";
-    });
+        /* Response Status */
+        $http.get(responseStatus, {
+            headers: {
+                'Authorization': 'Basic ' + localStorage.authorization
+            }
+        }).success(httpSuccessAppAnalyticsResponseStatus).error(function () {
+            document.location.href = "index.html";
+        });
+
+        /* Response Times */
+        $http.get(responseTimes, {
+            headers: {
+                'Authorization': 'Basic ' + localStorage.authorization
+            }
+        }).success(httpSuccessAppAnalyticsResponseTimes).error(function () {
+            document.location.href = "index.html";
+        });
+
+        /* Hits By API */
+        $http.get(hitsByAPI, {
+            headers: {
+                'Authorization': 'Basic ' + localStorage.authorization
+            }
+        }).success(httpSuccessAppAnalyticsHBAPI).error(function () {
+            document.location.href = "index.html";
+        });
+    }
 
     /* Select management */
     $scope.changeAPPAnalytics = function () {

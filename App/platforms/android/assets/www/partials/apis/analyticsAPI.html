@@ -15,8 +15,8 @@
             <br/>
 
             <div style="text-align: center">
-                From : <input style="width: 30%; display: inline-block" type="date" id="date1" onclick="ds_sh(this);" />
-                to : <input style="width: 30%; display: inline-block" type="date" id="date2" onclick="ds_sh(this);" />
+                From : <input style="width: 30%; display: inline-block" type="datetime-local" id="date1" onclick="ds_sh(this);" />
+                to : <input style="width: 30%; display: inline-block" type="datetime-local" id="date2" onclick="ds_sh(this);" />
                 <a style="text-transform: uppercase; color: black;" ng-click="fromTo()" class="waves-effect waves-light white btn">apply</a>
             </div>
 
@@ -63,6 +63,8 @@
             <p>{{rep.description}}</p>
 
         </div>
+
+        {{error}}
 
         <!-- timeframe -->
         <div class="row">

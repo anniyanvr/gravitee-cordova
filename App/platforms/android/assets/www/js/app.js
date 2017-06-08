@@ -66,7 +66,7 @@ app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
             headers: { 'Authorization': 'Basic ' + localStorage.authorization }
         }).success(function (response) { document.location.href="index.html"; })
     }
-    
+
     /* Authority */
     var authority = false;
 

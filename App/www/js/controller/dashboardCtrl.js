@@ -32,6 +32,23 @@ function dashboardCtrl($scope, $http) {
         console.log(date_1);
     }
 
+    // From date1 to date2
+    $scope.fromTo = function () {
+        date_1 = document.getElementById('date1').value;
+        date = document.getElementById('date2').value;
+
+        if (toTimestamp(date_1) > toTimestamp(date)) {
+            $scope.error = Materialize.toast('Error : date1 > date2. Please try again!', 4000, 'orange');
+        }
+        else if (date_1 === "" || date === ""){
+            $scope.error = Materialize.toast('Error : Choose 2 dates please!', 4000, 'orange');
+        }
+        else { defURLs();}
+    }
+
+    $scope.error = "";
+
+
     // functions
     httpSuccessAPIDashboard = function (response) {
         var struct = response;
@@ -122,6 +139,12 @@ function dashboardCtrl($scope, $http) {
         console.log(totalElements);
         $scope.event = response.content;
 
+        // clear
+        var elt = selectPage.childElementCount;
+        for (var j=0;j<elt;j++){
+            selectPage.removeChild(j);
+        }
+
         // add page number -- select
         for (var i=0;i<totalElements/10;i++){
             var number = document.createElement('option');
@@ -154,74 +177,84 @@ function dashboardCtrl($scope, $http) {
         return datum/1000;
     }
 
-    // URLs
-    var apis = localStorage.baseURL +
-        "management/platform/analytics?type=group_by&field=api&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
-    var applications = localStorage.baseURL +
-        "management/platform/analytics?type=group_by&field=application&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
-    var failedAPIs = localStorage.baseURL +
-        "management/platform/analytics?type=group_by&field=api&query=status:[500%20TO%20599]&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
-    var topSlowAPIs = localStorage.baseURL +
-        "management/platform/analytics?type=group_by&field=api&order=-avg:response-time&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
-    var topOverheadAPIs = localStorage.baseURL +
-        "management/platform/analytics?type=group_by&field=api&order=-avg:proxy-latency&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
-    var event = localStorage.baseURL +
-        "management/platform/events?type=START_API,STOP_API,PUBLISH_API,UNPUBLISH_API&api_ids=&from=" + toTimestamp(date_1) + "298&to=" + toTimestamp(date) + "298&page=0&size=10";
+    //default
+    defURLs();
 
-    // URLs processing
-    /* apis */
-    $http.get(apis,{
-        headers: {
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessAPIDashboard).error(function () {
-        document.location.href="index.html";
-    });
+    /* Definition of URLs */
+    function defURLs() {
 
-    /* applications */
-    $http.get(applications,{
-        headers: {
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessApplicationsDashboard).error(function () {
-        document.location.href="index.html";
-    });
+        $scope.date_now_1 = date_1;
+        $scope.date_now = date;
 
-    /* failedAPIs */
-    $http.get(failedAPIs,{
-        headers: {
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessFailedAPIsDashboard).error(function () {
-        document.location.href="index.html";
-    });
+        // URLs
+        var apis = localStorage.baseURL +
+            "management/platform/analytics?type=group_by&field=api&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
+        var applications = localStorage.baseURL +
+            "management/platform/analytics?type=group_by&field=application&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
+        var failedAPIs = localStorage.baseURL +
+            "management/platform/analytics?type=group_by&field=api&query=status:[500%20TO%20599]&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
+        var topSlowAPIs = localStorage.baseURL +
+            "management/platform/analytics?type=group_by&field=api&order=-avg:response-time&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
+        var topOverheadAPIs = localStorage.baseURL +
+            "management/platform/analytics?type=group_by&field=api&order=-avg:proxy-latency&size=10000&interval=600000&from=" + toTimestamp(date_1) + "269&to=" + toTimestamp(date) + "269&";
+        var event = localStorage.baseURL +
+            "management/platform/events?type=START_API,STOP_API,PUBLISH_API,UNPUBLISH_API&api_ids=&from=" + toTimestamp(date_1) + "298&to=" + toTimestamp(date) + "298&page=0&size=10";
 
-    /* topSlowAPIs */
-    $http.get(topSlowAPIs,{
-        headers: {
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessTopSlowAPIsDashboard).error(function () {
-        document.location.href="index.html";
-    });
+        // URLs processing
+        /* apis */
+        $http.get(apis, {
+            headers: {
+                'Authorization': 'Basic ' + localStorage.authorization
+            }
+        }).success(httpSuccessAPIDashboard).error(function () {
+            document.location.href = "index.html";
+        });
 
-    /* topOverheadAPIs */
-    $http.get(topOverheadAPIs,{
-        headers: {
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessTopOverheadAPIsDashboard).error(function () {
-        document.location.href="index.html";
-    });
+        /* applications */
+        $http.get(applications, {
+            headers: {
+                'Authorization': 'Basic ' + localStorage.authorization
+            }
+        }).success(httpSuccessApplicationsDashboard).error(function () {
+            document.location.href = "index.html";
+        });
 
-    /* event */
-    $http.get(event,{
-        headers: {
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessEventDashboard).error(function () {
-        document.location.href="index.html";
-    });
+        /* failedAPIs */
+        $http.get(failedAPIs, {
+            headers: {
+                'Authorization': 'Basic ' + localStorage.authorization
+            }
+        }).success(httpSuccessFailedAPIsDashboard).error(function () {
+            document.location.href = "index.html";
+        });
+
+        /* topSlowAPIs */
+        $http.get(topSlowAPIs, {
+            headers: {
+                'Authorization': 'Basic ' + localStorage.authorization
+            }
+        }).success(httpSuccessTopSlowAPIsDashboard).error(function () {
+            document.location.href = "index.html";
+        });
+
+        /* topOverheadAPIs */
+        $http.get(topOverheadAPIs, {
+            headers: {
+                'Authorization': 'Basic ' + localStorage.authorization
+            }
+        }).success(httpSuccessTopOverheadAPIsDashboard).error(function () {
+            document.location.href = "index.html";
+        });
+
+        /* event */
+        $http.get(event, {
+            headers: {
+                'Authorization': 'Basic ' + localStorage.authorization
+            }
+        }).success(httpSuccessEventDashboard).error(function () {
+            document.location.href = "index.html";
+        });
+    }
 
     // Select Management
     $scope.changeDashboardAnalytics = function () {

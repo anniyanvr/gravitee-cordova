@@ -11,7 +11,9 @@ function apisCtrlHistory($scope, $routeParams, $http) {
         $scope.endpoints = response.proxy['endpoints'];
         $scope.loadB = response.proxy['load_balancing'];
     }
-    httpSuccessHistoryAll = function (response) { $scope.history = response; }
+    httpSuccessHistoryAll = function (response) {
+        $scope.history = response;
+    }
 
     var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
     var history = localStorage.baseURL + "management/apis/" +id + "/events?type=PUBLISH_API";
