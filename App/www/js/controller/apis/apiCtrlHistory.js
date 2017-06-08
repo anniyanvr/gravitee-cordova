@@ -14,9 +14,12 @@ function apisCtrlHistory($scope, $routeParams, $http) {
     httpSuccessHistoryAll = function (response) {
         $scope.history = response;
 
-        var responseParse = (JSON.parse(response[0].payload)).definition;
-        $scope.responseParse = (JSON.parse(response[0].payload)).definition;
-        console.log(responseParse);
+        var tab = [];
+        for (var i=0;i<response.length;i++){
+            tab.push((JSON.parse(response[i].payload)).definition);
+        }
+        $scope.responseParse = tab;
+        console.log(tab);
     }
 
     var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login

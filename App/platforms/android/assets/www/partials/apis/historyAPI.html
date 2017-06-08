@@ -40,7 +40,7 @@
                     {{h.type}} <br/>
                     {{h.created_at | date:'MM/dd/yyyy h:mm a' }} by {{h.properties["username"]}}
                 </div>
-                <div class="collapsible-body"><pre>{{responseParse}}</pre></div>
+                <div class="collapsible-body"><pre>{{responseParse[$index]}}</pre></div>
             </li>
         </ul>
 
