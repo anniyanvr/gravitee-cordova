@@ -1,5 +1,5 @@
 <section ng-controller="instanceCtrlMonitoring">
-    <section class="panel panel-padding">
+    <section id="refresh" class="panel panel-padding">
 
         <h1 style="margin-top: 16px; color: #006CAB; font-size: 32px; font-family: inherit;">
             Monitoring Instances
@@ -132,3 +132,8 @@
 
     </section>
 </section>
+
+<script>
+    function reloadDiv() { document.location.reload(true); }
+    setInterval("reloadDiv()", 30000);
+</script>
