@@ -33,7 +33,7 @@
             <img ng-if="img_profil === ''" class="circle" src="img/profil.png">
             <img ng-if="img_profil !== ''" class="circle" src={{img_profil}}>
           </a>
-          <a><span class="white-text name">{{username}}</span></a>
+          <a><span class="white-text name" ng-bind="username"></span></a>
           <span class="white-text"></span>
         </div></li>
 

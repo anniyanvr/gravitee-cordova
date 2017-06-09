@@ -4,9 +4,6 @@
 
 function apisCtrl($scope, $http) {
 
-    var loaderBar = document.getElementById('divLoader');
-    loaderBar.setAttribute('class','progress');
-
     /* get all views */
     var allViews = localStorage.baseURL + "management/configuration/views/";
     $http.get(allViews).success(function (response) {
@@ -19,7 +16,6 @@ function apisCtrl($scope, $http) {
         var text = selectElmt.options[selectElmt.selectedIndex].text;
         var value = selectElmt.options[selectElmt.selectedIndex].value;
         if (text === "All APIs"){
-            loaderBar.setAttribute('class','progress');
             $http.get(baseURLAPI,{
                 headers: {
                     'Authorization': 'Basic ' + localStorage.authorization
@@ -29,7 +25,6 @@ function apisCtrl($scope, $http) {
             });
         }
         else {
-            loaderBar.setAttribute('class','progress');
             var url = localStorage.baseURL + "management/apis/?view=" + value;
             $http.get(url,{
                 headers: {
@@ -37,8 +32,6 @@ function apisCtrl($scope, $http) {
                 }
             }).success(function (response) {
                 $scope.rep = response;
-                /* loaderBar */
-                loaderBar.removeAttribute('class');
             });
         }
     }
@@ -77,9 +70,6 @@ function apisCtrl($scope, $http) {
 
         // Second solution -- with angular JS
         $scope.rep = response;
-
-        /* loaderBar */
-        loaderBar.removeAttribute('class');
     }
 
     var apisAll = localStorage.baseURL+"management/apis/"; // with login
@@ -95,7 +85,6 @@ function apisCtrl($scope, $http) {
 
     /* show all APIs */
     $scope.allAPIs = function () {
-        loaderBar.setAttribute('class','progress');
         $http.get(baseURLAPI,{
             headers: {
                 'Authorization': 'Basic ' + localStorage.authorization

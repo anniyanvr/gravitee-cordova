@@ -25,7 +25,7 @@
                 <th>Members</th>
             </tr>
             <tr ng-repeat="r in rep">
-                <td ng-if="r.type === 'application'">{{r.name}}</td>
+                <td ng-if="r.type === 'application'" ng-bind="r.name"></td>
                 <td ng-if="r.type === 'application'"></td>
                 <td ng-if="r.type === 'application'"></td>
             </tr>
@@ -38,7 +38,7 @@
                 <th>Members</th>
             </tr>
             <tr ng-repeat="r in rep">
-                <td ng-if="r.type === 'api'">{{r.name}}</td>
+                <td ng-if="r.type === 'api'" ng-bind="r.name"></td>
                 <td ng-if="r.type === 'api'"></td>
                 <td ng-if="r.type === 'api'"></td>
             </tr>

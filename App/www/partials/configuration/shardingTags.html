@@ -12,8 +12,8 @@
                 <!-- <th></th> -->
             </tr>
             <tr ng-repeat="r in rep">
-                <td>{{r.name}}</td>
-                <td>{{r.description}}</td>
+                <td ng-bind="r.name"></td>
+                <td ng-bind="r.description"></td>
                 <!-- <td><i class="material-icons">delete</i></td> -->
             </tr>
         </table>

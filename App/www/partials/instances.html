@@ -22,13 +22,12 @@
                                     <i class="material-icons">desktop_windows</i>
 
 
-                                    <span class="card-title" style="padding-bottom: 5px">
-                                        {{r.hostname}}
-                                        <small style="font-size: x-small">{{r.ip}}:{{r.port}}</small>
+                                    <span class="card-title" style="padding-bottom: 5px" ng-bind="r.hostname">
+                                        <small style="font-size: x-small" ng-bind="r.ip + ':' + r.port"></small>
 
-                                        <small ng-if="r.state === 'started'" style="color:#429f46" class="ng-scope"> {{r.state}} </small>
-                                        <small ng-if="r.state === 'stopped'" style="color:red" class="ng-scope"> {{r.state}} </small>
-                                        <small ng-if="r.state === 'unknown'" style="color:#000000" class="ng-scope"> {{r.state}} </small>
+                                        <small ng-if="r.state === 'started'" style="color:#429f46" class="ng-scope" ng-bind="r.state"></small>
+                                        <small ng-if="r.state === 'stopped'" style="color:red" class="ng-scope" ng-bind="r.state"></small>
+                                        <small ng-if="r.state === 'unknown'" style="color:#000000" class="ng-scope" ng-bind="r.state"></small>
 
                                     </span>
                                 </div>

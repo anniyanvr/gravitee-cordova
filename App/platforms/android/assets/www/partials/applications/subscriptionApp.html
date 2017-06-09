@@ -12,8 +12,8 @@
             <div style="text-align: left; width: 100%;
                         background-color: #f7f7f7;">
 
-                <h4>{{rep.name}}<small>({{rep.type}})</small></h4>
-                <p>{{rep.description}}</p>
+                <h4  ng-bind="rep.name"><small  ng-bind="rep.type"></small></h4>
+                <p  ng-bind="rep.description"></p>
 
             </div>
             <hr width="80%">
@@ -36,7 +36,7 @@
 
             <table class="striped" ng-repeat="sub in subscription">
                 <caption  ng-if="sub.status === statusShow" style="text-align: left; margin-top: 5px; font-family: inherit;">
-                    [ <small style="font-weight:bold; color: #006CAB; font-size: 14px;">{{sub.plan.apis[0].name}}</small> ]
+                    [ <small style="font-weight:bold; color: #006CAB; font-size: 14px;"  ng-bind="sub.plan.apis[0].name"></small> ]
                 </caption>
                 <tr  ng-if="sub.status === statusShow">
                     <th>Plan</th>

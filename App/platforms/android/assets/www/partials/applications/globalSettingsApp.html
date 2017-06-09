@@ -12,10 +12,8 @@
             <div style="text-align: left; width: 100%;
                         background-color: #f7f7f7;">
 
-                <h4>
-                    {{rep.name}}
-                    <small>
-                        ({{rep.version}})
+                <h4  ng-bind="rep.name">
+                    <small  ng-bind="rep.version">
                         <image
                                 class="APIsBottomButton"
                                 ng-if="rep.visibility === 'public'"
@@ -27,7 +25,7 @@
                                 src="img/private.png"></image>
                     </small>
                 </h4>
-                <p>{{rep.description}}</p>
+                <p  ng-bind="rep.description"></p>
 
             </div>
 
@@ -41,16 +39,16 @@
                             <form>
 
                                 <p style="color: darkgrey">Name</p>
-                                <input disabled style="width: 100%; color: black" class="input-text" type="text" placeholder="----" value="{{rep.name}}">
+                                <input disabled style="width: 100%; color: black" class="input-text" type="text" value="{{rep.name}}">
 
                                 <p style="color: darkgrey">Type</p>
-                                <input disabled style="width: 100%; color: black" class="input-text" type="text" placeholder="----" value="{{rep.type}}">
+                                <input disabled style="width: 100%; color: black" class="input-text" type="text" value="{{rep.type}}">
 
                                 <p style="color: darkgrey">Description</p>
-                                <input disabled style="width: 100%; color: black" class="input-text" type="text" placeholder="----" value="{{rep.description}}"><br/>
+                                <input disabled style="width: 100%; color: black" class="input-text" type="text" value="{{rep.description}}"><br/>
 
                                 <select disabled style="width: 100%" class="input-text">
-                                    <option>{{rep.views}}</option>
+                                    <option  ng-bind="rep.views"></option>
                                 </select>
 
                                 <!-- buttons -->

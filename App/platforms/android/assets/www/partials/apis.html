@@ -1,14 +1,6 @@
 <section ng-controller="apisCtrl">
     <section class="panel panel-padding">
 
-        <!-- loader bar -->
-        <div id="divLoader"
-             style="position: fixed;
-                    margin-top: -8px;
-                    width: 30%; text-align: center">
-            <div class="indeterminate"></div>
-        </div>
-
         <!-- content -->
         <h1 style="margin-top: 16px; color: #006CAB; font-size: 32px; font-family: inherit;">
             APIs
@@ -23,7 +15,7 @@
             <form ng-submit="changeView()">
                 <select style="display: inline-block; width: 60%" id="selectView" class="browser-default">
                     <option>All APIs</option>
-                    <option ng-repeat="view in views" value="{{view.id}}">{{view.name}}</option>
+                    <option ng-repeat="view in views" value="{{view.id}}" ng-bind="view.name"></option>
                 </select>
                 <button style="display: inline-block" class="btn waves-effect waves-light"
                         type="submit"
@@ -50,12 +42,11 @@
                         <div class="card blue-grey darken-1">
                             <div class="card-content white-text" style="height: 200px">
                                 <img style="width: 50px" src='https://nightly.gravitee.io/0466e9e25e08e26f669bbb7fe0b5e784.png'>
-                                <span class="card-title">
-                                    {{r.name}}
-                                    <small>({{r.version}})</small>
+                                <span class="card-title" ng-bind="r.name">
+                                    <small ng-bind="r.version"></small>
                                 </span>
-                                <small ng-if="r.state === 'started'" style="color:#429f46" class="ng-scope"> {{r.state}} </small>
-                                <small ng-if="r.state !== 'started'" style="color:red" class="ng-scope"> {{r.state}} </small>
+                                <small ng-if="r.state === 'started'" style="color:#429f46" class="ng-scope" ng-bind="r.state"></small>
+                                <small ng-if="r.state !== 'started'" style="color:red" class="ng-scope" ng-bind="r.state"></small>
 
                             </div>
                             <div class="card-action">
