@@ -73,6 +73,9 @@ app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
     /* Username */
     $scope.username = localStorage.username;
 
+    /* Environnment */
+    $scope.environnment = localStorage.baseURL;
+
     /* Picture */
     $http.get(localStorage.baseURL+'management/user/'+localStorage.username+'/picture',{
         headers: { 'Authorization': 'Basic ' + localStorage.authorization }
