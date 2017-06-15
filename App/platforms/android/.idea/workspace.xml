@@ -38,8 +38,8 @@
       <file leaf-file-name="instanceCtrlEnvironment.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/www/js/controller/instances/instanceCtrlEnvironment.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="18" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="48" selection-end-column="20" />
+            <state relative-caret-position="252">
+              <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -1817,10 +1817,12 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane />
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1937,8 +1939,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2332,6 +2332,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/www/js/controller/instances/instanceCtrlEnvironment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlAnalytics.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7182">
@@ -2478,8 +2486,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/www/js/controller/instances/instanceCtrlEnvironment.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="18" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="48" selection-end-column="20" />
+        <state relative-caret-position="252">
+          <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
           <folding />
         </state>
       </provider>
