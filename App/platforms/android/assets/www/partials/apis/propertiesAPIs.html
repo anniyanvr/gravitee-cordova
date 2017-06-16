@@ -30,19 +30,20 @@
 
             <hr width="80%">
 
-            <table class="striped">
-                <tr>
-                    <th>Name</th>
-                    <th>Value</th>
-                    <th>Dynamic</th>
-                </tr>
-                <tr ng-repeat="p in rep.properties">
-                    <td><input style="color: black" value="{{p.key}}" disabled></td>
-                    <td><input style="color: black" value="{{p.value}}" disabled></td>
-                    <td><input style="color: black" value="{{p.dynamic}}" disabled></td>
-                </tr>
-            </table>
-
+            <pre>
+                <table class="striped">
+                    <tr>
+                        <th>Name</th>
+                        <th>Value</th>
+                        <th>Dynamic</th>
+                    </tr>
+                    <tr ng-repeat="p in rep.properties">
+                        <td ng-bind="p.key"></td>
+                        <td ng-bind="p.value"></td>
+                        <td ng-bind="p.dynamic"></td>
+                    </tr>
+                </table>
+            </pre>
         </div>
 
     </section>

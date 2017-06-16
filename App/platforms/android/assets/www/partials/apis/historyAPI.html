@@ -38,7 +38,7 @@
                     {{h.type}} <br/>
                     {{h.created_at | date:'MM/dd/yyyy h:mm a' }} by {{h.properties["username"]}}
                 </div>
-                <div class="collapsible-body"><pre ng-bind="responseParse[$index]"></pre></div>
+                <div class="collapsible-body"><pre><code ng-bind="responseParse[$index]"></code></pre></div>
             </li>
         </ul>
 

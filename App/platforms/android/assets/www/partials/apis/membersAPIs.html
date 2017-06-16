@@ -26,18 +26,20 @@
 
         </div>
 
-        <table class="striped">
-            <tr>
-                <th>Member</th>
-                <th></th>
-                <th>Role</th>
-            </tr>
-            <tr  ng-repeat="m in members">
-                <td ng-if="m.type !== 'primary_owner'" ><input style="color: black" value="{{m.firstname}} {{m.lastname}} [{{m.username}}]" disabled></td>
-                <td ng-if="m.type !== 'primary_owner'" ><input style="color: black" value="{{m.email}}" disabled></td>
-                <td ng-if="m.type !== 'primary_owner'" ><input style="color: black" value="{{m.type}}" disabled></td>
-            </tr>
-        </table>
+        <pre>
+            <table class="striped">
+                <tr>
+                    <th>Member</th>
+                    <th></th>
+                    <th>Role</th>
+                </tr>
+                <tr  ng-repeat="m in members">
+                    <td ng-if="m.type !== 'primary_owner'" >{{m.firstname}} {{m.lastname}} [{{m.username}}]</td>
+                    <td ng-if="m.type !== 'primary_owner'" ng-bind="m.email"></td>
+                    <td ng-if="m.type !== 'primary_owner'" ng-bind="m.type"></td>
+                </tr>
+            </table>
+        </pre>
 
     </section>
 </section>
