@@ -29,6 +29,7 @@ app.config(function ($routeProvider) {
       .when('/membersAPIs/:id', {templateUrl: 'partials/apis/membersAPIs.html'})
       .when('/propertiesAPIs/:id', {templateUrl: 'partials/apis/propertiesAPIs.html'})
       .when('/analyticsAPIs/:id', {templateUrl: 'partials/apis/analyticsAPI.html'})
+      .when('/documentationAPI/:id', {templateUrl: 'partials/apis/documentationAPI.html'})
       .when('/healthCheckAPI/:id', {templateUrl: 'partials/apis/healthCheckAPI.html'})
       .when('/historyAPI/:id', {templateUrl: 'partials/apis/historyAPI.html'})
       .when('/eventsAPI/:id', {templateUrl: 'partials/apis/eventsAPIs.html'})
@@ -94,7 +95,7 @@ app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
     var buttonConfiguration = document.getElementById('configuration');
 
     if (authority === false){
-        buttonInstances.setAttribute('style','display: none');
+        //buttonInstances.setAttribute('style','display: none');
         buttonDashboard.setAttribute('style','display: none');
         buttonConfiguration.setAttribute('style','display: none');
     }
@@ -119,7 +120,7 @@ app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
         menuConfig.setAttribute('style','display: none');
         menuAPIs.setAttribute('style','display: none');
         menuApplications.setAttribute('style','display: none');
-        menuGateway.setAttribute('style','display: none');
+        //menuGateway.setAttribute('style','display: none');
     }
 
     function color(button) {

@@ -25,6 +25,7 @@ function apisCtrlGeneral($scope, $routeParams, $http) {
     document.getElementById('menuAPIsHealthCheck').setAttribute('href','#/healthCheckAPI/'+id);
     document.getElementById('menuAPIsHistory').setAttribute('href','#/historyAPI/'+id);
     document.getElementById('menuAPIsEvents').setAttribute('href','#/eventsAPI/'+id);
+    document.getElementById('menuAPIsDocumentation').setAttribute('href','#/documentationAPI/'+id);
 
 
     var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
