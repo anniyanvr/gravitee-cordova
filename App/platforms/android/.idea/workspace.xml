@@ -5,61 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7bcd27fa-e35f-4f53-9508-336c6185a670" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlProperties.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.iml" afterPath="$PROJECT_DIR$/android.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/app.js" afterPath="$PROJECT_DIR$/assets/www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/apis/apiCtrlHistory.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/apis/apiCtrlHistory.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlEvents.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlEvents.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlGateway.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlGateway.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlGeneral.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlGeneral.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlMembers.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlMembers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlPlans.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlPlans.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlPolicies.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlPolicies.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlResources.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlResources.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlSubscription.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlSubscription.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/apisCtrl.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/apisCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/login.js" afterPath="$PROJECT_DIR$/assets/www/js/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/loginAccept.html" afterPath="$PROJECT_DIR$/assets/www/loginAccept.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/apis.html" afterPath="$PROJECT_DIR$/assets/www/partials/apis.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/apis/eventsAPIs.html" afterPath="$PROJECT_DIR$/assets/www/partials/apis/eventsAPIs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/apis/gatewayAPIs.html" afterPath="$PROJECT_DIR$/assets/www/partials/apis/gatewayAPIs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/apis/generalAPIs.html" afterPath="$PROJECT_DIR$/assets/www/partials/apis/generalAPIs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/apis/historyAPI.html" afterPath="$PROJECT_DIR$/assets/www/partials/apis/historyAPI.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/apis/membersAPIs.html" afterPath="$PROJECT_DIR$/assets/www/partials/apis/membersAPIs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/apis/plansAPI.html" afterPath="$PROJECT_DIR$/assets/www/partials/apis/plansAPI.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/apis/policiesAPIs.html" afterPath="$PROJECT_DIR$/assets/www/partials/apis/policiesAPIs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/apis/propertiesAPIs.html" afterPath="$PROJECT_DIR$/assets/www/partials/apis/propertiesAPIs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/apis/resourcesAPIs.html" afterPath="$PROJECT_DIR$/assets/www/partials/apis/resourcesAPIs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/apis/subscriptionAPIs.html" afterPath="$PROJECT_DIR$/assets/www/partials/apis/subscriptionAPIs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/app.js" afterPath="$PROJECT_DIR$/../../www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/apis/apiCtrlHistory.js" afterPath="$PROJECT_DIR$/../../www/js/controller/apis/apiCtrlHistory.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlEvents.js" afterPath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlEvents.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlGateway.js" afterPath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlGateway.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlGeneral.js" afterPath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlGeneral.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlMembers.js" afterPath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlMembers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlPlans.js" afterPath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlPlans.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlPolicies.js" afterPath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlPolicies.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlResources.js" afterPath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlResources.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlSubscription.js" afterPath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlSubscription.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/apisCtrl.js" afterPath="$PROJECT_DIR$/../../www/js/controller/apisCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/login.js" afterPath="$PROJECT_DIR$/../../www/js/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/loginAccept.html" afterPath="$PROJECT_DIR$/../../www/loginAccept.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/apis.html" afterPath="$PROJECT_DIR$/../../www/partials/apis.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/apis/eventsAPIs.html" afterPath="$PROJECT_DIR$/../../www/partials/apis/eventsAPIs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/apis/gatewayAPIs.html" afterPath="$PROJECT_DIR$/../../www/partials/apis/gatewayAPIs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/apis/generalAPIs.html" afterPath="$PROJECT_DIR$/../../www/partials/apis/generalAPIs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/apis/historyAPI.html" afterPath="$PROJECT_DIR$/../../www/partials/apis/historyAPI.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/apis/membersAPIs.html" afterPath="$PROJECT_DIR$/../../www/partials/apis/membersAPIs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/apis/plansAPI.html" afterPath="$PROJECT_DIR$/../../www/partials/apis/plansAPI.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/apis/policiesAPIs.html" afterPath="$PROJECT_DIR$/../../www/partials/apis/policiesAPIs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/apis/propertiesAPIs.html" afterPath="$PROJECT_DIR$/../../www/partials/apis/propertiesAPIs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/apis/resourcesAPIs.html" afterPath="$PROJECT_DIR$/../../www/partials/apis/resourcesAPIs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/apis/subscriptionAPIs.html" afterPath="$PROJECT_DIR$/../../www/partials/apis/subscriptionAPIs.html" />
     </list>
     <ignored path="android.iws" />
     <ignored path=".idea/workspace.xml" />

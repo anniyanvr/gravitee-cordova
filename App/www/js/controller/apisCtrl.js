@@ -15,6 +15,8 @@ function apisCtrl($scope, $http, apisList, viewsList) {
 
     /* -- FOR UPDATE -- */
 
+    httpSuccessAllAPIS = function (response) { $scope.rep = response; }
+
     /* change View */
     $scope.changeView = function () {
         var selectElmt = document.getElementById('selectView');
