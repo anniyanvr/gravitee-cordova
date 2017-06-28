@@ -43,8 +43,9 @@ login.controller('loginCtrl', ['$scope','$http',
         }).success(function () {
 
             localStorage.setItem("username",username);
-            localStorage.setItem("password",password);
             localStorage.setItem("baseURL",baseURL);
+
+            localStorage.setItem("myApi",'');
 
             localStorage.setItem("authorization",encode(username+':'+password));
 

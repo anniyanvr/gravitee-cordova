@@ -2,46 +2,21 @@
  * Created by root on 11/05/17.
  */
 
-function apisCtrlHistory($scope, $routeParams, $http) {
+function apisCtrlHistory($scope, myApiHistoInfo, myApiHistory) {
 
-    var id = $routeParams.id;
+    /* -- RESOLVE -- */
 
-    httpSuccessAPIHistory = function (response) {
-        $scope.rep = response;
-        $scope.endpoints = response.proxy['endpoints'];
-        $scope.loadB = response.proxy['load_balancing'];
+    // Infos
+    $scope.rep = myApiHistoInfo.data;
+    $scope.endpoints = myApiHistoInfo.data.proxy['endpoints'];
+    $scope.loadB = myApiHistoInfo.data.proxy['load_balancing'];
+
+    // History
+    $scope.history = myApiHistory.data;
+    var tab = [];
+    for (var i=0;i<myApiHistory.data.length;i++){
+        tab.push((JSON.parse(myApiHistory.data[i].payload)).definition);
     }
-    httpSuccessHistoryAll = function (response) {
-        $scope.history = response;
+    $scope.responseParse = tab;
 
-        var tab = [];
-        for (var i=0;i<response.length;i++){
-            tab.push((JSON.parse(response[i].payload)).definition);
-        }
-        $scope.responseParse = tab;
-        console.log(tab);
-    }
-
-    var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
-    var history = localStorage.baseURL + "management/apis/" +id + "/events?type=PUBLISH_API";
-
-    /* General */
-    $http.get(api,{
-        headers: {
-            //'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessAPIHistory).error(function () {
-        document.location.href="index.html";
-    });
-
-    /* History */
-    $http.get(history,{
-        headers: {
-            //'Authorization': 'Basic ' + encode(localStorage.username+':'+localStorage.password)
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessHistoryAll).error(function () {
-        document.location.href="index.html";
-    });
 }

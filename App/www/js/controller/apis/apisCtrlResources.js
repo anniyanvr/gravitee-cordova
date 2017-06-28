@@ -2,21 +2,10 @@
  * Created by root on 16/05/17.
  */
 
-function apisCtrlResources($scope, $routeParams, $http) {
-    var id = $routeParams.id;
+function apisCtrlResources($scope, myApiResource) {
 
-    httpSuccessAPIRes = function (response) {
-        $scope.rep = response;
-        $scope.resources = response.resources;
-    }
+    /* -- RESOLVE -- */
+    $scope.rep = myApiResource.data;
+    $scope.resources = myApiResource.data.resources;
 
-    var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
-
-    $http.get(api,{
-        headers: {
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessAPIRes).error(function () {
-        document.location.href="index.html";
-    });
 }

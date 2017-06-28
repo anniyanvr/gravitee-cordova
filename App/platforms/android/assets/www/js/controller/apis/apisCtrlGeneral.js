@@ -3,12 +3,11 @@
  */
 
 
-function apisCtrlGeneral($scope, $routeParams, $http) {
+function apisCtrlGeneral($scope, myApi) {
 
-    var id = $routeParams.id;
-
-    /* General */
-    httpSuccessAPI = function (response) { $scope.rep = response; }
+    /* -- RESOLVE -- */
+    $scope.rep = myApi.data;
+    var id = myApi.data.id;
 
     /* Menu APIs management */
     var menuAPIs = document.getElementById('menuAPIs');
@@ -26,15 +25,4 @@ function apisCtrlGeneral($scope, $routeParams, $http) {
     document.getElementById('menuAPIsHistory').setAttribute('href','#/historyAPI/'+id);
     document.getElementById('menuAPIsEvents').setAttribute('href','#/eventsAPI/'+id);
     document.getElementById('menuAPIsDocumentation').setAttribute('href','#/documentationAPI/'+id);
-
-
-    var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
-
-    $http.get(api,{
-        headers: {
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessAPI).error(function () {
-        document.location.href="index.html";
-    });
 }

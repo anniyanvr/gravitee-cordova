@@ -2,27 +2,10 @@
  * Created by root on 09/05/17.
  */
 
-function apisCtrlPolicies($scope, $routeParams, $http) {
-    var id = $routeParams.id;
+function apisCtrlPolicies($scope, myApiPoliciesInfo, myApiPolicies) {
 
-    httpSuccessAPIPolicies = function (response) { $scope.rep = response; }
-    httpSuccessAPIPoliciesAll = function (response) { $scope.policies = response; }
+    /* -- RESOLVE -- */
+    $scope.rep = myApiPoliciesInfo.data;
+    $scope.policies = myApiPolicies.data;
 
-    var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
-
-    $http.get(api,{
-        headers: {
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessAPIPolicies).error(function () {
-        document.location.href="index.html";
-    });
-
-    $http.get(localStorage.baseURL + "management/policies/",{
-        headers: {
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessAPIPoliciesAll).error(function () {
-        document.location.href="index.html";
-    });
 }

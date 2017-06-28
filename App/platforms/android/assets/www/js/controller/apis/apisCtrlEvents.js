@@ -2,32 +2,16 @@
  * Created by root on 11/05/17.
  */
 
-function apisCtrlEvents($scope, $routeParams, $http){
-    var id = $routeParams.id;
+function apisCtrlEvents($scope, myApiEventsInfos, myApiEvents){
 
-    httpSuccessAPIEvents = function (response) {
-        $scope.rep = response;
-        $scope.endpoints = response.proxy['endpoints'];
-        $scope.loadB = response.proxy['load_balancing'];
-    }
-    httpSuccessEventsAll = function (response) { $scope.events = response; }
+    /* -- RESOLVE -- */
 
-    var api = localStorage.baseURL+"management/apis/"+id+"/"; // with login
-    var events = localStorage.baseURL+"management/apis/" +id + "/events?type=START_API,STOP_API";
+    // Infos
+    $scope.rep = myApiEventsInfos.data;
+    $scope.endpoints = myApiEventsInfos.data.proxy['endpoints'];
+    $scope.loadB = myApiEventsInfos.data.proxy['load_balancing'];
 
-    $http.get(api,{
-        headers: {
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessAPIEvents).error(function () {
-        document.location.href="index.html";
-    });
+    // Events
+    $scope.events = myApiEvents.data;
 
-    $http.get(events,{
-        headers: {
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessEventsAll).error(function () {
-        document.location.href="index.html";
-    });
 }

@@ -5,21 +5,61 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7bcd27fa-e35f-4f53-9508-336c6185a670" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlDocumentation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/partials/apis/documentationAPI.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlProperties.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CordovaLib/CordovaLib.iml" afterPath="$PROJECT_DIR$/CordovaLib/CordovaLib.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android.iml" afterPath="$PROJECT_DIR$/android.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/app.js" afterPath="$PROJECT_DIR$/assets/www/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/apis/apiCtrlHistory.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/apis/apiCtrlHistory.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlEvents.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlEvents.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlGateway.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlGateway.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlGeneral.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlGeneral.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlMembers.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlMembers.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlPlans.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlPlans.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlPolicies.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlPolicies.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlResources.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlResources.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlSubscription.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/apis/apisCtrlSubscription.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/apisCtrl.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/apisCtrl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/login.js" afterPath="$PROJECT_DIR$/assets/www/js/login.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/loginAccept.html" afterPath="$PROJECT_DIR$/assets/www/loginAccept.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/apis.html" afterPath="$PROJECT_DIR$/assets/www/partials/apis.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/apis/eventsAPIs.html" afterPath="$PROJECT_DIR$/assets/www/partials/apis/eventsAPIs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/apis/gatewayAPIs.html" afterPath="$PROJECT_DIR$/assets/www/partials/apis/gatewayAPIs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/apis/generalAPIs.html" afterPath="$PROJECT_DIR$/assets/www/partials/apis/generalAPIs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/apis/historyAPI.html" afterPath="$PROJECT_DIR$/assets/www/partials/apis/historyAPI.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/apis/membersAPIs.html" afterPath="$PROJECT_DIR$/assets/www/partials/apis/membersAPIs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/apis/plansAPI.html" afterPath="$PROJECT_DIR$/assets/www/partials/apis/plansAPI.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/apis/policiesAPIs.html" afterPath="$PROJECT_DIR$/assets/www/partials/apis/policiesAPIs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/apis/propertiesAPIs.html" afterPath="$PROJECT_DIR$/assets/www/partials/apis/propertiesAPIs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/apis/resourcesAPIs.html" afterPath="$PROJECT_DIR$/assets/www/partials/apis/resourcesAPIs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/apis/subscriptionAPIs.html" afterPath="$PROJECT_DIR$/assets/www/partials/apis/subscriptionAPIs.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/app.js" afterPath="$PROJECT_DIR$/../../www/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/apis/apiCtrlHistory.js" afterPath="$PROJECT_DIR$/../../www/js/controller/apis/apiCtrlHistory.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlEvents.js" afterPath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlEvents.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlGateway.js" afterPath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlGateway.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlGeneral.js" afterPath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlGeneral.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlMembers.js" afterPath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlMembers.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlPlans.js" afterPath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlPlans.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlPolicies.js" afterPath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlPolicies.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlResources.js" afterPath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlResources.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlSubscription.js" afterPath="$PROJECT_DIR$/../../www/js/controller/apis/apisCtrlSubscription.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/apisCtrl.js" afterPath="$PROJECT_DIR$/../../www/js/controller/apisCtrl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/login.js" afterPath="$PROJECT_DIR$/../../www/js/login.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/loginAccept.html" afterPath="$PROJECT_DIR$/../../www/loginAccept.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/apis.html" afterPath="$PROJECT_DIR$/../../www/partials/apis.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/apis/eventsAPIs.html" afterPath="$PROJECT_DIR$/../../www/partials/apis/eventsAPIs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/apis/gatewayAPIs.html" afterPath="$PROJECT_DIR$/../../www/partials/apis/gatewayAPIs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/apis/generalAPIs.html" afterPath="$PROJECT_DIR$/../../www/partials/apis/generalAPIs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/apis/historyAPI.html" afterPath="$PROJECT_DIR$/../../www/partials/apis/historyAPI.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/apis/membersAPIs.html" afterPath="$PROJECT_DIR$/../../www/partials/apis/membersAPIs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/apis/plansAPI.html" afterPath="$PROJECT_DIR$/../../www/partials/apis/plansAPI.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/apis/policiesAPIs.html" afterPath="$PROJECT_DIR$/../../www/partials/apis/policiesAPIs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/apis/propertiesAPIs.html" afterPath="$PROJECT_DIR$/../../www/partials/apis/propertiesAPIs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/apis/resourcesAPIs.html" afterPath="$PROJECT_DIR$/../../www/partials/apis/resourcesAPIs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/apis/subscriptionAPIs.html" afterPath="$PROJECT_DIR$/../../www/partials/apis/subscriptionAPIs.html" />
     </list>
     <ignored path="android.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1836,12 +1876,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView">
-        <subPane />
-      </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1852,6 +1886,12 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="AndroidView">
+        <subPane />
+      </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2199,8 +2239,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33010754" sideWeight="0.5063571" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06330472" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.4936429" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.4936429" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2498618" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2210,8 +2250,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2498618" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946378" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39914164" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39914164" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2237,6 +2277,14 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/assets/www/js/controller/instances/instanceCtrlEnvironment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/www/js/controller/instances/instanceCtrlEnvironment.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">

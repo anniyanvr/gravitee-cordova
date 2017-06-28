@@ -2,13 +2,18 @@
  * Created by Quentin on 05/04/2017.
  */
 
-function apisCtrl($scope, $http) {
+function apisCtrl($scope, $http, apisList, viewsList) {
 
-    /* get all views */
-    var allViews = localStorage.baseURL + "management/configuration/views/";
-    $http.get(allViews).success(function (response) {
-        $scope.views = response;
-    });
+    /* -- RESOLVE -- */
+
+    // list of all APIs
+    $scope.rep = apisList.data;
+
+    // list of views
+    $scope.views = viewsList.data;
+
+
+    /* -- FOR UPDATE -- */
 
     /* change View */
     $scope.changeView = function () {
@@ -16,7 +21,7 @@ function apisCtrl($scope, $http) {
         var text = selectElmt.options[selectElmt.selectedIndex].text;
         var value = selectElmt.options[selectElmt.selectedIndex].value;
         if (text === "All APIs"){
-            $http.get(baseURLAPI,{
+            $http.get(localStorage.baseURL+"management/apis/",{
                 headers: {
                     'Authorization': 'Basic ' + localStorage.authorization
                 }
@@ -36,56 +41,9 @@ function apisCtrl($scope, $http) {
         }
     }
 
-    httpSuccessAllAPIS = function (response) {
-
-        // First solution -- only javaScript
-       /* console.log(response);
-        for (var i = 0; i < 12; i++) {
-
-            var api = document.createElement('button');
-            api.setAttribute('id', response[0].id);
-            api.style.width = '14em';
-            api.style.background = 'url(' + response[0].picture_url + ') no-repeat';
-            api.style.backgroundSize = '100px';
-            api.style.height = '20em';
-            api.style.backgroundPosition = 'center 8px';
-            api.style.margin = '5px';
-
-            var titleAPI = document.createElement('h3');
-            titleAPI.innerText = '\n\n' + response[0].name + '(' + response[0].version + ')';
-
-            var state = document.createElement('small');
-            state.innerText = response[0].state;
-            if (response[0].state == "started") {
-                state.style.color = 'green';
-            } else {
-                state.style.color = 'red';
-            }
-
-            api.appendChild(titleAPI);
-            api.appendChild(state);
-            showAPIs.appendChild(api);
-        }
-        console.log(showAPIs);*/
-
-        // Second solution -- with angular JS
-        $scope.rep = response;
-    }
-
-    var apisAll = localStorage.baseURL+"management/apis/"; // with login
-
-    baseURLAPI = apisAll;
-    $http.get(apisAll,{
-        headers: {
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessAllAPIS).error(function () {
-        document.location.href="index.html";
-    });
-
     /* show all APIs */
     $scope.allAPIs = function () {
-        $http.get(baseURLAPI,{
+        $http.get(localStorage.baseURL+"management/apis/",{
             headers: {
                 'Authorization': 'Basic ' + localStorage.authorization
             }
