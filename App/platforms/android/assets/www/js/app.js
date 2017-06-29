@@ -320,10 +320,105 @@ app.config(function ($routeProvider) {
       })
 
   // Applications
-      .when('/applications', {templateUrl: 'partials/applications.html'})
-      .when('/applicationGlobalSettings/:id', {templateUrl: 'partials/applications/globalSettingsApp.html'})
-      .when('/applicationSubscription/:id', {templateUrl: 'partials/applications/subscriptionApp.html'})
-      .when('/applicationMembers/:id', {templateUrl: 'partials/applications/membersApp.html'})
+      // LIST OF APPLICATIONS
+      .when('/applications', {
+          templateUrl: 'partials/applications.html',
+          controller : applicationCtrl,
+          resolve : {
+              appliList : function ($http) {
+                  return $http.get(localStorage.baseURL+"management/applications/",{
+                      headers: {
+                          'Authorization': 'Basic ' + localStorage.authorization
+                      }
+                  }).success(function (response) {
+                      return response;
+                  }).error(function () {
+                      document.location.href="index.html";
+                  });
+              }
+          }
+      })
+
+      // GLOBAL_SETTINGS
+      .when('/applicationGlobalSettings/:id', {
+          templateUrl: 'partials/applications/globalSettingsApp.html',
+          controller : applicationCtrlGlobalSettings,
+          resolve : {
+              applicationGeneral : function ($http, $route) {
+                  return $http.get(localStorage.baseURL+"management/applications/"+$route.current.params.id+"/", {
+                      headers: {
+                          'Authorization': 'Basic ' + localStorage.authorization
+                      }
+                  }).success(function (response) {
+                      return response;
+                  }).error(function () {
+                      document.location.href = "index.html";
+                  });
+              }
+          }
+      })
+
+      // SUBSCRIPTION
+      .when('/applicationSubscription/:id', {
+          templateUrl: 'partials/applications/subscriptionApp.html',
+          controller : applicationCtrlSubscription,
+          resolve : {
+              applicationSubGeneral : function ($http, $route) {
+                  return $http.get(localStorage.baseURL+"management/applications/"+$route.current.params.id+"/", {
+                      headers: {
+                          'Authorization': 'Basic ' + localStorage.authorization
+                      }
+                  }).success(function (response) {
+                      return response;
+                  }).error(function () {
+                      document.location.href = "index.html";
+                  });
+              },
+              applicationSub : function ($http, $route) {
+                  return $http.get(localStorage.baseURL+"management/applications/"+$route.current.params.id+"/subscriptions", {
+                      headers: {
+                          'Authorization': 'Basic ' + localStorage.authorization
+                      }
+                  }).success(function (response) {
+                      return response;
+                  }).error(function () {
+                      document.location.href = "index.html";
+                  });
+              }
+          }
+      })
+
+      // MEMBERS
+      .when('/applicationMembers/:id', {
+          templateUrl: 'partials/applications/membersApp.html',
+          controller : applicationCtrlMembers,
+          resolve : {
+              applicationMembersGeneral : function ($http, $route) {
+                  return $http.get(localStorage.baseURL+"management/applications/"+$route.current.params.id+"/", {
+                      headers: {
+                          'Authorization': 'Basic ' + localStorage.authorization
+                      }
+                  }).success(function (response) {
+                      return response;
+                  }).error(function () {
+                      document.location.href = "index.html";
+                  });
+              },
+              appliMembers : function ($http, $route) {
+                  return $http.get(localStorage.baseURL+"management/applications/"+$route.current.params.id+"/members", {
+                      headers: {
+                          'Authorization': 'Basic ' + localStorage.authorization
+                      }
+                  }).success(function (response) {
+                      return response;
+                  }).error(function () {
+                      document.location.href = "index.html";
+                  });
+              }
+          }
+      })
+
+      // ANALYTICS
       .when('/applicationAnalytics/:id', {templateUrl: 'partials/applications/analyticsApp.html'})
 
   // Configuration

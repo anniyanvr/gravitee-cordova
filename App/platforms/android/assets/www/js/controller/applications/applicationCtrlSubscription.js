@@ -2,33 +2,16 @@
  * Created by root on 17/05/17.
  */
 
-function applicationCtrlSubscription($scope, $routeParams, $http) {
-    var id = $routeParams.id;
+function applicationCtrlSubscription($scope, applicationSubGeneral, applicationSub) {
 
-    // functions
-    httpSuccessApplication = function (response) { $scope.rep = response; $scope.statusShow = "accepted";}
-    httpSuccessApplicationSubscription = function (response) { $scope.subscription = response; }
+    /* -- RESOLVE -- */
 
-    // urls
-    var app = localStorage.baseURL+"management/applications/"+id+"/"; // with login
-    var appSub = localStorage.baseURL+"management/applications/"+id+"/subscriptions"; // with login
+    // general
+    $scope.rep = applicationSubGeneral.data;
+    $scope.statusShow = "accepted";
 
-    // URLs processing
-    $http.get(app,{
-        headers: {
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessApplication).error(function () {
-        document.location.href="index.html";
-    });
-
-    $http.get(appSub,{
-        headers: {
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessApplicationSubscription).error(function () {
-        document.location.href="index.html";
-    });
+    // subscription
+    $scope.subscription = applicationSub.data;
 
     // changeSubcription
     $scope.changeSub = function () {

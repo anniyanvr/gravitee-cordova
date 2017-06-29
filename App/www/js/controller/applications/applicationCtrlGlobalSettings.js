@@ -2,10 +2,11 @@
  * Created by root on 28/04/17.
  */
 
-function applicationCtrlGlobalSettings($scope, $routeParams, $http) {
-    var id = $routeParams.id;
+function applicationCtrlGlobalSettings($scope, applicationGeneral) {
 
-    httpSuccessApplication = function (response) { $scope.rep = response; }
+    /* -- RESOLVE -- */
+    var id = applicationGeneral.data.id;
+    $scope.rep = applicationGeneral.data;
 
     /* Menu Applications Management */
     var menuApplications = document.getElementById('menuApplications');
@@ -15,13 +16,4 @@ function applicationCtrlGlobalSettings($scope, $routeParams, $http) {
     document.getElementById('applicationMembers').setAttribute('href','#/applicationMembers/'+id);
     document.getElementById('applicationSubscription').setAttribute('href','#/applicationSubscription/'+id);
 
-    var app = localStorage.baseURL+"management/applications/"+id+"/"; // with login
-
-    $http.get(app,{
-        headers: {
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessApplication).error(function () {
-        document.location.href="index.html";
-    });
 }
