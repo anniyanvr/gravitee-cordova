@@ -11,25 +11,11 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/app.js" afterPath="$PROJECT_DIR$/assets/www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/configuration/configurationCtrlGroups.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/configuration/configurationCtrlGroups.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/configuration/configurationCtrlTags.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/configuration/configurationCtrlTags.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/configuration/configurationCtrlTenants.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/configuration/configurationCtrlTenants.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/configurationCtrl.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/configurationCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/login.js" afterPath="$PROJECT_DIR$/assets/www/js/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/loginAccept.html" afterPath="$PROJECT_DIR$/assets/www/loginAccept.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/configuration.html" afterPath="$PROJECT_DIR$/assets/www/partials/configuration.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/configuration/shardingTags.html" afterPath="$PROJECT_DIR$/assets/www/partials/configuration/shardingTags.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/configuration/tenants.html" afterPath="$PROJECT_DIR$/assets/www/partials/configuration/tenants.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/js/controller/instanceCtrl.js" afterPath="$PROJECT_DIR$/assets/www/js/controller/instanceCtrl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/www/partials/instances.html" afterPath="$PROJECT_DIR$/assets/www/partials/instances.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/app.js" afterPath="$PROJECT_DIR$/../../www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/configuration/configurationCtrlGroups.js" afterPath="$PROJECT_DIR$/../../www/js/controller/configuration/configurationCtrlGroups.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/configuration/configurationCtrlTags.js" afterPath="$PROJECT_DIR$/../../www/js/controller/configuration/configurationCtrlTags.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/configuration/configurationCtrlTenants.js" afterPath="$PROJECT_DIR$/../../www/js/controller/configuration/configurationCtrlTenants.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/configurationCtrl.js" afterPath="$PROJECT_DIR$/../../www/js/controller/configurationCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/login.js" afterPath="$PROJECT_DIR$/../../www/js/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/loginAccept.html" afterPath="$PROJECT_DIR$/../../www/loginAccept.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/configuration.html" afterPath="$PROJECT_DIR$/../../www/partials/configuration.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/configuration/shardingTags.html" afterPath="$PROJECT_DIR$/../../www/partials/configuration/shardingTags.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/configuration/tenants.html" afterPath="$PROJECT_DIR$/../../www/partials/configuration/tenants.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/js/controller/instanceCtrl.js" afterPath="$PROJECT_DIR$/../../www/js/controller/instanceCtrl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../www/partials/instances.html" afterPath="$PROJECT_DIR$/../../www/partials/instances.html" />
     </list>
     <ignored path="android.iws" />
     <ignored path=".idea/workspace.xml" />

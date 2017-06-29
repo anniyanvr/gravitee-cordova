@@ -44,6 +44,10 @@ app.config(function ($routeProvider) {
                   }).success(function (response) {
                       return response;
                   }).error(function () {
+                      // reset values
+                      localStorage.username = '';
+                      localStorage.baseURL = '';
+                      localStorage.authorization = '';
                       document.location.href = "index.html";
                   });
               }
@@ -502,7 +506,25 @@ app.config(function ($routeProvider) {
       .when('/dashboard', {templateUrl: 'partials/dashboard.html'})
 
   // Instances ---------------------------------------------------------------------------------------------------------
-      .when('/instances', {templateUrl: 'partials/instances.html'})
+      // GENERAL
+      .when('/instances', {
+          templateUrl: 'partials/instances.html',
+          controller : instanceCtrl,
+          resolve : {
+              instanceList : function ($http) {
+                  return $http.get(localStorage.baseURL+"management/instances/?includeStopped=true",{
+                      headers: {
+                          'Authorization': 'Basic ' + localStorage.authorization
+                      }
+                  }).success(function (response) {
+                      return response;
+                  }).error(function () {
+                      document.location.href="index.html";
+                  });
+              }
+          }
+      })
+
       .when('/instancesEnvironment/:event', {templateUrl: 'partials/instances/environmentInstance.html'})
       .when('/instancesMonitoring/:event', {templateUrl: 'partials/instances/monitoringInstance.html'})
 
