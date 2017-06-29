@@ -12,6 +12,10 @@ login.config(['$httpProvider', function($httpProvider) {
 login.controller('loginCtrl', ['$scope','$http',
             function($scope,$http)
 {
+    if (localStorage.username !== '' && localStorage.baseURL !== '' && localStorage.authorization !== ''){
+        document.location.href="loginAccept.html";
+    }
+
     var loader = document.getElementById('loader');
     var selectEnvironment = document.getElementById('selectEnvironment');
 
@@ -44,8 +48,6 @@ login.controller('loginCtrl', ['$scope','$http',
 
             localStorage.setItem("username",username);
             localStorage.setItem("baseURL",baseURL);
-
-            localStorage.setItem("myApi",'');
 
             localStorage.setItem("authorization",encode(username+':'+password));
 

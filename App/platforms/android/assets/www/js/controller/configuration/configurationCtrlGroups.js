@@ -2,15 +2,13 @@
  * Created by root on 22/05/17.
  */
 
-function configurationCtrlGroups($scope, $http) {
+function configurationCtrlGroups($scope, $http, configGroups) {
+
+    /* -- RESOLVE -- */
+    $scope.rep = configGroups.data;
 
     // set default style for apiShow
     document.getElementById('apiShow').setAttribute('style','display: none');
-
-    httpSuccessConfigurationGroups = function (response) {
-        console.log(response);
-        $scope.rep = response;
-    }
 
     /* Select Management */
     $scope.selectGroup = function () {
@@ -22,15 +20,4 @@ function configurationCtrlGroups($scope, $http) {
         if (value === 'api'){ document.getElementById('apiShow').removeAttribute('style'); }
     }
 
-    // url
-    var configurationGroups = localStorage.baseURL+"management/configuration/groups"; // with login
-
-    // url processing
-    $http.get(configurationGroups,{
-        headers: {
-            'Authorization': 'Basic ' + localStorage.authorization
-        }
-    }).success(httpSuccessConfigurationGroups).error(function () {
-        document.location.href="index.html";
-    });
 }

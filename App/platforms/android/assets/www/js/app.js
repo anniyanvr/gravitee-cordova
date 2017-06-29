@@ -19,7 +19,7 @@ app.config(function ($routeProvider) {
 
   /* .when('/createAPI', {templateUrl: 'partials/apis/createAPI.html'})  -- Read-only */
 
-  // APIs
+  // APIs --------------------------------------------------------------------------------------------------------------
       // LIST OF APIS
       .when('/apis', {
           templateUrl: 'partials/apis.html',
@@ -319,7 +319,7 @@ app.config(function ($routeProvider) {
           }
       })
 
-  // Applications
+  // Applications ------------------------------------------------------------------------------------------------------
       // LIST OF APPLICATIONS
       .when('/applications', {
           templateUrl: 'partials/applications.html',
@@ -421,31 +421,111 @@ app.config(function ($routeProvider) {
       // ANALYTICS
       .when('/applicationAnalytics/:id', {templateUrl: 'partials/applications/analyticsApp.html'})
 
-  // Configuration
-      .when('/configuration', {templateUrl: 'partials/configuration.html'})
-      .when('/configurationTags', {templateUrl: 'partials/configuration/shardingTags.html'})
-      .when('/configurationTenants', {templateUrl: 'partials/configuration/tenants.html'})
-      .when('/configurationGroups', {templateUrl: 'partials/configuration/groups.html'})
+  // Configuration -----------------------------------------------------------------------------------------------------
+      // GENERAL
+      .when('/configuration', {
+          templateUrl: 'partials/configuration.html',
+          controller : configurationCtrl,
+          resolve : {
+              configViews : function ($http) {
+                  return $http.get(localStorage.baseURL+"management/configuration/views/",{
+                      headers: {
+                          'Authorization': 'Basic ' + localStorage.authorization
+                      }
+                  }).success(function (response) {
+                      return response;
+                  }).error(function () {
+                      document.location.href="index.html";
+                  });
+              }
+          }
+      })
 
-  // Dashboard
+      // TAGS
+      .when('/configurationTags', {
+          templateUrl: 'partials/configuration/shardingTags.html',
+          controller : configurationCtrlTags,
+          resolve : {
+              configTags : function ($http) {
+                  return $http.get(localStorage.baseURL+"management/configuration/tags/",{
+                      headers: {
+                          'Authorization': 'Basic ' + localStorage.authorization
+                      }
+                  }).success(function (response) {
+                      return response;
+                  }).error(function () {
+                      document.location.href="index.html";
+                  });
+              }
+          }
+      })
+
+      // TENANTS
+      .when('/configurationTenants', {
+          templateUrl: 'partials/configuration/tenants.html',
+          controller : configurationCtrlTenants,
+          resolve : {
+              configTenants : function ($http) {
+                  return $http.get(localStorage.baseURL+"management/configuration/tenants/",{
+                      headers: {
+                          'Authorization': 'Basic ' + localStorage.authorization
+                      }
+                  }).success(function (response) {
+                      return response;
+                  }).error(function () {
+                      document.location.href="index.html";
+                  });
+              }
+          }
+      })
+
+      // GROUPS
+      .when('/configurationGroups', {
+          templateUrl: 'partials/configuration/groups.html',
+          controller : configurationCtrlGroups,
+          resolve : {
+              configGroups : function ($http) {
+                  return $http.get(localStorage.baseURL+"management/configuration/groups",{
+                      headers: {
+                          'Authorization': 'Basic ' + localStorage.authorization
+                      }
+                  }).success(function (response) {
+                      return response;
+                  }).error(function () {
+                      document.location.href="index.html";
+                  });
+              }
+          }
+      })
+
+  // Dashboard ---------------------------------------------------------------------------------------------------------
       .when('/dashboard', {templateUrl: 'partials/dashboard.html'})
 
-  // Instances
+  // Instances ---------------------------------------------------------------------------------------------------------
       .when('/instances', {templateUrl: 'partials/instances.html'})
       .when('/instancesEnvironment/:event', {templateUrl: 'partials/instances/environmentInstance.html'})
       .when('/instancesMonitoring/:event', {templateUrl: 'partials/instances/monitoringInstance.html'})
 
-  // Otherwise
+  // Otherwise -- Default ----------------------------------------------------------------------------------------------
       .otherwise({redirectTo: 'apis'})
-})
+}) // End Routing
 
+// SideNav Controller
 app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
 
     /* SignOut */
     $scope.signOut = function () {
         $http.post(localStorage.baseURL+'management/user/logout',{
             headers: { 'Authorization': 'Basic ' + localStorage.authorization }
-        }).success(function (response) { document.location.href="index.html"; })
+        }).success(function (response) {
+
+            // reset values
+            localStorage.username = '';
+            localStorage.baseURL = '';
+            localStorage.authorization = '';
+
+            document.location.href="index.html";
+        })
     }
 
     /* Authority */
@@ -547,4 +627,4 @@ app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
             }
         }
     })
-}]);
+}]); // navCtrl
