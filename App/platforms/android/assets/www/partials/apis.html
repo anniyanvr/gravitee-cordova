@@ -42,8 +42,8 @@
                         <div class="card blue-grey darken-1">
                             <div class="card-content white-text" style="height: 200px">
                                 <img style="width: 50px" src={{r.picture_url}}>
-                                <span class="card-title" ng-bind="r.name">
-                                    <small ng-bind="r.version"></small>
+                                <span class="card-title" style="word-wrap: break-word; font-size: 10px">{{r.name}}
+                                    <small>({{r.version}})</small>
                                 </span>
                                 <small ng-if="r.state === 'started'" style="color:#429f46" class="ng-scope" ng-bind="r.state"></small>
                                 <small ng-if="r.state !== 'started'" style="color:red" class="ng-scope" ng-bind="r.state"></small>

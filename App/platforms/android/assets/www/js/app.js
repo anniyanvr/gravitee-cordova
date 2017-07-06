@@ -611,7 +611,7 @@ app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
         menuConfig.setAttribute('style','display: none');
         menuAPIs.setAttribute('style','display: none');
         menuApplications.setAttribute('style','display: none');
-        //menuGateway.setAttribute('style','display: none');
+        menuGateway.setAttribute('style','display: none');
     }
 
     // for set color - button

@@ -17,7 +17,8 @@
                         <div class="card blue-grey darken-1">
                             <div class="card-content white-text" style="height: 200px">
                                 <img style="width: 50px" src='https://nightly.gravitee.io/0466e9e25e08e26f669bbb7fe0b5e784.png'>
-                                <span class="card-title" ng-bind="r.name"></span>
+                                <span class="card-title" style="word-wrap: break-word; font-size: 10px" ng-bind="r.name"></span>
+                                <small ng-if="r.type != null" style="font-size: x-small" ng-bind="'(' + r.type + ')'"></small>
                             </div>
                             <div class="card-action">
                                 <div class="divAPIsBottomButton">
