@@ -14,6 +14,7 @@ app.config(['$httpProvider', function($httpProvider) {
     delete $httpProvider.defaults.headers.common["X-Requested-With"];
 }]);
 
+// Routing
 app.config(function ($routeProvider) {
   $routeProvider
 
@@ -572,29 +573,35 @@ app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
     var menuApplications = document.getElementById('menuApplications');
     var menuGateway = document.getElementById('menuInstances');
 
+    // Buttons
     var buttonAPIs = document.getElementById('apis');
     var buttonApplications = document.getElementById('applications');
     var buttonInstances = document.getElementById('instances');
     var buttonDashboard = document.getElementById('dashboard');
     var buttonConfiguration = document.getElementById('configuration');
 
+    // If i don't have authority
     if (authority === false){
-        //buttonInstances.setAttribute('style','display: none');
+        // chaching buttons
+        buttonInstances.setAttribute('style','display: none');
         buttonDashboard.setAttribute('style','display: none');
         buttonConfiguration.setAttribute('style','display: none');
     }
 
-    // default
+    // default - color - Apis button
     buttonAPIs.setAttribute('style','background-color: rgba(0, 0, 0, 0.2);');
 
+    // For reset menu
     function resetMenu() {
 
+        // reset button
         buttonAPIs.setAttribute('style','background-color: white');
         buttonApplications.setAttribute('style','background-color: white');
         buttonInstances.setAttribute('style','background-color: white');
         buttonDashboard.setAttribute('style','background-color: white');
         buttonConfiguration.setAttribute('style','background-color: white');
 
+        // verify authority
         if (authority === false){
             buttonInstances.setAttribute('style','display: none');
             buttonDashboard.setAttribute('style','display: none');
@@ -607,17 +614,20 @@ app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
         //menuGateway.setAttribute('style','display: none');
     }
 
+    // for set color - button
     function color(button) {
         button.setAttribute('style','background-color: rgba(0, 0, 0, 0.2);');
     }
 
+    // show Configuration Menu
     function showConfigurationMenu() {
         menuConfig.setAttribute('style','display: inline-block; width: 100%');
         color(buttonConfiguration);
     }
 
+    // init - buttons
     function initButton() {
-
+        // init with click action
         initEventHandlers(buttonAPIs, 'click',          function () { resetMenu(); color(buttonAPIs)            }); /* APIs */
         initEventHandlers(buttonApplications, 'click',  function () { resetMenu(); color(buttonApplications)    }); /* Applications */
         initEventHandlers(buttonInstances, 'click',     function () { resetMenu(); color(buttonInstances)       }); /* Instances */
@@ -633,6 +643,7 @@ app.controller('navCtrl', ['$scope','$http', function ($scope,$http) {
     } // observe
     initEventHandlers(window, 'load', initButton);
 
+    // url for test authority
     var user = localStorage.baseURL + "management/user/"; // with login
     $http.get(user,{
         headers: {
