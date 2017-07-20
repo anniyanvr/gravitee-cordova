@@ -33,18 +33,19 @@
 
         </div>
 
-        <table class="striped">
-            <tr>
-                <th>Member</th>
-                <th></th>
-                <th>Role</th>
-            </tr>
-            <tr  ng-repeat="m in members">
-                <td><input style="color: black" value="{{m.firstname}} {{m.lastname}} [{{m.username}}]" disabled></td>
-                <td><input style="color: black" value="{{m.email}}" disabled></td>
-                <td><input style="color: black" value="{{m.type}}" disabled></td>
-            </tr>
-        </table>
-
+        <pre>
+            <table class="striped">
+                <tr>
+                    <th>Member</th>
+                    <th></th>
+                    <th>Role</th>
+                </tr>
+                <tr  ng-repeat="m in members">
+                    <td>{{m.firstname}} {{m.lastname}} [{{m.username}}]</td>
+                    <td>{{m.email}}</td>
+                    <td>{{m.type}}</td>
+                </tr>
+            </table>
+        </pre>
     </section>
 </section>

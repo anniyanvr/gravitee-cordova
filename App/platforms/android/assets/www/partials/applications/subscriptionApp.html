@@ -34,27 +34,32 @@
                 </form>
             </div>
 
-            <table class="striped" ng-repeat="sub in subscription">
+            <div ng-repeat="sub in subscription">
                 <caption  ng-if="sub.status === statusShow" style="text-align: left; margin-top: 5px; font-family: inherit;">
                     [ <small style="font-weight:bold; color: #006CAB; font-size: 14px;"  ng-bind="sub.plan.apis[0].name"></small> ]
                 </caption>
-                <tr  ng-if="sub.status === statusShow">
-                    <th>Plan</th>
-                    <th>Subscription Date</th>
-                    <th>Process Date</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Status</th>
-                </tr>
-                <tr  ng-if="sub.status === statusShow">
-                    <td><input style="color: black" value="{{sub.plan['name']}}" disabled></td>
-                    <td><input style="color: black" value="{{sub.created_at | date:'MM/dd/yyyy h:mm a' }}" disabled></td>
-                    <td><input style="color: black" value="{{sub.processed_at | date:'MM/dd/yyyy h:mm a' }}" disabled></td>
-                    <td><input style="color: black" value="{{sub.starting_at | date:'MM/dd/yyyy h:mm a' }}" disabled></td>
-                    <td><input style="color: black" value="{{sub.ending_at | date:'MM/dd/yyyy h:mm a' }}" disabled></td>
-                    <td><input style="color: black" value="{{sub.status}}" disabled></td>
-                </tr>
-            </table>
+                <pre>
+                    <table class="striped" >
+
+                        <tr  ng-if="sub.status === statusShow">
+                            <th>Plan</th>
+                            <th>Subscription Date</th>
+                            <th>Process Date</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr  ng-if="sub.status === statusShow">
+                            <td ng-bind="sub.plan['name']" disabled></td>
+                            <td ng-bind="sub.created_at | date:'MM/dd/yyyy h:mm a'" disabled></td>
+                            <td ng-bind="sub.processed_at | date:'MM/dd/yyyy h:mm a'" disabled></td>
+                            <td ng-bind="sub.starting_at | date:'MM/dd/yyyy h:mm a'" disabled></td>
+                            <td ng-bind="sub.ending_at | date:'MM/dd/yyyy h:mm a'" disabled></td>
+                            <td ng-bind="sub.status" disabled></td>
+                        </tr>
+                    </table>
+                </pre>
+            </div>
 
         </div>
 
