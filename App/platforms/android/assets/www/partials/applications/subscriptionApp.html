@@ -34,13 +34,11 @@
                 </form>
             </div>
 
-            <div ng-repeat="sub in subscription">
-                <caption  ng-if="sub.status === statusShow" style="text-align: left; margin-top: 5px; font-family: inherit;">
-                    [ <small style="font-weight:bold; color: #006CAB; font-size: 14px;"  ng-bind="sub.plan.apis[0].name"></small> ]
-                </caption>
                 <pre>
-                    <table class="striped" >
-
+                    <table class="striped" ng-repeat="sub in subscription">
+                        <tr ng-if="sub.status === statusShow"
+                            style="background-color: white; text-align: left; margin-top: 5px; font-family: inherit;">
+                            <th>[ <small style="font-weight:bold; color: #006CAB; font-size: 14px;"  ng-bind="sub.plan.apis[0].name"></small> ]</th></tr>
                         <tr  ng-if="sub.status === statusShow">
                             <th>Plan</th>
                             <th>Subscription Date</th>
@@ -59,7 +57,6 @@
                         </tr>
                     </table>
                 </pre>
-            </div>
 
         </div>
 
