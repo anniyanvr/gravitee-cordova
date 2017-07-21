@@ -1,6 +1,31 @@
 <section ng-controller="apisCtrlDocumentation">
     <section class="panel panel-padding">
 
+        <h1 style="margin-top: 16px; color: #006CAB; font-size: 32px; font-family: inherit;">
+            Documentation
+        </h1>
+
+        <!-- presentation -->
+        <div style="text-align: left; width: 100%;
+                        background-color: #f7f7f7;">
+
+            <h4  ng-bind="rep_info.name">
+                <small  ng-bind="rep_info.version">
+                    <image
+                            class="APIsBottomButton"
+                            ng-if="rep_info.visibility === 'public'"
+                            src="img/visibility.png"></image>
+
+                    <image
+                            class="APIsBottomButton"
+                            ng-if="rep_info.visibility === 'private'"
+                            src="img/private.png"></image>
+                </small>
+            </h4>
+            <p  ng-bind="rep_info.description"></p>
+
+        </div>
+
         <ul class="collapsible popout" data-collapsible="accordion">
             <li ng-repeat="r in rep">
                 <div ng-click="Showcontent(r.id)" class="collapsible-header">

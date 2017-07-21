@@ -14,6 +14,24 @@ app.config(['$httpProvider', function($httpProvider) {
     delete $httpProvider.defaults.headers.common["X-Requested-With"];
 }]);
 
+// Control and Management error http
+function error_http(response, status) {
+
+    if (status === 401) {
+        // reset values -- to avoid bug
+        localStorage.username = '';
+        localStorage.baseURL = '';
+        localStorage.authorization = '';
+
+        document.location.href = "index.html";
+    } else {
+        alert(response.message);
+    }
+
+}
+
+
+
 // Routing
 app.config(function ($routeProvider) {
   $routeProvider
@@ -33,8 +51,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href="index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               },
               viewsList : function ($http) {
@@ -44,14 +62,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-
-                      // reset values -- to avoid bug
-                      localStorage.username = '';
-                      localStorage.baseURL = '';
-                      localStorage.authorization = '';
-
-                      document.location.href = "index.html";
+                  }).error( function (response, status) {
+                      error_http(response, status);
                   });
               }
           }
@@ -70,8 +82,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href = "index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               }
           }
@@ -90,8 +102,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href = "index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               }
           }
@@ -110,8 +122,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href = "index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               },
               myApiPlansStatus : function ($http, $route) {
@@ -122,8 +134,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href = "index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               }
           }
@@ -141,8 +153,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href = "index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               },
               myApiSub : function ($http, $route) {
@@ -152,8 +164,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href = "index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               }
           }
@@ -171,8 +183,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href = "index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               }
           }
@@ -190,8 +202,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href = "index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               },
               myApiPolicies : function ($http, $route) {
@@ -201,8 +213,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href = "index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               }
           }
@@ -220,8 +232,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href = "index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               },
               myApiMembers: function ($http, $route) {
@@ -231,8 +243,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href = "index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               }
           }
@@ -250,8 +262,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href = "index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               }
           }
@@ -278,8 +290,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href = "index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               },
               myApiHistory : function ($http, $route) {
@@ -289,8 +301,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href = "index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               }
           }
@@ -308,8 +320,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href = "index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               },
               myApiEvents : function ($http, $route) {
@@ -319,8 +331,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href = "index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               }
           }
@@ -339,8 +351,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href="index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               }
           }
@@ -358,8 +370,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href = "index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               }
           }
@@ -377,8 +389,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href = "index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               },
               applicationSub : function ($http, $route) {
@@ -388,8 +400,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href = "index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               }
           }
@@ -407,8 +419,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href = "index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               },
               appliMembers : function ($http, $route) {
@@ -418,8 +430,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href = "index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               }
           }
@@ -441,8 +453,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href="index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               }
           }
@@ -460,8 +472,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href="index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               }
           }
@@ -479,8 +491,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href="index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               }
           }
@@ -498,8 +510,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href="index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               }
           }
@@ -521,8 +533,8 @@ app.config(function ($routeProvider) {
                       }
                   }).success(function (response) {
                       return response;
-                  }).error(function () {
-                      document.location.href="index.html";
+                  }).error(function (response, status) {
+                      error_http(response, status);
                   });
               }
           }

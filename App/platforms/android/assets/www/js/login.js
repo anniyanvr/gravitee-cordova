@@ -68,9 +68,9 @@ login.controller('loginCtrl', ['$scope','$http',
 
             // redirect
            document.location.href="loginAccept.html";
-        }).error(function (status) { // try again
+        }).error(function (data, status, headers) { // try again
             loader.setAttribute('style','display: none');
-            $scope.errorShow = 'Please verify your informations';
+            alert('Sorry, We found an error of type: '+status);
         })
     }
 
